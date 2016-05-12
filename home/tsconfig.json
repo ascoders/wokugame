@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "target": "es6",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "experimentalDecorators": true,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules",
+        "output",
+        "typings"
+    ]
+}

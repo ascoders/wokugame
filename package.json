@@ -1,0 +1,14 @@
+{
+    "name": "isomorphic-react-redux-app",
+    "version": "1.0.0",
+    "description": "react react-hot-loader redux redux-devtools react-router-redux immutable isomorphic fis3 yog2 webpack",
+    "scripts": {
+        "build": "npm run clean && NODE_ENV=production webpack -p --progress --colors --profile",
+        "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/caljrimmer/isomorphic-redux-app.git"
+    },
+    "license": "MIT"
+}
