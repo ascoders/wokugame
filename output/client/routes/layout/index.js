@@ -1,0 +1,32 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+const React = require('react');
+const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
+const userActions = require('../../stores/user/action');
+let LayoutComponent = class LayoutComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    componentWillMount() {
+    }
+    componentDidMount() {
+    }
+    render() {
+        return this.props.children;
+    }
+};
+LayoutComponent = __decorate([
+    fit_isomorphic_redux_tools_1.connect((state) => {
+        return {
+            userStore: state.user.toJS()
+        };
+    }, userActions)
+], LayoutComponent);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = LayoutComponent;
