@@ -6,6 +6,8 @@ var cached = require('gulp-cached')
 var exec = require('child_process').exec
 var tsServerProject = gulpTypescript.createProject('./tsconfig.json', {typescript: typescript})
 var tsClientProject = gulpTypescript.createProject('./tsconfig.json', {typescript: typescript})
+var gulpHtmlDev = require('./scripts/gulp-html-dev')
+var gulpJsPathReplace = require('./scripts/gulp-js-path-replace')
 
 /**
  * 编译 server 文件
@@ -23,6 +25,7 @@ gulp.task('server', function () {
 gulp.task('client-tsx', function () {
     return gulp.src('client/**/*.tsx')
         .pipe(cached('client')) // 只传递修改过的文件
+        .pipe(gulpJsPathReplace('client'))
         .pipe(gulpTypescript(tsClientProject))
         .pipe(gulp.dest('output/client'))
 })
@@ -33,6 +36,7 @@ gulp.task('client-tsx', function () {
 gulp.task('client-html', function () {
     return gulp.src('client/**/*.html')
         .pipe(cached('client')) // 只传递修改过的文件
+        .pipe(gulpHtmlDev())
         .pipe(gulp.dest('output/client'))
 })
 
@@ -58,7 +62,7 @@ gulp.task('nodemon', ['server'], function () {
  * 启动前端 webpack 入口
  */
 gulp.task('webpack', function (cb) {
-    exec('node webpack-server.js', function (err, stdout, stderr) {
+    exec('node scripts/webpack-server.js', function (err, stdout, stderr) {
         console.log(stdout)
         console.log(stderr)
         cb(err)

@@ -11,3 +11,6 @@
 /// <reference path="lodash/lodash.d.ts" />
 /// <reference path="sequelize/sequelize.d.ts" />
 /// <reference path="validator/validator.d.ts" />
+/// <reference path="koa-router/koa-router.d.ts" />
+/// <reference path="koa-mount/koa-mount.d.ts" />
+/// <reference path="mysql/mysql.d.ts" />

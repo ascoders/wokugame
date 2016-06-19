@@ -10,7 +10,7 @@ class PageA extends React.Component {
         document.title = 'page A';
     }
     render() {
-        return (React.createElement("div", {className: "_namespace"}, React.createElement(react_router_1.Link, {to: "/"}, "back")));
+        return (React.createElement("div", {className: "client-routes-page_a"}, React.createElement(react_router_1.Link, {to: "/"}, "back")));
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });

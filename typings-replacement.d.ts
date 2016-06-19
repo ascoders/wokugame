@@ -1,3 +1,3 @@
 declare module 'redux-immutablejs' {
-    export const createReducer:any
+    export const createReducer: any
 }

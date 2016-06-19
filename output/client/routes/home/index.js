@@ -20,7 +20,7 @@ let Home = class Home extends React.Component {
     }
     render() {
         const { userStore } = this.props;
-        return (React.createElement("div", {className: "_namespace"}, React.createElement("div", {className: "title"}, "React run well V15.0.1"), React.createElement("p", null, "访问 chrome 商店,", React.createElement("a", {target: "_blank", href: "https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?utm_source=chrome-ntp-icon"}, "下载 Redux DevTools 插件"), ",随时查看页面状态树"), React.createElement("p", null, React.createElement(react_router_1.Link, {to: "/page-a"}, "html5路由一"), React.createElement(react_router_1.Link, {to: "/page-b", style: { marginLeft: 10 }}, "html5路由二"))));
+        return (React.createElement("div", {className: "client-routes-home"}, React.createElement("div", {className: "title"}, "React run well V15.0.1"), React.createElement("p", null, "访问 chrome 商店,", React.createElement("a", {target: "_blank", href: "https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?utm_source=chrome-ntp-icon"}, "下载 Redux DevTools 插件"), ",随时查看页面状态树"), React.createElement("p", null, React.createElement(react_router_1.Link, {to: "/page-a"}, "html5路由一"), React.createElement(react_router_1.Link, {to: "/page-b", style: { marginLeft: 10 }}, "html5路由二"))));
     }
 };
 Home = __decorate([
