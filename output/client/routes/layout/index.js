@@ -8,19 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 const React = require('react');
 const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
 const userActions = require('../../stores/user/action');
+const defintion = require('./defintion');
 let LayoutComponent = class LayoutComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    componentWillMount() {
-    }
-    componentDidMount() {
+    constructor(...args) {
+        super(...args);
+        this.state = new defintion.State();
     }
     render() {
         return this.props.children;
     }
 };
+LayoutComponent.defaultProps = new defintion.Props();
 LayoutComponent = __decorate([
     fit_isomorphic_redux_tools_1.connect((state) => {
         return {

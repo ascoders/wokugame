@@ -58,15 +58,4 @@ gulp.task('nodemon', ['server'], function () {
     })
 })
 
-/**
- * 启动前端 webpack 入口
- */
-gulp.task('webpack', function (cb) {
-    exec('node scripts/webpack-server.js', function (err, stdout, stderr) {
-        console.log(stdout)
-        console.log(stderr)
-        cb(err)
-    })
-})
-
-gulp.task('default', ['client-tsx', 'client-html', 'watch', 'webpack', 'nodemon'])
+gulp.task('default', ['client-tsx', 'client-html', 'watch', 'nodemon'])

@@ -5,20 +5,14 @@ module.exports = {
     devtool: 'eval',
 
     entry: [
-        'webpack-dev-server/client?http://localhost:8090',
-        'webpack/hot/only-dev-server',
         path.join(process.cwd(), 'client', 'index.tsx')
     ],
 
     output: {
-        filename  : 'index.js',
-        path      : path.join(__dirname, 'output/client'),
-        publicPath: 'http://127.0.0.1:8090/'
+        filename     : 'index.js',
+        path         : path.join(__dirname, '../output/bundle'),
+        chunkFilename: '[name].chunk.js'
     },
-
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
 
     resolve: {
         extensions: ['', '.js', '.jsx', '.tsx', '.json']
@@ -29,7 +23,7 @@ module.exports = {
             {
                 test   : /\.tsx?$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'ts', 'html-path-loader']
+                loaders: ['ts', 'html-path-loader']
             }, {
                 test   : /\.scss/,
                 exclude: /node_modules/,

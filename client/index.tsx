@@ -7,6 +7,8 @@ import {router} from 'fit-isomorphic-redux-tools'
 import routes from './routes'
 import reducer from './reducer'
 
+import './index.scss'
+
 const routerElement = router(routes, '', reducer)
 
 ReactDOM.render(routerElement, document.getElementById('react-dom'))

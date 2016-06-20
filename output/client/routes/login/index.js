@@ -8,8 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 const React = require('react');
 const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
 const defintion = require('./defintion');
-const react_router_1 = require('react-router');
-let Home = class Home extends React.Component {
+let Login = class Login extends React.Component {
     constructor(...args) {
         super(...args);
         this.state = new defintion.State();
@@ -17,19 +16,19 @@ let Home = class Home extends React.Component {
     componentWillMount() {
     }
     componentDidMount() {
-        document.title = '我酷游戏';
+        document.title = '登录';
     }
     render() {
-        return (React.createElement("div", {className: "client-routes-home"}, React.createElement(react_router_1.Link, {to: "/login"}, "登录"), React.createElement(react_router_1.Link, {to: "/register"}, "注册")));
+        return (React.createElement("div", {className: "client-routes-login"}, "登录"));
     }
 };
-Home.defaultProps = new defintion.Props();
-Home = __decorate([
+Login.defaultProps = new defintion.Props();
+Login = __decorate([
     fit_isomorphic_redux_tools_1.connect((state) => {
         return {
             userStore: state.user.toJS()
         };
     }, {})
-], Home);
+], Login);
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Home;
+exports.default = Login;

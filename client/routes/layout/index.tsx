@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {connect} from 'fit-isomorphic-redux-tools'
 import * as userActions from '../../stores/user/action'
+import * as defintion from './defintion'
 
 @connect(
     (state: any) => {
@@ -10,22 +11,10 @@ import * as userActions from '../../stores/user/action'
     },
     userActions
 )
-export default class LayoutComponent extends React.Component<any, any> {
-    state: any = {}
-    props: any
-
-    constructor(props: any) {
-        super(props)
-    }
-
-    componentWillMount() {
-
-    }
-
-    componentDidMount() {
-
-    }
-
+export default class LayoutComponent extends React.Component<defintion.PropsInterface,defintion.StateInterface> {
+    static defaultProps: defintion.PropsInterface = new defintion.Props()
+    public state: defintion.StateInterface = new defintion.State()
+    
     render(): any {
         return this.props.children
     }
