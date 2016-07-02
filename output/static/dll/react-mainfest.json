@@ -1,0 +1,16 @@
+{
+  "name": "react",
+  "content": {
+    "./node_modules/react-dom/index.js": 364,
+    "./node_modules/react/lib/ReactDOM.js": 365,
+    "./node_modules/react/lib/ReactMount.js": 366,
+    "./node_modules/react/lib/ReactDOMFeatureFlags.js": 367,
+    "./node_modules/react/lib/findDOMNode.js": 368,
+    "./node_modules/react/lib/getNativeComponentFromComposite.js": 369,
+    "./node_modules/react/lib/renderSubtreeIntoContainer.js": 370,
+    "./node_modules/redux-immutablejs/lib/index.js": 371,
+    "./node_modules/redux-immutablejs/lib/utils/combineReducers.js": 372,
+    "./node_modules/immutable/dist/immutable.js": 373,
+    "./node_modules/redux-immutablejs/lib/utils/createReducer.js": 374
+  }
+}

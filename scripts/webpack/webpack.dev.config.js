@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    devtool: 'eval',
+    debug  : true,
 
     entry: [
         'webpack-dev-server/client?http://localhost:8090',
@@ -13,11 +13,27 @@ module.exports = {
     output: {
         filename  : 'index.js',
         path      : path.join(__dirname, 'output/client'),
-        publicPath: 'http://127.0.0.1:8090/'
+        publicPath: 'http://localhost:8090/'
     },
 
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.DllReferencePlugin({
+            context : '.',
+            manifest: require(path.join(process.cwd(), 'output/static/dll/react-mainfest.json'))
+        }),
+        new webpack.DllReferencePlugin({
+            context : '.',
+            manifest: require(path.join(process.cwd(), 'output/static/dll/fit-mainfest.json'))
+        }),
+        new webpack.DllReferencePlugin({
+            context : '.',
+            manifest: require(path.join(process.cwd(), 'output/static/dll/tools-mainfest.json'))
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.SourceMapDevToolPlugin({
+            filename: '[file].map',
+            columns: false
+        })
     ],
 
     resolve: {

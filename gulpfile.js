@@ -6,8 +6,8 @@ var cached = require('gulp-cached')
 var exec = require('child_process').exec
 var tsServerProject = gulpTypescript.createProject('./tsconfig.json', {typescript: typescript})
 var tsClientProject = gulpTypescript.createProject('./tsconfig.json', {typescript: typescript})
-var gulpHtmlDev = require('./scripts/gulp-html-dev')
-var gulpJsPathReplace = require('./scripts/gulp-js-path-replace')
+var gulpHtmlDev = require('./scripts/gulp/gulp-html-dev')
+var gulpJsPathReplace = require('./scripts/gulp/gulp-js-path-replace')
 
 /**
  * 编译 server 文件

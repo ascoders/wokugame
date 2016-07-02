@@ -15,7 +15,7 @@ export default class Home extends React.Component<defintion.PropsInterface,defin
     public state: defintion.StateInterface = new defintion.State()
 
     componentWillMount() {
-
+        
     }
 
     componentDidMount() {

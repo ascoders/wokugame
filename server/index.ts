@@ -12,8 +12,20 @@ import * as path from 'path'
 import requireFolderIndex from './utils/require-folder-index'
 import * as _ from 'lodash'
 import * as Router from 'koa-router'
+import * as session from 'koa-session'
+import * as bodyParser from 'koa-bodyparser'
+import staticMiddleware from './middleware/static'
+import * as covert from 'koa-convert'
 
 const app = new Koa()
+
+/**
+ * 注册 middleware
+ */
+app.use(covert(staticMiddleware()))
+app.use(covert(session(app)))
+app.use(covert(bodyParser()))
+
 
 /**
  * 动态子文件夹注册路由

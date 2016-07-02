@@ -17,7 +17,14 @@ const path = require('path');
 const require_folder_index_1 = require('./utils/require-folder-index');
 const _ = require('lodash');
 const Router = require('koa-router');
+const session = require('koa-session');
+const bodyParser = require('koa-bodyparser');
+const static_1 = require('./middleware/static');
+const covert = require('koa-convert');
 const app = new Koa();
+app.use(covert(static_1.default()));
+app.use(covert(session(app)));
+app.use(covert(bodyParser()));
 require_folder_index_1.default(path.join(__dirname, 'modules'));
 const router = new Router();
 for (var key of service_1.default.keys()) {
