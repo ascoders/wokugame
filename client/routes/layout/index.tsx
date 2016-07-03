@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {connect} from 'fit-isomorphic-redux-tools'
+import connect from 'fit-isomorphic-redux-tools/lib/connect'
 import * as userActions from '../../stores/user/action'
 import * as defintion from './defintion'
 

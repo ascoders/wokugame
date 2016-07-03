@@ -1,4 +1,4 @@
-import {fetch} from 'fit-isomorphic-redux-tools'
+import fetch from 'fit-isomorphic-redux-tools/lib/fetch'
 
 export const SIMPLE_GET_FUNCTION = 'SIMPLE_GET_FUNCTION'
 export const SIMPLE_POST_FUNCTION = 'SIMPLE_POST_FUNCTION'

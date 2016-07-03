@@ -6,25 +6,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const React = require('react');
-const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
+const routes_base_1 = require('../../components/routes-base');
+const connect_1 = require('fit-isomorphic-redux-tools/lib/connect');
 const defintion = require('./defintion');
-let Login = class Login extends React.Component {
+let Login_1;
+let Login = Login_1 = class Login extends routes_base_1.default {
     constructor(...args) {
         super(...args);
         this.state = new defintion.State();
     }
+    getTitle() {
+        return Login_1.title;
+    }
     componentWillMount() {
     }
     componentDidMount() {
-        document.title = '登录';
     }
     render() {
         return (React.createElement("div", {className: "client-routes-login"}, "登录"));
     }
 };
 Login.defaultProps = new defintion.Props();
-Login = __decorate([
-    fit_isomorphic_redux_tools_1.connect((state) => {
+Login.title = '登录 - 我酷游戏';
+Login = Login_1 = __decorate([
+    connect_1.default((state) => {
         return {
             userStore: state.user.toJS()
         };

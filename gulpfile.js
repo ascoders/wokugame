@@ -41,6 +41,16 @@ gulp.task('client-html', function () {
 })
 
 /**
+ * 编译 client html 文件,后端渲染时用
+ * production
+ */
+gulp.task('client-html-production', function () {
+    return gulp.src('client/**/*.html')
+        .pipe(cached('client')) // 只传递修改过的文件
+        .pipe(gulp.dest('output/client'))
+})
+
+/**
  * 监听 server 文件改变自动触发构建
  */
 gulp.task('watch', function () {
@@ -58,4 +68,12 @@ gulp.task('nodemon', ['server'], function () {
     })
 })
 
+/**
+ * 开发状态
+ */
 gulp.task('default', ['client-tsx', 'client-html', 'watch', 'nodemon'])
+
+/**
+ * 上线编译
+ */
+gulp.task('production', ['client-tsx', 'client-html-production', 'server'])

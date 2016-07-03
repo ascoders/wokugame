@@ -16,7 +16,7 @@ module.exports = function (options) {
         var content = pp.preprocess(file.contents.toString(), options || {})
 
         // 将 ./index.tsx 替换为 webpack 热更新地址
-        content = content.replace(`src="./index.tsx"`, `src="http://localhost:8090/index.js"`)
+        content = content.replace(`src="/static/bundle/main.bundle.js"`, `src="http://localhost:8090/index.js"`)
 
         file.contents = new Buffer(content)
 

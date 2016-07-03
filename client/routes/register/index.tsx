@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {connect} from 'fit-isomorphic-redux-tools'
+import RoutesBase from '../../components/routes-base'
+import connect from 'fit-isomorphic-redux-tools/lib/connect'
 import * as defintion from './defintion'
 
 @connect(
@@ -9,16 +10,21 @@ import * as defintion from './defintion'
         }
     }, {}
 )
-export default class Register extends React.Component<defintion.PropsInterface,defintion.StateInterface> {
+export default class Register extends RoutesBase<defintion.PropsInterface,defintion.StateInterface> {
     static defaultProps:defintion.PropsInterface = new defintion.Props()
     public state:defintion.StateInterface = new defintion.State()
-
+    public static title: string = '注册 - 我酷游戏'
+    
+    getTitle() {
+        return Register.title
+    }
+    
     componentWillMount() {
 
     }
 
     componentDidMount() {
-        document.title = '注册'
+        
     }
 
     render() {

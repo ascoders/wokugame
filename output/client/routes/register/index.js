@@ -6,25 +6,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const React = require('react');
-const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
+const routes_base_1 = require('../../components/routes-base');
+const connect_1 = require('fit-isomorphic-redux-tools/lib/connect');
 const defintion = require('./defintion');
-let Register = class Register extends React.Component {
+let Register_1;
+let Register = Register_1 = class Register extends routes_base_1.default {
     constructor(...args) {
         super(...args);
         this.state = new defintion.State();
     }
+    getTitle() {
+        return Register_1.title;
+    }
     componentWillMount() {
     }
     componentDidMount() {
-        document.title = '注册';
     }
     render() {
         return (React.createElement("div", {className: "client-routes-register"}, "注册"));
     }
 };
 Register.defaultProps = new defintion.Props();
-Register = __decorate([
-    fit_isomorphic_redux_tools_1.connect((state) => {
+Register.title = '注册 - 我酷游戏';
+Register = Register_1 = __decorate([
+    connect_1.default((state) => {
         return {
             userStore: state.user.toJS()
         };

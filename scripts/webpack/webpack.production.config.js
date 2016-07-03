@@ -1,17 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
+var dllPlugins = require('./dll-plugins')
+var extractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = {
-    devtool: 'eval',
-
-    entry: [
-        path.join(process.cwd(), 'client', 'index.tsx')
-    ],
+var config = {
+    entry: path.join(process.cwd(), 'client', 'index.tsx'),
 
     output: {
-        filename     : 'index.js',
-        path         : path.join(__dirname, '../output/bundle'),
-        chunkFilename: '[name].chunk.js'
+        filename  : '[name].bundle.js',
+        publicPath: '/static/bundle/',
+        path      : path.join(process.cwd(), 'output/static/bundle')
     },
 
     resolve: {
@@ -23,11 +21,11 @@ module.exports = {
             {
                 test   : /\.tsx?$/,
                 exclude: /node_modules/,
-                loaders: ['ts', 'html-path-loader']
+                loaders: ['babel', 'ts', 'html-path']
             }, {
                 test   : /\.scss/,
                 exclude: /node_modules/,
-                loaders: ['style', 'css', 'autoprefixer', 'sass', 'css-path-loader']
+                loaders: ['style', 'css', 'autoprefixer', 'sass', 'css-path']
             },
             {
                 test   : /\.scss/,
@@ -47,5 +45,21 @@ module.exports = {
                 loader: 'json-loader'
             }
         ]
-    }
+    },
+
+    plugins: [
+        new extractTextPlugin('style.css'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+    ]
 }
+
+dllPlugins.forEach(function (item) {
+    config.plugins.push(item)
+})
+
+module.exports = config

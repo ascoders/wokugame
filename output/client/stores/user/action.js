@@ -1,9 +1,9 @@
 "use strict";
-const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
+const fetch_1 = require('fit-isomorphic-redux-tools/lib/fetch');
 exports.SIMPLE_GET_FUNCTION = 'SIMPLE_GET_FUNCTION';
 exports.SIMPLE_POST_FUNCTION = 'SIMPLE_POST_FUNCTION';
 exports.simpleGet = () => {
-    return fit_isomorphic_redux_tools_1.fetch({
+    return fetch_1.default({
         type: exports.SIMPLE_GET_FUNCTION,
         url: '/api/simple-get-function',
         params: {
@@ -13,7 +13,7 @@ exports.simpleGet = () => {
     });
 };
 exports.simplePost = () => {
-    return fit_isomorphic_redux_tools_1.fetch({
+    return fetch_1.default({
         type: exports.SIMPLE_POST_FUNCTION,
         url: '/api/simple-post-function',
         data: {

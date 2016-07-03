@@ -4,7 +4,7 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {router} from 'fit-isomorphic-redux-tools'
+import router from 'fit-isomorphic-redux-tools/lib/router'
 import routes from './routes'
 import reducer from './reducer'
 

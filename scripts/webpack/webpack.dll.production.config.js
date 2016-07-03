@@ -17,6 +17,11 @@ module.exports = {
         new webpack.DllPlugin({
             path: path.join(process.cwd(), 'output/static/dll', '[name]-mainfest.json'),
             name: '[name]'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
         })
     ],
 

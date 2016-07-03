@@ -21,3 +21,8 @@ declare module 'koa-convert' {
     const exports: any
     export = exports
 }
+
+declare module 'process' {
+    export const browser:boolean
+    export const env:any
+}

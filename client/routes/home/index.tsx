@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {connect} from 'fit-isomorphic-redux-tools'
+import RoutesBase from '../../components/routes-base'
+import connect from 'fit-isomorphic-redux-tools/lib/connect'
 import * as defintion from './defintion'
 import {Link} from 'react-router'
 
@@ -10,16 +11,21 @@ import {Link} from 'react-router'
         }
     }, {}
 )
-export default class Home extends React.Component<defintion.PropsInterface,defintion.StateInterface> {
+export default class Home extends RoutesBase<defintion.PropsInterface,defintion.StateInterface> {
     static defaultProps: defintion.PropsInterface = new defintion.Props()
     public state: defintion.StateInterface = new defintion.State()
+    public static title: string = '我酷游戏'
+
+    getTitle() {
+        return Home.title
+    }
 
     componentWillMount() {
-        
+
     }
 
     componentDidMount() {
-        document.title = '我酷游戏'
+
     }
 
     render() {

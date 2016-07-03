@@ -6,26 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const React = require('react');
-const fit_isomorphic_redux_tools_1 = require('fit-isomorphic-redux-tools');
+const routes_base_1 = require('../../components/routes-base');
+const connect_1 = require('fit-isomorphic-redux-tools/lib/connect');
 const defintion = require('./defintion');
 const react_router_1 = require('react-router');
-let Home = class Home extends React.Component {
+let Home_1;
+let Home = Home_1 = class Home extends routes_base_1.default {
     constructor(...args) {
         super(...args);
         this.state = new defintion.State();
     }
+    getTitle() {
+        return Home_1.title;
+    }
     componentWillMount() {
     }
     componentDidMount() {
-        document.title = '我酷游戏';
     }
     render() {
         return (React.createElement("div", {className: "client-routes-home"}, React.createElement(react_router_1.Link, {to: "/login"}, "登录"), React.createElement(react_router_1.Link, {to: "/register"}, "注册")));
     }
 };
 Home.defaultProps = new defintion.Props();
-Home = __decorate([
-    fit_isomorphic_redux_tools_1.connect((state) => {
+Home.title = '我酷游戏';
+Home = Home_1 = __decorate([
+    connect_1.default((state) => {
         return {
             userStore: state.user.toJS()
         };

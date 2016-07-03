@@ -1,8 +1,9 @@
 var path = require('path')
 var webpack = require('webpack')
+var dllPlugins = require('./dll-plugins')
 
-module.exports = {
-    debug  : true,
+var config = {
+    debug: true,
 
     entry: [
         'webpack-dev-server/client?http://localhost:8090',
@@ -17,22 +18,10 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.DllReferencePlugin({
-            context : '.',
-            manifest: require(path.join(process.cwd(), 'output/static/dll/react-mainfest.json'))
-        }),
-        new webpack.DllReferencePlugin({
-            context : '.',
-            manifest: require(path.join(process.cwd(), 'output/static/dll/fit-mainfest.json'))
-        }),
-        new webpack.DllReferencePlugin({
-            context : '.',
-            manifest: require(path.join(process.cwd(), 'output/static/dll/tools-mainfest.json'))
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
-            columns: false
+            columns : false
         })
     ],
 
@@ -45,11 +34,11 @@ module.exports = {
             {
                 test   : /\.tsx?$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'ts', 'html-path-loader']
+                loaders: ['react-hot', 'ts', 'html-path']
             }, {
                 test   : /\.scss/,
                 exclude: /node_modules/,
-                loaders: ['style', 'css', 'autoprefixer', 'sass', 'css-path-loader']
+                loaders: ['style', 'css', 'autoprefixer', 'sass', 'css-path']
             },
             {
                 test   : /\.scss/,
@@ -71,3 +60,9 @@ module.exports = {
         ]
     }
 }
+
+dllPlugins.forEach(function (item) {
+    config.plugins.push(item)
+})
+
+module.exports = config
