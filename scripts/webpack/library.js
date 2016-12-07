@@ -1,1 +1,0 @@
-module.exports = ['react', 'react-dom', 'react-router', 'redux-immutablejs', 'react-router-redux', 'validator', 'fit-input']
