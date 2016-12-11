@@ -6,3 +6,4 @@ test/coverage/
 test/jasmine/
 built/
 built-production/
+yarn-error.log
