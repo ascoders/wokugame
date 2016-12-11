@@ -14,7 +14,7 @@ function configureStore(initialState: any) {
         initialState,
         compose(
             applyMiddleware(..._getMiddleware()),
-            __DEV__ && environment.devToolsExtension ?
+            typeof __DEV__ && environment.devToolsExtension ?
                 environment.devToolsExtension() :
                 (f: any) => f))
 
@@ -27,7 +27,7 @@ function _getMiddleware(): Middleware[] {
         routerMiddleware(browserHistory)
     ]
 
-    if (__DEV__) {
+    if (typeof __DEV__) {
         middleware = [...middleware]
     }
 
@@ -37,7 +37,7 @@ function _getMiddleware(): Middleware[] {
 const environment: any = window || this
 
 function _enableHotLoader(store: any) {
-    if (!__DEV__) {
+    if (!typeof __DEV__) {
         return
     }
 

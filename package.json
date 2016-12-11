@@ -2,7 +2,14 @@
   "name": "wokugame",
   "version": "1.0.0",
   "description": "woku games",
-  "scripts": {},
+  "scripts": {
+    "tsc": "rm -rf built && tsc",
+    "dll": "webpack --config built/scripts/webpack/webpack.dll.config.js",
+    "start-before": "npm run tsc && npm run dll",
+    "server": "node built/src/server/index.js",
+    "webpack": "node built/scripts/webpack/webpack-server.js",
+    "start": "npm run server & npm run webpack"
+  },
   "repository": {
     "type": "git",
     "url": ""
@@ -16,10 +23,11 @@
     "koa-proxy": "^0.6.0",
     "koa-router": "^5.4.0",
     "koa-static-cache": "^3.1.7",
-    "lodash": "^4.15.0",
+    "lodash": "^4.17.2",
     "moment": "^2.15.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
@@ -27,11 +35,15 @@
     "rxjs": "^5.0.0-rc.5"
   },
   "devDependencies": {
+    "@types/koa": "^0.0.0",
+    "@types/koa-router": "^7.0.21",
+    "@types/node": "^0.0.2",
     "@types/react": "^0.14.54",
     "@types/react-dom": "^0.14.19",
     "@types/react-redux": "^4.4.35",
     "@types/react-router": "^2.0.41",
     "@types/react-router-redux": "^4.0.35",
+    "@types/webpack": "^2.0.0",
     "autoprefixer": "^6.4.0",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.14.0",
