@@ -1,13 +1,26 @@
 import * as React from 'react'
 import * as typings from './home.type'
+import {connect} from 'react-redux'
+import TestComponent from './test/home.component'
 
-export default class Home extends React.Component<typings.PropsDefine, typings.StateDefine> {
-    static defaultProps: typings.PropsDefine = new typings.Props()
-    public state: typings.StateDefine = new typings.State()
+import * as ApplicationAction from '../../../actions/application'
 
-    render() {
-        return (
-            <div>home</div>
-        )
+const Home = (props: typings.PropsDefine = new typings.Props()) => (
+    <div>
+        {props.headerColor}
+        <button onClick={props.locationChange}>click</button>
+        <TestComponent/>
+    </div>
+)
+
+export default connect(state => {
+    return {
+        headerColor: state.application.headerColor
     }
-}
+}, dispatch => {
+    return {
+        locationChange: () => {
+            dispatch(ApplicationAction.locationChange('aaa'))
+        }
+    }
+})(Home)

@@ -1,13 +1,15 @@
 import * as koa from 'koa'
 import * as config from '../../config'
 import * as staticCache from 'koa-static-cache'
+import {graphqlKoa} from 'graphql-server-koa'
+import myGraphQLSchema from '../graphql/schema'
+import * as Router from 'koa-router'
 import templateHtml from '../client/html'
 
 const app = new koa()
 const isProduction = process.argv[2] === '--production'
 
 const proxy = require('koa-proxy')
-import * as Router from 'koa-router'
 const router = new Router()
 
 // 编译后的静态文件路径
@@ -40,6 +42,8 @@ router.get('*', function *(): any {
     this.type = 'text/html; charset=utf-8'
     this.body = templateHtml
 })
+
+router.post('/graphql', graphqlKoa({schema: myGraphQLSchema}))
 
 app.use(router.routes())
 

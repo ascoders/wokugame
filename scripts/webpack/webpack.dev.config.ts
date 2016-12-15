@@ -1,6 +1,19 @@
 import * as webpack from 'webpack'
 import * as config from '../../config'
 import * as path from 'path'
+import * as happyPack from 'happypack'
+
+const happyThreadPool = happyPack.ThreadPool({size: 5})
+
+function createHappyPlugin(id: string, loaders: string[]) {
+    return new happyPack({
+        id: id,
+        loaders: loaders,
+        threadPool: happyThreadPool,
+        cache: process.env.HAPPY_CACHE === '1',
+        verbose: process.env.HAPPY_VERBOSE === '1'
+    })
+}
 
 const webpackConfig = {
     debug: true,
@@ -22,22 +35,22 @@ const webpackConfig = {
             {
                 test: /\.(jsx|js)?$/,
                 exclude: [/node_modules/],
-                loaders: ['react-hot']
+                loader: 'happypack/loader?id=js'
             }, {
                 test: /\.(css)/,
-                loaders: ['style', 'css']
+                loader: 'happypack/loader?id=css'
             }, {
                 test: /\.(png|jpg|gif)$/,
-                loaders: ['url?limit=3000&name=img/[hash:8].[name].[ext]']
+                loader: 'happypack/loader?id=image'
             }, {
                 test: /\.(woff|woff2|ttf|eot|svg)/,
-                loaders: ['url?limit=3000&name=font/[hash:8].[name].[ext]']
+                loader: 'happypack/loader?id=font'
             }, {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'happypack/loader?id=json'
             }, {
                 test: /\.md$/,
-                loader: 'text-loader'
+                loader: 'happypack/loader?id=text'
             }
         ]
     },
@@ -57,7 +70,13 @@ const webpackConfig = {
         new webpack.DllReferencePlugin({
             context: '.',
             manifest: require(path.join(process.cwd(), 'built/output/static/dll/library-mainfest.json'))
-        })
+        }),
+        createHappyPlugin('js', ['react-hot']),
+        createHappyPlugin('css', ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']),
+        createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
+        createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
+        createHappyPlugin('json', ['json']),
+        createHappyPlugin('text', ['text'])
     ]
 }
 

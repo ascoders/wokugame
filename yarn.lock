@@ -8,6 +8,10 @@
   dependencies:
     "@types/node" "*"
 
+"@types/graphql@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.8.2.tgz#271c6df47a449ebce5d971f8df7f5da0b401edca"
+
 "@types/history@*":
   version "2.0.41"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-2.0.41.tgz#88faa58e931d1c676daca71369cbc3767737d8d3"
@@ -18,7 +22,14 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa@*", "@types/koa@^0.0.0":
+"@types/koa@*", "@types/koa@^2.0.33":
+  version "2.0.34"
+  resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.0.34.tgz#41890166df923db4319ead99c5f14588b875750b"
+  dependencies:
+    "@types/cookies" "*"
+    "@types/node" "*"
+
+"@types/koa@^0.0.0":
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/@types/koa/-/koa-0.0.0.tgz#7d3563da76defb0a1286b284d2160b9279a66c9d"
   dependencies:
@@ -2129,6 +2140,32 @@ graceful-fs@~1.2.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
+graphql-server-core@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/graphql-server-core/-/graphql-server-core-0.4.3.tgz#3198832ce8703388713f012da023b33a3823be98"
+  optionalDependencies:
+    typed-graphql "^1.0.2"
+
+graphql-server-koa@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/graphql-server-koa/-/graphql-server-koa-0.4.3.tgz#66d4fe6e28da0181e54e153f4f059a9f5389c7ff"
+  dependencies:
+    graphql-server-core "^0.4.3"
+    graphql-server-module-graphiql "^0.4.3"
+  optionalDependencies:
+    "@types/koa" "^2.0.33"
+    typed-graphql "^1.0.2"
+
+graphql-server-module-graphiql@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/graphql-server-module-graphiql/-/graphql-server-module-graphiql-0.4.3.tgz#f82b92b99bb1e1b4b285c86bf6fcfa60b3a7a805"
+
+graphql@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.8.2.tgz#eb1bb524b38104bbf2c9157f9abc67db2feba7d2"
+  dependencies:
+    iterall "1.0.2"
+
 gulp-cached@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/gulp-cached/-/gulp-cached-1.1.1.tgz#fe7cd4f87f37601e6073cfedee5c2bdaf8b6acce"
@@ -2598,6 +2635,10 @@ isomorphic-fetch@^2.1.1:
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
+
+iterall@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.0.2.tgz#41a2e96ce9eda5e61c767ee5dc312373bb046e91"
 
 jodid25519@^1.0.0:
   version "1.0.2"
@@ -3834,6 +3875,10 @@ rc@^1.0.1, rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
+react-addons-perf@^15.4.1:
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.4.1.tgz#c6dd5a7011f43cd3222f47b7cb1aebe9d4174cb0"
+
 react-dom@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.1.tgz#d54c913261aaedb17adc20410d029dcc18a1344a"
@@ -4579,6 +4624,10 @@ type-is@^1.5.5, type-is@~1.6.13:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.13"
+
+typed-graphql@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typed-graphql/-/typed-graphql-1.0.2.tgz#4c0f788775d552df4d4ec3d73f25469252f40fb8"
 
 typescript@^2.1.1:
   version "2.1.4"

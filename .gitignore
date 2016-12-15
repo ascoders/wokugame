@@ -8,3 +8,4 @@ built/
 built-production/
 yarn-error.log
 .DS_Store
+.happypack
