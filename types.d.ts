@@ -20,6 +20,16 @@ declare module 'graphql-server-koa' {
     }
 }
 
-declare namespace Webpack {
-    export const DllReferencePlugin: any
+declare module 'react-redux' {
+    const connect: <T>(mapStateToProps?: (state?: T) => any) => any
+    const Provider: any
+    export {
+        connect,
+        Provider
+    }
+}
+
+declare module 'gulp-cached' {
+    const api: any
+    export = api
 }

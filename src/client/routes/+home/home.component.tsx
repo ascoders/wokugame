@@ -1,26 +1,24 @@
 import * as React from 'react'
 import * as typings from './home.type'
-import {connect} from 'react-redux'
-import TestComponent from './test/home.component'
+import {connect} from '../../../../frame/index'
 
-import * as ApplicationAction from '../../../actions/application'
-
-const Home = (props: typings.PropsDefine = new typings.Props()) => (
-    <div>
-        {props.headerColor}
-        <button onClick={props.locationChange}>click</button>
-        <TestComponent/>
-    </div>
-)
-
-export default connect(state => {
+export default connect<Models.Root>(state => {
     return {
         headerColor: state.application.headerColor
     }
-}, dispatch => {
-    return {
-        locationChange: () => {
-            dispatch(ApplicationAction.locationChange('aaa'))
-        }
+})((props: typings.PropsDefine = new typings.Props()) => {
+
+    const handleClick = () => {
+        props.dispatch({
+            type: 'application/changeHeaderColor',
+            payload: '123'
+        })
     }
-})(Home)
+
+    return (
+        <div>
+            {props.headerColor}
+            <button onClick={handleClick} type="ghost">click</button>
+        </div>
+    )
+})

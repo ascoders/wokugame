@@ -2,13 +2,11 @@ import {createStore, applyMiddleware, compose, Middleware} from 'redux'
 import {browserHistory} from 'react-router'
 import {routerMiddleware} from 'react-router-redux'
 
-import rootReducer from '../reducers'
-
 declare const __DEV__: boolean // from webpack
 declare const module: any // from webpack
 declare const require: any // from webpack
 
-function configureStore(initialState: any) {
+function configureStore(initialState: any, rootReducer: any) {
     const store = createStore(
         rootReducer,
         initialState,
@@ -41,12 +39,12 @@ function _enableHotLoader(store: any) {
         return
     }
 
-    if (module.hot) {
-        module.hot.accept('../reducers', () => {
-            const nextRootReducer = require('../reducers')
-            store.replaceReducer(nextRootReducer)
-        })
-    }
+    // if (module.hot) {
+    //     module.hot.accept('../reducers', () => {
+    //         const nextRootReducer = require('../reducers')
+    //         store.replaceReducer(nextRootReducer)
+    //     })
+    // }
 }
 
 export default configureStore

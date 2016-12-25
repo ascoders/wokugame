@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-export interface PropsDefine {
-    headerColor?: string
+export interface PropsDefine extends React.Props<any> {
     dispatch?: any
 }
 
