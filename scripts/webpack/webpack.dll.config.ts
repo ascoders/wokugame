@@ -1,10 +1,10 @@
 import * as path from 'path'
 import * as webpack from 'webpack'
-import dllLists from './dlls'
+import {webpackDlls} from '../../config'
 
 module.exports = {
     entry: {
-        library: dllLists
+        library: webpackDlls
     },
 
     output: {

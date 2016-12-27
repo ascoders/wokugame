@@ -8,9 +8,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/graphql@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.8.2.tgz#271c6df47a449ebce5d971f8df7f5da0b401edca"
+"@types/graphql@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.8.4.tgz#3d66ec2b7bdcb34b9566b16aaa3f8a4479e5977f"
 
 "@types/gulp@^3.8.32":
   version "3.8.32"
@@ -86,6 +86,10 @@
 "@types/react@*", "@types/react@^0.14.54":
   version "0.14.54"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-0.14.54.tgz#0fb0dadad895febeb468a885d0fa2284d5bbefae"
+
+"@types/seamless-immutable@^6.1.2":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@types/seamless-immutable/-/seamless-immutable-6.1.2.tgz#2f3a1427ea2a1bbfb7ea48c2be94a0cce0725a18"
 
 "@types/source-map@*":
   version "0.5.0"
@@ -4207,6 +4211,10 @@ rxjs@^5.0.0-rc.5:
 sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
+
+seamless-immutable@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.0.1.tgz#ac1bca1a3ff6c6abfa7c4809af6cd2fe5a21052b"
 
 semver-diff@^2.0.0:
   version "2.1.0"

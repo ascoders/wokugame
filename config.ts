@@ -6,3 +6,17 @@ export const localWebpackPort = 9091
 
 // 静态资源路径前缀
 export const publicPath = 'static'
+
+export const webpackDlls = [
+    /** 基础库 */
+    'react',
+    'react-dom',
+    'react-router',
+    'react-router-redux',
+    'redux',
+
+    /** 工具库 */
+    'lodash',
+    'classnames',
+    'seamless-immutable'
+]

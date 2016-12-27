@@ -5,6 +5,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 import createStore from './create-store'
 import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
+import * as Immutable from 'seamless-immutable'
 import * as invariant from 'invariant'
 
 declare var window: any
@@ -59,7 +60,10 @@ export default class App {
             routing: routerReducer
         }
         this.models.forEach(model => {
-            rootReducerCombineObject[model.namespace] = (state = model.defaultState, action: God.Action) => {
+            // 不可变封装 defaultState
+            const defaultState = Immutable.from(model.defaultState)
+
+            rootReducerCombineObject[model.namespace] = (state = defaultState, action: God.Action) => {
                 // 只接收对应前缀的
                 if (action.type.startsWith(model.namespace + '/')) {
                     const methodName = action.type.replace(model.namespace + '/', '')
