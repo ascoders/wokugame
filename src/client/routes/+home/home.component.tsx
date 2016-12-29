@@ -1,6 +1,9 @@
 import * as React from 'react'
 import * as typings from './home.type'
 import {connect} from '../../../../frame/index'
+const styles = require('./home.css')
+
+import ArticleBox from '../../../../components/article-box/article-box.component'
 
 export default connect<Models.Root>(state => {
     return {
@@ -17,8 +20,11 @@ export default connect<Models.Root>(state => {
 
     return (
         <div>
-            {props.headerColor}
-            <button onClick={handleClick} type="ghost">click</button>
+            <div className={styles.bannerImage}/>
+
+            <div className={styles.articleContainer}>
+                <ArticleBox/>
+            </div>
         </div>
     )
 })

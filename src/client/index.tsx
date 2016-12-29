@@ -6,6 +6,7 @@ import God from '../../frame/index'
 import ApplicationModel from '../models/application'
 
 import '../../components/css-reset/index.css'
+import '../../components/css-beautify/index.css'
 
 const app = new God()
 

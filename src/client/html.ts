@@ -24,7 +24,7 @@ export default `
       content="IE=edge">
 <meta name="format-detection"
       content="telephone=no">
-<title>Next Design</title>
+<title>还没取名字</title>
 <body>
 <div id='react-dom'></div>
 </body>

@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as typings from './layout.type'
 import {connect} from '../../../frame/index'
 
-import Navbar from '../../../components/navbar/navbar.component'
+import Menu from '../../../components/menu/menu.component'
 
 export default connect<Models.Root>(state => {
     return {
@@ -11,7 +11,7 @@ export default connect<Models.Root>(state => {
 })((props: typings.PropsDefine = new typings.Props()) => {
     return (
         <div>
-            <Navbar/>
+            <Menu></Menu>
             {props.children}
         </div>
     )
