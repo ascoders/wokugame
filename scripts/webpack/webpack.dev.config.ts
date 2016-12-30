@@ -69,7 +69,7 @@ const webpackConfig = {
         }),
         new webpack.DllReferencePlugin({
             context: '.',
-            manifest: require(path.join(process.cwd(), 'built/output/static/dll/library-mainfest.json'))
+            manifest: require(path.join(process.cwd(), 'built/static/dll/library-mainfest.json'))
         }),
         createHappyPlugin('js', ['react-hot']),
         createHappyPlugin('css', ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']),

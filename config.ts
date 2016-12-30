@@ -18,5 +18,8 @@ export const webpackDlls = [
     /** 工具库 */
     'lodash',
     'classnames',
-    'seamless-immutable'
+    'seamless-immutable',
+
+    /** 额外 */
+    'pixi.js'
 ]

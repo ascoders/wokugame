@@ -13,7 +13,7 @@ const proxy = require('koa-proxy')
 const router = new Router()
 
 // 编译后的静态文件路径
-const builtStaticPath = isProduction ? 'built-production/static' : 'built/output/static'
+const builtStaticPath = isProduction ? 'built-production/static' : 'built/static'
 
 // 设置静态资源缓存
 app.use(staticCache(`${builtStaticPath}`, {
