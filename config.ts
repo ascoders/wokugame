@@ -19,6 +19,7 @@ export const webpackDlls = [
     'lodash',
     'classnames',
     'seamless-immutable',
+    'rxjs',
 
     /** 额外 */
     'pixi.js'

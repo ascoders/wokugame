@@ -1,82 +1,145 @@
 import * as PIXI from 'pixi.js'
-import GameObject from './base/game-object'
+import * as RX from 'rxjs'
+import GameControl from '../../../../../game-control/index'
 
 import Aircraft from './game-object/aircraft'
+import EnemyAircraft from './game-object/enemy-aircraft'
+import EnemyBomber from './game-object/enemy-bomber'
+
+import Timer from '../../../../../game-control/utils/timer'
 
 export default class Game {
-    // 画布根节点
-    private rootElement: HTMLElement
-    // 主视图
-    private renderer: PIXI.WebGLRenderer | PIXI.CanvasRenderer
-    // 主画布
-    private stage: PIXI.Container
-    // 维护所有游戏对象
-    private gameObjects: Array<GameObject<any>> = []
+    private gameControl: GameControl
+
+    private timer = new Timer()
 
     constructor(rootElement: HTMLElement) {
-        this.rootElement = rootElement
+        this.gameControl = new GameControl(rootElement, [
+            'static/game/my-aircraft.png',
+            'static/game/aircraft1.png',
+            'static/game/aircraft2.png',
+            'static/game/air-damage/explosion air_1.png',
+            'static/game/air-damage/explosion air_2.png',
+            'static/game/air-damage/explosion air_3.png',
+            'static/game/air-damage/explosion air_4.png',
+            'static/game/air-damage/explosion air_5.png',
+            'static/game/air-damage/explosion air_6.png',
+            'static/game/air-damage/explosion air_7.png',
+            'static/game/air-damage/explosion air_8.png',
+            'static/game/air-damage/explosion air_9.png',
+            'static/game/air-damage/explosion air_10.png',
+            'static/game/big-damage/explosion big_1.png',
+            'static/game/big-damage/explosion big_2.png',
+            'static/game/big-damage/explosion big_3.png',
+            'static/game/big-damage/explosion big_4.png',
+            'static/game/big-damage/explosion big_5.png',
+            'static/game/big-damage/explosion big_6.png',
+            'static/game/big-damage/explosion big_7.png',
+            'static/game/big-damage/explosion big_8.png',
+            'static/game/big-damage/explosion big_9.png',
+            'static/game/big-damage/explosion big_10.png',
+            'static/game/big-damage/explosion big_11.png',
+            'static/game/big-damage/explosion big_12.png'
+        ], this.init.bind(this), this.gameLoop.bind(this))
+        this.gameControl.newScene('main')
+        this.gameControl.goToScene('main')
+    }
 
-        this.init()
+    /**
+     * 创建小敌机
+     */
+    private createEnemyAircraft(x: number) {
+        const enemyAircraft = new EnemyAircraft()
+        enemyAircraft.object.x = x
+        enemyAircraft.object.y = -100
+        this.gameControl.addGameObjectToScene(enemyAircraft)
+    }
+
+    /**
+     * 创建轰炸机
+     */
+    private createEnemyBomber(x: number) {
+        const enemyAircraft = new EnemyBomber()
+        enemyAircraft.object.x = x
+        enemyAircraft.object.y = -100
+        this.gameControl.addGameObjectToScene(enemyAircraft)
     }
 
     /**
      * 初始化游戏
      */
     init() {
-        // 创建主视图
-        this.renderer = PIXI.autoDetectRenderer(this.rootElement.clientWidth, this.rootElement.clientHeight, {
-            transparent: true
-        })
-        // 将主视图装载到画布根节点
-        this.rootElement.appendChild(this.renderer.view)
-
-        this.stage = new PIXI.Container()
-
-        this.loadResource()
-
-        // 开启游戏循环
-        this.gameLoop()
-    }
-
-    /**
-     * 加载初始资源
-     */
-    loadResource() {
-        PIXI.loader
-            .add("static/game/aircraft.jpg")
-            .load(this.afterLoadResource.bind(this))
-    }
-
-    /**
-     * 资源加载完毕后
-     */
-    afterLoadResource() {
-        // 实例化飞机
         const aircraft = new Aircraft()
-        this.gameObjects.push(aircraft)
+        this.gameControl.addGameObjectToScene(aircraft, 'main')
 
-        // 将游戏对象依次加载到场景中
-        this.gameObjects.forEach(gameObject => {
-            this.stage.addChild(gameObject.object)
+        //this.timer.setCurrentTime(16000)
+
+        this.timer.createTimeNode(1000, () => {
+            this.createEnemyAircraft(50)
+            this.createEnemyAircraft(150)
+            this.createEnemyAircraft(250)
+            this.createEnemyAircraft(350)
         })
 
-        // 刷新视图
-        this.renderer.render(this.stage)
+        this.timer.createTimeNode(2500, () => {
+            this.createEnemyAircraft(250)
+            this.createEnemyAircraft(350)
+            this.createEnemyAircraft(450)
+            this.createEnemyAircraft(550)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyAircraft(50)
+            this.createEnemyAircraft(150)
+            this.createEnemyAircraft(250)
+            this.createEnemyAircraft(350)
+            this.createEnemyAircraft(450)
+            this.createEnemyAircraft(550)
+        })
+
+        this.timer.createTimeNode(3000, () => {
+            this.createEnemyAircraft(50)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(150)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(250)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(350)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(450)
+        })
+
+        this.timer.createTimeNode(2000, () => {
+            this.createEnemyAircraft(550)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(450)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(350)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(250)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(150)
+        })
+
+        this.timer.createTimeNode(1000, () => {
+            this.createEnemyBomber(200)
+            this.createEnemyBomber(600)
+        })
+
     }
 
     /**
-     * 游戏循环处
+     * 游戏循环
      */
     gameLoop() {
-        // 每帧都调用游戏循环，使其真正循环起来
-        requestAnimationFrame(this.gameLoop.bind(this))
-
-        // 调用每个游戏对象的 onUpdate 生命周期
-        this.gameObjects.forEach(gameObject => {
-            gameObject.onUpdate()
-        })
-
-        // 刷新视图
-        this.renderer.render(this.stage)
+        this.timer.onUpdate()
     }
 }
