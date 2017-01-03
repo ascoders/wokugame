@@ -50,10 +50,18 @@ export default class Bullet extends GameObject<PIXI.Graphics> {
 
             case 'enemy-normal':
                 this.object = new PIXI.Graphics()
-                this.object.beginFill(0x8c00ff)
-                this.object.drawEllipse(0, 0, 5, 5)
+                this.object.beginFill(0x168cc7)
+                this.object.drawEllipse(0, 0, 5, 10)
                 this.object.endFill()
                 this.speed = 4
+                break
+
+            case 'enemy-fighter':
+                this.object = new PIXI.Graphics()
+                this.object.beginFill(0x310077)
+                this.object.drawEllipse(0, 0, 10, 15)
+                this.object.endFill()
+                this.speed = 3
                 break
         }
     }

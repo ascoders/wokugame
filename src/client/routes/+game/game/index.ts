@@ -5,6 +5,7 @@ import GameControl from '../../../../../game-control/index'
 import Aircraft from './game-object/aircraft'
 import EnemyAircraft from './game-object/enemy-aircraft'
 import EnemyBomber from './game-object/enemy-bomber'
+import EnemyFighter from './game-object/enemy-fighter'
 
 import Timer from '../../../../../game-control/utils/timer'
 
@@ -18,6 +19,7 @@ export default class Game {
             'static/game/my-aircraft.png',
             'static/game/aircraft1.png',
             'static/game/aircraft2.png',
+            'static/game/aircraft3.png',
             'static/game/air-damage/explosion air_1.png',
             'static/game/air-damage/explosion air_2.png',
             'static/game/air-damage/explosion air_3.png',
@@ -66,13 +68,23 @@ export default class Game {
     }
 
     /**
+     * 创建战斗机
+     */
+    private createEnemyFighter(x: number) {
+        const enemyAircraft = new EnemyFighter()
+        enemyAircraft.object.x = x
+        enemyAircraft.object.y = -100
+        this.gameControl.addGameObjectToScene(enemyAircraft)
+    }
+
+    /**
      * 初始化游戏
      */
     init() {
         const aircraft = new Aircraft()
         this.gameControl.addGameObjectToScene(aircraft, 'main')
 
-        //this.timer.setCurrentTime(16000)
+        this.timer.setCurrentTime(70000)
 
         this.timer.createTimeNode(1000, () => {
             this.createEnemyAircraft(50)
@@ -134,6 +146,65 @@ export default class Game {
             this.createEnemyBomber(600)
         })
 
+        this.timer.createTimeNode(12000, () => {
+            this.createEnemyAircraft(550)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(500)
+        })
+        this.timer.createTimeNode(1000, () => {
+            this.createEnemyAircraft(300)
+        })
+        this.timer.createTimeNode(500, () => {
+            this.createEnemyAircraft(100)
+        })
+
+        this.timer.createTimeNode(4000, () => {
+            this.createEnemyBomber(500)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyAircraft(200)
+        })
+
+        this.timer.createTimeNode(1500, () => {
+            this.createEnemyAircraft(600)
+        })
+
+        this.timer.createTimeNode(3000, () => {
+            this.createEnemyBomber(300)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyBomber(600)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyBomber(450)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyFighter(300)
+        })
+
+        this.timer.createTimeNode(15000, () => {
+            this.createEnemyBomber(200)
+            this.createEnemyBomber(600)
+        })
+
+        this.timer.createTimeNode(15000, () => {
+            this.createEnemyAircraft(50)
+            this.createEnemyAircraft(150)
+            this.createEnemyAircraft(250)
+            this.createEnemyAircraft(350)
+            this.createEnemyAircraft(450)
+            this.createEnemyAircraft(550)
+        })
+
+        this.timer.createTimeNode(5000, () => {
+            this.createEnemyFighter(200)
+            this.createEnemyFighter(500)
+        })
     }
 
     /**
