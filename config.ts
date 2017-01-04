@@ -24,3 +24,6 @@ export const webpackDlls = [
     /** 额外 */
     'pixi.js'
 ]
+
+// 发布静态资源路径前缀
+export const staticPathPrefixProduction = '/'

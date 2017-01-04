@@ -5,11 +5,15 @@
   "scripts": {
     "tsc": "rm -rf built && tsc",
     "dll": "webpack --config built/scripts/webpack/webpack.dll.config.js",
+    "dll-production": "webpack --config built/scripts/webpack/webpack.dll.production.config.js",
     "start-before": "npm run tsc && npm run dll",
     "server": "node built/src/server/index.js",
+    "server-production": "node built/src/server/index.js --production",
     "webpack": "node built/scripts/webpack/webpack-server.js",
+    "webpack-production": "webpack --config built/scripts/webpack/webpack.production.config.js",
     "gulp": "gulp --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
     "gulp-production": "gulp production --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
+    "production": "npm run dll-production && npm run webpack-production && npm run gulp-production",
     "start": "concurrently --kill-others \"npm run server\" \"npm run gulp\" \"npm run webpack\""
   },
   "repository": {

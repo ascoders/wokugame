@@ -7,9 +7,6 @@ export default class Timer {
     // 当前时间
     private currentTime = 0
 
-    // 上一次本地时间
-    private lastLocalTime = new Date().getTime()
-
     // 时间节点线
     private timeLine: TimeNode[] = []
 
@@ -32,10 +29,7 @@ export default class Timer {
     // 在游戏循环中执行
     public onUpdate() {
         // 当前时间累加
-        const currentTime = new Date().getTime()
-        const timeOffset = currentTime - this.lastLocalTime
-        this.lastLocalTime = currentTime
-        this.currentTime += timeOffset
+        this.currentTime += 1 / 60 * 1000
 
         if (this.timeLine.length === 0) {
             return

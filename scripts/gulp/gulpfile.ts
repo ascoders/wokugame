@@ -33,6 +33,11 @@ gulp.task('move-static', () => {
         .pipe(cached(filePath.staticPath))
         .pipe(gulp.dest('built/static'))
 })
+gulp.task('move-static-production', () => {
+    return gulp.src(filePath.staticPath)
+        .pipe(cached(filePath.staticPath))
+        .pipe(gulp.dest('built-production/static'))
+})
 
 gulp.task('default', ['move-client-others', 'move-components-others', 'move-static'], () => {
     gulp.watch(filePath.clientNotTs, ['move-client-others'])
@@ -40,4 +45,4 @@ gulp.task('default', ['move-client-others', 'move-components-others', 'move-stat
     gulp.watch(filePath.staticPath, ['move-static'])
 })
 
-gulp.task('production', ['move-client-others', 'move-components-others', 'move-static'])
+gulp.task('production', ['move-static-production'])

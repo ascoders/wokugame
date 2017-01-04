@@ -11,9 +11,6 @@ export default class Bomber extends BaseEnemyAircraft {
     // 当前时间
     private currentTime = 0
 
-    // 上一次本地时间
-    private lastLocalTime = new Date().getTime()
-
     // 发射子弹的数据流
     private fireStream = new RX.Subject<boolean>()
 
@@ -44,10 +41,7 @@ export default class Bomber extends BaseEnemyAircraft {
         super.onUpdate()
 
         // 当前时间累加
-        const currentTime = new Date().getTime()
-        const timeOffset = currentTime - this.lastLocalTime
-        this.lastLocalTime = currentTime
-        this.currentTime += timeOffset
+        this.currentTime += 1 / 60 * 1000
 
         if (this.currentTime < 4000) {
             this.object.y += 1

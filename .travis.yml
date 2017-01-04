@@ -1,0 +1,18 @@
+language: node_js
+
+os:
+  - linux
+
+install:
+  - yarn
+
+node_js:
+  - "6.9.2"
+  - "7.3.0"
+
+before_script:
+  - npm run tsc
+
+script:
+  - npm run production
+  - npm test

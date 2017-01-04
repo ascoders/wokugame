@@ -59,11 +59,14 @@ export default class Bullet extends GameObject<PIXI.Graphics> {
             case 'enemy-fighter':
                 this.object = new PIXI.Graphics()
                 this.object.beginFill(0x310077)
-                this.object.drawEllipse(0, 0, 10, 15)
+                this.object.drawEllipse(0, 0, 5, 10)
                 this.object.endFill()
                 this.speed = 3
                 break
         }
+
+        // 根据发射角度设置倾斜
+        this.object.rotation = Math.PI / 180 * this.position
     }
 
     public onUpdate() {

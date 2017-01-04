@@ -6,6 +6,7 @@ import Aircraft from './game-object/aircraft'
 import EnemyAircraft from './game-object/enemy-aircraft'
 import EnemyBomber from './game-object/enemy-bomber'
 import EnemyFighter from './game-object/enemy-fighter'
+import EnemyBoss from './game-object/enemy-boss'
 
 import Timer from '../../../../../game-control/utils/timer'
 
@@ -17,6 +18,7 @@ export default class Game {
     constructor(rootElement: HTMLElement) {
         this.gameControl = new GameControl(rootElement, [
             'static/game/my-aircraft.png',
+            'static/game/boss.png',
             'static/game/aircraft1.png',
             'static/game/aircraft2.png',
             'static/game/aircraft3.png',
@@ -78,13 +80,21 @@ export default class Game {
     }
 
     /**
+     * 创建boss
+     */
+    private createEnemyBoss(x: number) {
+        const enemyAircraft = new EnemyBoss()
+        enemyAircraft.object.x = x
+        enemyAircraft.object.y = -100
+        this.gameControl.addGameObjectToScene(enemyAircraft)
+    }
+
+    /**
      * 初始化游戏
      */
     init() {
         const aircraft = new Aircraft()
         this.gameControl.addGameObjectToScene(aircraft, 'main')
-
-        this.timer.setCurrentTime(70000)
 
         this.timer.createTimeNode(1000, () => {
             this.createEnemyAircraft(50)
@@ -204,6 +214,10 @@ export default class Game {
         this.timer.createTimeNode(5000, () => {
             this.createEnemyFighter(200)
             this.createEnemyFighter(500)
+        })
+
+        this.timer.createTimeNode(25000, () => {
+            this.createEnemyBoss(500)
         })
     }
 
