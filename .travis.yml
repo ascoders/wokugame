@@ -4,7 +4,8 @@ os:
   - linux
 
 install:
-  - npm install
+  - npm install yarn -g
+  - yarn
 
 node_js:
   - "6.9.2"
