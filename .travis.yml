@@ -15,6 +15,7 @@ script:
 before_install:
 - openssl aes-256-cbc -K $encrypted_ff3bfcc4663d_key -iv $encrypted_ff3bfcc4663d_iv
   -in .travis/rsa.enc -out ~/.ssh/id_rsa -d
+after_success:
 # Set the permission of the key
 - chmod 600 ~/.ssh/id_rsa
 # Start SSH agent
@@ -26,5 +27,4 @@ before_install:
 # Set Git config
 - git config --global user.name "ascoders"
 - git config --global user.email 576625322@qq.com
-after_success:
 - git push origin master
