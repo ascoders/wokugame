@@ -7,8 +7,7 @@ git remote add deploy git@github.com:ascoders/wokugame.git
 
 # Checkout to built branch
 git remote -v
-git checkout -b built
-git reset --hard deploy/built
+git checkout -b built -- deploy/built
 git add -A
 git commit -m "build"
 
