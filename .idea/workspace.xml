@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6530fe28-fa32-42ef-a2a6-57458b91fd9f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.babelrc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.travis/rsa.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.travis/ssh_config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/article-box/article-box.component.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/article-box/article-box.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/article-box/article-box.type.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/css-beautify/index.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/css-reset/index.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/menu/menu.component.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/menu/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/components/menu/menu.type.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/config.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frame/create-store.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frame/index.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/frame/type.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game-control/game-object.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game-control/index.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game-control/utils/timer.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/game-control/utils/translate.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nginx/Dockerfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nginx/nginx.conf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/gulp/gulpfile.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/webpack/webpack-server.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/webpack/webpack.dev.config.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/webpack/webpack.dll.config.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/webpack/webpack.dll.production.config.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/webpack/webpack.production.config.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/html.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/index.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/layout/layout.component.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/layout/layout.type.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game.component.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game.type.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/aircraft.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/base-enemy-aircraft.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-aircraft.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-bullet.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bullet.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-aircraft.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-bomber.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-boss.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-fighter.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+game/game/index.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+home/home.component.tsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+home/home.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/client/routes/+home/home.type.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphql/data.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphql/schema.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/models/application.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/models/definition/application.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/models/definition/index.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/server/index.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/air-damage/explosion air_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/aircraft1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/aircraft2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/aircraft3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_11.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_12.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/big-damage/explosion big_9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/boss.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/game/my-aircraft.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/types.d.ts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="wokugame" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>webpack</find>
+      <find>koa</find>
+      <find>react-dom</find>
+      <find>getTodos</find>
+      <find>defaultprops</find>
+      <find>componentclass</find>
+      <find>componentstate</find>
+      <find>statede</find>
+      <find>component</find>
+      <find>createStore</find>
+      <find>ClassAttributes</find>
+      <find>children</find>
+      <find>Provider</find>
+      <find>antd</find>
+      <find>immuta</find>
+      <find>allow</find>
+      <find>ReactRouter</find>
+      <find>rxjs</find>
+      <find>output</find>
+      <find>width</find>
+      <find>centerx</find>
+      <find>gameObjectsBackup</find>
+      <find>anchor</find>
+      <find>attack</find>
+      <find>rotation</find>
+      <find>execute</find>
+      <find>concurrently</find>
+      <find>built</find>
+      <find>mainfest</find>
+      <find>dll</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>nextGameObjects</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/client/layout/layout.component.tsx" />
+        <option value="$PROJECT_DIR$/components/menu/menu.component.tsx" />
+        <option value="$PROJECT_DIR$/components/menu/menu.css" />
+        <option value="$PROJECT_DIR$/components/article-box/article-box.type.ts" />
+        <option value="$PROJECT_DIR$/components/article-box/article-box.component.tsx" />
+        <option value="$PROJECT_DIR$/src/client/routes/+home/home.component.tsx" />
+        <option value="$PROJECT_DIR$/src/client/routes/+home/home.css" />
+        <option value="$PROJECT_DIR$/components/css-beautify/index.css" />
+        <option value="$PROJECT_DIR$/components/article-box/article-box.css" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game.type.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game.css" />
+        <option value="$PROJECT_DIR$/src/client/routes.tsx" />
+        <option value="$PROJECT_DIR$/src/server/index.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game.component.tsx" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/base/game-object.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/cat.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/utils/translate.ts" />
+        <option value="$PROJECT_DIR$/game-control/inject.ts" />
+        <option value="$PROJECT_DIR$/game-control/game-object.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-bullet.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-aircraft.ts" />
+        <option value="$PROJECT_DIR$/game-control/index.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/base-enemy-aircraft.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/aircraft.ts" />
+        <option value="$PROJECT_DIR$/game-control/utils/translate.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-aircraft.ts" />
+        <option value="$PROJECT_DIR$/nginx.conf" />
+        <option value="$PROJECT_DIR$/nginx/Dockerfile" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/scripts/webpack/webpack.dll.production.config.ts" />
+        <option value="$PROJECT_DIR$/config.ts" />
+        <option value="$PROJECT_DIR$/src/client/html.ts" />
+        <option value="$PROJECT_DIR$/game-control/utils/timer.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/bullet.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-fighter.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-bomber.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-boss.ts" />
+        <option value="$PROJECT_DIR$/src/client/routes/+game/game/index.ts" />
+        <option value="$PROJECT_DIR$/src/graphql/schema.ts" />
+        <option value="$PROJECT_DIR$/types.d.ts" />
+        <option value="$PROJECT_DIR$/scripts/webpack/webpack.dll.config.ts" />
+        <option value="$PROJECT_DIR$/src/client/index.tsx" />
+        <option value="$PROJECT_DIR$/built/scripts/webpack/webpack.dll.production.config.js" />
+        <option value="$PROJECT_DIR$/built/scripts/webpack/webpack.production.config.js" />
+        <option value="$PROJECT_DIR$/scripts/webpack/webpack.dev.config.ts" />
+        <option value="$PROJECT_DIR$/scripts/webpack/webpack.production.config.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/scripts/gulp/gulpfile.ts" />
+        <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/.travis/ssh_config" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code style issuesCSS</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>UnterminatedStatementJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wokugame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wokugame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v7.2.0/bin/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v7.2.0/bin/node" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+    <property name="prop_add_unversioned_files" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="d.ts&#9;FILE&#9;file:///Users/huangziyi/Workspace/wokugame/node_modules/@types/react-dom/index.d.ts" />
+    <property name="FullScreen" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/client/routes/+game/game/game-object" />
+      <recent name="$PROJECT_DIR$/static/game" />
+      <recent name="$PROJECT_DIR$/nginx" />
+      <recent name="$PROJECT_DIR$/static/game/big-damage" />
+      <recent name="$PROJECT_DIR$/static/game/air-damage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.travis" />
+      <recent name="$PROJECT_DIR$/nginx" />
+      <recent name="$PROJECT_DIR$/src/client" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="Docker Deployment">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6530fe28-fa32-42ef-a2a6-57458b91fd9f" name="Default" comment="" />
+      <created>1481121925297</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1481121925297</updated>
+      <workItem from="1481121927540" duration="1348000" />
+      <workItem from="1481289598944" duration="3439000" />
+      <workItem from="1481440385570" duration="10457000" />
+      <workItem from="1481591821643" duration="810000" />
+      <workItem from="1481594894609" duration="62000" />
+      <workItem from="1481612391449" duration="12000" />
+      <workItem from="1481612430515" duration="3000" />
+      <workItem from="1481612436744" duration="5098000" />
+      <workItem from="1481683564554" duration="139000" />
+      <workItem from="1481709831896" duration="24000" />
+      <workItem from="1481717947591" duration="1260000" />
+      <workItem from="1481765874276" duration="178000" />
+      <workItem from="1481779731730" duration="4555000" />
+      <workItem from="1481807550097" duration="4094000" />
+      <workItem from="1481850552738" duration="4590000" />
+      <workItem from="1481892424476" duration="2382000" />
+      <workItem from="1481896798627" duration="255000" />
+      <workItem from="1481897102459" duration="2467000" />
+      <workItem from="1481969766024" duration="214000" />
+      <workItem from="1481987841416" duration="1101000" />
+      <workItem from="1481989523741" duration="2000" />
+      <workItem from="1482050959118" duration="182000" />
+      <workItem from="1482062599172" duration="255000" />
+      <workItem from="1482113744976" duration="39000" />
+      <workItem from="1482142854452" duration="48000" />
+      <workItem from="1482219375077" duration="14000" />
+      <workItem from="1482229718137" duration="66000" />
+      <workItem from="1482327525458" duration="4474000" />
+      <workItem from="1482364267177" duration="157000" />
+      <workItem from="1482374865513" duration="755000" />
+      <workItem from="1482400393731" duration="215000" />
+      <workItem from="1482402099358" duration="2027000" />
+      <workItem from="1482416502555" duration="580000" />
+      <workItem from="1482451762327" duration="74000" />
+      <workItem from="1482498621127" duration="861000" />
+      <workItem from="1482552551859" duration="159000" />
+      <workItem from="1482661508688" duration="1084000" />
+      <workItem from="1482663131936" duration="2980000" />
+      <workItem from="1482672444711" duration="2810000" />
+      <workItem from="1482676923121" duration="1118000" />
+      <workItem from="1482735460691" duration="606000" />
+      <workItem from="1482810582700" duration="1249000" />
+      <workItem from="1482921765801" duration="478000" />
+      <workItem from="1483015108068" duration="676000" />
+      <workItem from="1483016765428" duration="3709000" />
+      <workItem from="1483098063837" duration="3263000" />
+      <workItem from="1483186183393" duration="9081000" />
+      <workItem from="1483237489218" duration="14887000" />
+      <workItem from="1483268124164" duration="3573000" />
+      <workItem from="1483325448918" duration="2985000" />
+      <workItem from="1483329024999" duration="291000" />
+      <workItem from="1483332623838" duration="13000" />
+      <workItem from="1483333034702" duration="15207000" />
+      <workItem from="1483445389100" duration="4472000" />
+      <workItem from="1483506914809" duration="5787000" />
+      <workItem from="1483530799936" duration="4759000" />
+      <workItem from="1483586255639" duration="6747000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1481123759384</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1481123759384</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init">
+      <created>1481448233838</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1481448233838</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <created>1481467387737</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1481467387737</updated>
+    </task>
+    <task id="LOCAL-00004" summary="init">
+      <created>1481809568494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1481809568494</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="138171000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18061225" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21579264" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21734694" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/built/src/client/routes/+game/game/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/src/client/routes/+game/game/game-object/enemy-bomber.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/pixi.js/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="1180" column="14" lean-forward="false" selection-start-line="1180" selection-start-column="8" selection-end-line="1180" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-control/utils/translate.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1007">
+          <caret line="53" column="48" lean-forward="false" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/aircraft.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/game/aircraft3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game-control/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="914">
+          <caret line="159" column="31" lean-forward="false" selection-start-line="159" selection-start-column="31" selection-end-line="159" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-bullet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/game/aircraft1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/static/game/aircraft1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx/nginx.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nginx/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="true" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/src/client/layout/layout.component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/layout/layout.component.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built-production/static/bundle.6f4b8.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/npm-debug.log" />
+    <entry file="file://$PROJECT_DIR$/game-control/utils/timer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" column="41" lean-forward="false" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/base-enemy-aircraft.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game.component.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/bomb-aircraft.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-fighter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-aircraft.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-bomber.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="72" column="54" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="72" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/bullet.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="58" column="31" lean-forward="false" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/game-object/enemy-boss.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="876">
+          <caret line="117" column="42" lean-forward="false" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/routes/+game/game/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="211" column="10" lean-forward="true" selection-start-line="211" selection-start-column="10" selection-end-line="211" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/graphql/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphql/data.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphql/schema.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/webpack/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14932">
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/webpack/webpack-server.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/html.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/src/client/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/scripts/webpack/webpack.dll.production.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/scripts/webpack/webpack.dll.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/webpack/webpack.dll.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/scripts/webpack/webpack.production.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-169">
+          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/webpack/webpack.dll.production.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/webpack/webpack.dev.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/webpack/webpack.production.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="72" column="11" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="72" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="57">
+            <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/gulp/gulpfile.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="47" column="87" lean-forward="false" selection-start-line="47" selection-start-column="87" selection-end-line="47" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis/ssh_config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis/rsa.enc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
