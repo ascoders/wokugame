@@ -22,7 +22,7 @@ export const webpackDlls = [
     'rxjs',
 
     /** 额外 */
-    'pixi.js'
+    // 'pixi.js'
 ]
 
 // 发布静态资源路径前缀
