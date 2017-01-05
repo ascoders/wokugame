@@ -2,6 +2,12 @@ import * as path from 'path'
 import * as webpack from 'webpack'
 import {webpackDlls} from '../../config'
 
+declare module 'webpack' {
+    interface Webpack {
+        DllPlugin: any
+    }
+}
+
 module.exports = {
     entry: {
         library: webpackDlls

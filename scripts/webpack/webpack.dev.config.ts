@@ -5,6 +5,12 @@ import * as happyPack from 'happypack'
 
 const happyThreadPool = happyPack.ThreadPool({size: 5})
 
+declare module 'webpack' {
+    interface Webpack {
+        DllReferencePlugin: any
+    }
+}
+
 export function createHappyPlugin(id: string, loaders: string[]) {
     return new happyPack({
         id: id,

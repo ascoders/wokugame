@@ -8,10 +8,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/graphql@^0.8.4":
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.8.4.tgz#3d66ec2b7bdcb34b9566b16aaa3f8a4479e5977f"
-
 "@types/gulp@^3.8.32":
   version "3.8.32"
   resolved "https://registry.yarnpkg.com/@types/gulp/-/gulp-3.8.32.tgz#83c59c681cc233d1ec7f82d269555566fa133156"
@@ -99,6 +95,10 @@
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@types/source-map/-/source-map-0.5.0.tgz#dd34bbd8e32fe4e74f2e3d8ac07f8aa5b45a47ac"
 
+"@types/tapable@*":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-0.2.3.tgz#0888b0f20cc7e58e1c22a1888b4e963eefaa810a"
+
 "@types/uglify-js@*":
   version "2.6.28"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-2.6.28.tgz#1499b48ca3a44132250b318cdde25b8f45f0c616"
@@ -111,10 +111,11 @@
   dependencies:
     "@types/node" "*"
 
-"@types/webpack@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-2.0.0.tgz#e7934a1c0bb628e1940f090c0afd2682817c1def"
+"@types/webpack@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-2.1.0.tgz#b94c93d139af80a1766ead206a7a20945ecec689"
   dependencies:
+    "@types/tapable" "*"
     "@types/uglify-js" "*"
 
 abbrev@1:

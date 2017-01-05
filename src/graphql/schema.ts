@@ -1,11 +1,11 @@
-import {
+const {
     GraphQLBoolean,
     GraphQLList,
     GraphQLNonNull,
     GraphQLObjectType,
     GraphQLSchema,
     GraphQLString,
-} from 'graphql'
+} = require('graphql')
 
 import {getTodos, addTodo, toggleTodo} from './data'
 
@@ -34,7 +34,7 @@ const todosType = new GraphQLObjectType({
     fields: {
         todos: {
             type: new GraphQLList(todoType),
-            resolve: (data) => {
+            resolve: (data: any) => {
                 return data.map((todo: any) => todo)
             }
         }
@@ -46,7 +46,7 @@ const queryType = new GraphQLObjectType({
     fields: () => ({
         todos: {
             type: new GraphQLList(todoType),
-            resolve: (root) => {
+            resolve: (root: any) => {
                 return getTodos().todos.map(todo => todo)
             }
         },
