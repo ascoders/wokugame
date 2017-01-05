@@ -8,6 +8,7 @@ git remote add deploy git@github.com:ascoders/wokugame.git
 git clone git@github.com:ascoders/wokugame.git branchs
 cd branchs
 
+echo "123"
 git remote -v
 git branch -a
 
