@@ -3,14 +3,23 @@ import * as path from 'path'
 
 import * as config from '../../config'
 import * as happyPack from 'happypack'
-import {createHappyPlugin} from './webpack.dev.config'
 
 const happyThreadPool = happyPack.ThreadPool({size: 5})
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractSCSS = new ExtractTextPlugin('style.css')
 
-const webpackConfig = {
+export function createHappyPlugin(id: string, loaders: string[]) {
+    return new happyPack({
+        id: id,
+        loaders: loaders,
+        threadPool: happyThreadPool,
+        cache: process.env.HAPPY_CACHE === '1',
+        verbose: process.env.HAPPY_VERBOSE === '1'
+    })
+}
+
+export default {
     debug: false,
 
     entry: [
@@ -70,5 +79,3 @@ const webpackConfig = {
         createHappyPlugin('text', ['text'])
     ]
 }
-
-export default webpackConfig

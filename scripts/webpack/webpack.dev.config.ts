@@ -21,7 +21,7 @@ export function createHappyPlugin(id: string, loaders: string[]) {
     })
 }
 
-const webpackConfig = {
+export default {
     debug: true,
 
     entry: [
@@ -85,5 +85,3 @@ const webpackConfig = {
         createHappyPlugin('text', ['text'])
     ]
 }
-
-export default webpackConfig

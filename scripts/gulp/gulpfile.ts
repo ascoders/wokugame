@@ -45,4 +45,4 @@ gulp.task('default', ['move-client-others', 'move-components-others', 'move-stat
     gulp.watch(filePath.staticPath, ['move-static'])
 })
 
-gulp.task('production', ['move-static-production'])
+gulp.task('production', ['move-client-others', 'move-components-others', 'move-static', 'move-static-production'])
