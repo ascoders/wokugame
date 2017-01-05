@@ -1,10 +1,9 @@
 import * as gulp from 'gulp'
-import * as cached from 'gulp-cached'
 
 const filePath = {
     clientNotTs: `src/client/**/!(*.ts|*.tsx)`,
     componentsNotTs: `components/**/!(*.ts|*.tsx)`,
-    staticPath: `static/**/*`
+    staticPath: `static/**/*.*`
 }
 
 /**
@@ -12,7 +11,6 @@ const filePath = {
  */
 gulp.task('move-client-others', () => {
     return gulp.src(filePath.clientNotTs)
-        .pipe(cached(filePath.clientNotTs))
         .pipe(gulp.dest('built/src/client'))
 })
 
@@ -21,7 +19,6 @@ gulp.task('move-client-others', () => {
  */
 gulp.task('move-components-others', () => {
     return gulp.src(filePath.componentsNotTs)
-        .pipe(cached(filePath.componentsNotTs))
         .pipe(gulp.dest('built/components'))
 })
 
@@ -30,12 +27,10 @@ gulp.task('move-components-others', () => {
  */
 gulp.task('move-static', () => {
     return gulp.src(filePath.staticPath)
-        .pipe(cached(filePath.staticPath))
         .pipe(gulp.dest('built/static'))
 })
 gulp.task('move-static-production', () => {
     return gulp.src(filePath.staticPath)
-        .pipe(cached(filePath.staticPath))
         .pipe(gulp.dest('built-production/static'))
 })
 
