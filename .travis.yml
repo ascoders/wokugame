@@ -26,3 +26,5 @@ before_install:
 # Set Git config
 - git config --global user.name "ascoders"
 - git config --global user.email 576625322@qq.com
+after_success:
+- git push origin master
