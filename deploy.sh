@@ -9,9 +9,11 @@ git remote add deploy git@github.com:ascoders/wokugame.git
 git clone -b built git@github.com:ascoders/wokugame.git branchs
 cd branchs
 
+# Move build result
 rm -rf built-production
 mv ../built-production ./
 
+# Push
 git add -A
 git commit -m "travis build"
 git push origin built
