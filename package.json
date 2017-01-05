@@ -13,7 +13,7 @@
     "webpack-production": "webpack --config built/scripts/webpack/webpack.production.config.js",
     "gulp": "gulp --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
     "gulp-production": "gulp production --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
-    "production": "npm run dll-production && npm run webpack-production && npm run gulp-production",
+    "production": "concurrently --kill-others \"npm run dll-production\" \"sleep 1\" \"npm run webpack-production\" \"npm run gulp-production\"",
     "start": "concurrently --kill-others \"npm run server\" \"npm run gulp\" \"npm run webpack\""
   },
   "repository": {
