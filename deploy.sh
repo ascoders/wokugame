@@ -11,7 +11,7 @@ cd branchs
 git remote -v
 git branch -a
 
-git checkout -b built -- origin/built
+git checkout -b built origin/built
 mv ../built-production ./
 git add -A
 git commit -m "travis build"
