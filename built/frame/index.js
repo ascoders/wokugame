@@ -8,7 +8,7 @@ const redux_1 = require("redux");
 const react_router_redux_2 = require("react-router-redux");
 const Immutable = require("seamless-immutable");
 const invariant = require("invariant");
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'deploy') {
     window.perf = require('react-addons-perf');
 }
 class App {

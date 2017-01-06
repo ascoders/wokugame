@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const path = require("path");
 const config = require("../../config");
 const happyPack = require("happypack");
+const bundle_production_change_html_hash_1 = require("./plugins/bundle-production-change-html-hash");
 const happyThreadPool = happyPack.ThreadPool({ size: 5 });
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSCSS = new ExtractTextPlugin('style.css');
@@ -70,7 +71,8 @@ exports.default = {
         createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
         createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
         createHappyPlugin('json', ['json']),
-        createHappyPlugin('text', ['text'])
+        createHappyPlugin('text', ['text']),
+        new bundle_production_change_html_hash_1.default()
     ]
 };
 //# sourceMappingURL=webpack.production.config.js.map

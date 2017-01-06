@@ -2,6 +2,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const config = require("../../config");
+const dll_production_change_html_hash_1 = require("./plugins/dll-production-change-html-hash");
 module.exports = {
     entry: {
         library: config.webpackDlls
@@ -24,7 +25,8 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin({
             mangle: false
-        })
+        }),
+        new dll_production_change_html_hash_1.default()
     ],
     module: {
         loaders: [

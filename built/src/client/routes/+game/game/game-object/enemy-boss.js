@@ -5,7 +5,7 @@ const bullet_1 = require("./bullet");
 const base_enemy_aircraft_1 = require("./base-enemy-aircraft");
 class Boss extends base_enemy_aircraft_1.default {
     constructor() {
-        super(400);
+        super(500);
         this.currentTime = 0;
         this.asideFireStream = new RX.Subject();
         this.fireStream = new RX.Subject();
