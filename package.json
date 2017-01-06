@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
+    "github-webhook-handler": "^0.6.0",
     "graphql": "^0.8.2",
     "graphql-server-koa": "^0.4.3",
     "immutable": "^3.8.1",

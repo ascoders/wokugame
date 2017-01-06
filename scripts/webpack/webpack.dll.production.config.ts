@@ -1,6 +1,7 @@
 import * as path from 'path'
 import * as webpack from 'webpack'
 import * as config from '../../config'
+import DllProductionChangeHtmlHash from './plugins/dll-production-change-html-hash'
 
 module.exports = {
     entry: {
@@ -26,7 +27,8 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin({
             mangle: false
-        })
+        }),
+        new DllProductionChangeHtmlHash()
     ],
 
     module: {

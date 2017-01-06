@@ -31,11 +31,11 @@ gulp.task('move-static', () => {
 })
 
 /**
- * 移动 static 内容到 production 文件夹下
+ * 移动 static 内容到 deploy 文件夹下
  */
-gulp.task('move-static-production', () => {
+gulp.task('move-static-deploy', () => {
     return gulp.src(filePath.staticPath)
-        .pipe(gulp.dest('built-production/static'))
+        .pipe(gulp.dest('built-deploy/static'))
 })
 
 gulp.task('default', ['move-client-others', 'move-components-others', 'move-static'], () => {
@@ -44,4 +44,4 @@ gulp.task('default', ['move-client-others', 'move-components-others', 'move-stat
     gulp.watch(filePath.staticPath, ['move-static'])
 })
 
-gulp.task('production', ['move-client-others', 'move-components-others', 'move-static', 'move-static-production'])
+gulp.task('deploy', ['move-client-others', 'move-components-others', 'move-static', 'move-static-production'])

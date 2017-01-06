@@ -3,6 +3,7 @@ import * as path from 'path'
 
 import * as config from '../../config'
 import * as happyPack from 'happypack'
+import BundleProductionChangeHtmlHash from './plugins/bundle-production-change-html-hash'
 
 const happyThreadPool = happyPack.ThreadPool({size: 5})
 
@@ -76,6 +77,7 @@ export default {
         createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
         createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
         createHappyPlugin('json', ['json']),
-        createHappyPlugin('text', ['text'])
+        createHappyPlugin('text', ['text']),
+        new BundleProductionChangeHtmlHash()
     ]
 }

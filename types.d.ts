@@ -33,3 +33,8 @@ declare module 'gulp-cached' {
     const api: any
     export = api
 }
+
+declare module 'github-webhook-handler' {
+    const api: any
+    export = api
+}

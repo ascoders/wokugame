@@ -11,7 +11,7 @@ import * as invariant from 'invariant'
 declare var window: any
 
 // 开发环境
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'deploy') {
     // window.perf 暴露性能监控工具
     window.perf = require('react-addons-perf')
 }

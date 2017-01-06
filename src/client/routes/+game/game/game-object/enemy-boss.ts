@@ -18,7 +18,7 @@ export default class Boss extends BaseEnemyAircraft {
     private fireStream = new RX.Subject<boolean>()
 
     constructor() {
-        super(400)
+        super(500)
 
         this.object = new PIXI.Sprite(
             PIXI.loader.resources['static/game/boss.png'].texture
