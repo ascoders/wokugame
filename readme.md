@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://travis-ci.org/ascoders/wokugame"><img src="https://img.shields.io/travis/ascoders/wokugame/master.svg?style=flat" alt="Build Status"></a>
+</p>
+
 # 本地开发
 
 ### 安装依赖
