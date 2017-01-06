@@ -12,6 +12,8 @@ cd branchs
 # Move build result
 rm -rf built-production
 mv ../built-production ./
+rm -rf built
+mv ../built ./
 
 # Push
 git add -A

@@ -29,6 +29,10 @@ gulp.task('move-static', () => {
     return gulp.src(filePath.staticPath)
         .pipe(gulp.dest('built/static'))
 })
+
+/**
+ * 移动 static 内容到 production 文件夹下
+ */
 gulp.task('move-static-production', () => {
     return gulp.src(filePath.staticPath)
         .pipe(gulp.dest('built-production/static'))
