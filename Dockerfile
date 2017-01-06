@@ -9,5 +9,9 @@ FROM node:latest
 # File Author
 MAINTAINER ascoders www.ziyihuang@gmail.com
 
+RUN mkdir app
+COPY built /app
+COPY built-production /app
+
 # Expose the default port
 EXPOSE 80
