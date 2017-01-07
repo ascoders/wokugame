@@ -25,6 +25,9 @@ COPY ./package.json /app/package.json
 RUN cd /app
 RUN yarn
 
+# Run tsc
+RUN npm run tsc
+
 # Expose the default port
 EXPOSE 8080
 
