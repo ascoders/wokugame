@@ -6,7 +6,7 @@ git config --global user.email 576625322@qq.com
 git remote add deploy git@github.com:ascoders/wokugame.git
 
 # Clone built branch
-git clone -b built git@github.com:ascoders/wokugame.git branchs
+git clone -b built --depth 1 git@github.com:ascoders/wokugame.git branchs
 cd branchs
 
 # Move build result

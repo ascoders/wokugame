@@ -58,6 +58,13 @@ npm run server-production
 
 部署后，每次 built 分支的提交都会更新应用代码，并重启应用服务。
 
+### 拉取主干代码
+
+```bash
+git clone https://github.com/ascoders/wokugame.git --depth=1
+```
+
+
 ### 生成 docker image
 
 ```bash

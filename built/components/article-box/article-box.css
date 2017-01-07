@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+}
+
+.leftContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightContainer {
+    display: flex;
+}
+
+.categoryContainer {
+    color: #777;
+    font-size: 15px;
+}
+
+.titleContainer {
+    padding: 13px 0;
+    color: #555;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.otherContainer {
+    color: #888;
+    font-size: 15px;
+}

@@ -9,13 +9,21 @@ FROM node:latest
 # File Author
 MAINTAINER ascoders www.ziyihuang@gmail.com
 
-# Copy file
-COPY ./ /app
-RUN cd /app
+# Install yarn
+RUN npm install yan -g
 
-# Install
-RUN npm install pm2 -g
-RUN npm install
+# Install pm2
+RUN yarn global add pm2
+
+# Copy file
+RUN mkdir app
+COPY ./built /app/built
+COPY ./yarn.lock /app/built/yarn.lock
+COPY ./package.json /app/package.json
+
+# Install node_modules
+RUN cd /app
+RUN yarn
 
 # Expose the default port
 EXPOSE 8080

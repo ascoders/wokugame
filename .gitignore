@@ -4,7 +4,6 @@ node_modules/
 npm-debug.log
 test/coverage/
 test/jasmine/
-built/
 built-production/
 yarn-error.log
 .DS_Store
