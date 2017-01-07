@@ -10,10 +10,11 @@ FROM node:latest
 MAINTAINER ascoders www.ziyihuang@gmail.com
 
 # Install yarn
-RUN npm install yan -g
+# RUN npm install yarn -g
 
 # Install pm2
-RUN yarn global add pm2
+# RUN yarn global add pm2
+RUN npm install pm2 -g --registry https://registry.npm.taobao.org
 
 # Copy file
 RUN mkdir app
@@ -23,7 +24,8 @@ COPY ./package.json /app/package.json
 
 # Install node_modules
 RUN cd /app
-RUN yarn
+# RUN yarn
+RUN npm install --registry https://registry.npm.taobao.org
 
 # Run tsc
 RUN npm run tsc
