@@ -23,7 +23,7 @@ COPY ./yarn.lock /app/built/yarn.lock
 COPY ./package.json /app/package.json
 
 # Install node_modules
-RUN cd /app
+WORKDIR /app
 # RUN yarn
 RUN npm install --registry https://registry.npm.taobao.org
 
