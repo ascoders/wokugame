@@ -20,4 +20,4 @@ WORKDIR /app
 EXPOSE 8080
 
 # Run Container
-CMD ["npm run factory"]
+CMD npm run factory
