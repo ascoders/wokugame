@@ -16,7 +16,7 @@ handler.on('push', (event: any) => {
         event.payload.repository.name,
         event.payload.ref)
 
-    console.log(event)
+    console.log(123123, event)
 })
 
 // docker shutdown
