@@ -1,6 +1,7 @@
 "use strict";
 exports.localPort = 8080;
 exports.localWebpackPort = 9091;
+exports.deployPort = 8000;
 exports.publicPath = 'static';
 exports.webpackDlls = [
     'react',
