@@ -9,16 +9,10 @@ FROM node:latest
 # File Author
 MAINTAINER ascoders www.ziyihuang@gmail.com
 
-# Install yarn
-# RUN npm install yarn -g
-
-# Install pm2
-# RUN yarn global add pm2
-RUN npm install pm2 -g --registry https://registry.npm.taobao.org
-
 # Copy file
 RUN mkdir app
 COPY ./built /app/built
+COPY ./node_modules /app/built/node_modules
 COPY ./yarn.lock /app/built/yarn.lock
 COPY ./package.json /app/package.json
 

@@ -1,6 +1,4 @@
-<p align="center">
-  <a href="https://travis-ci.org/ascoders/wokugame"><img src="https://img.shields.io/travis/ascoders/wokugame/master.svg?style=flat" alt="Build Status"></a>
-</p>
+<a href="https://travis-ci.org/ascoders/wokugame"><img src="https://img.shields.io/travis/ascoders/wokugame/master.svg?style=flat" alt="Build Status"></a>
 
 # 本地开发
 
@@ -54,7 +52,7 @@ npm run server-production
 
 # 服务器部署
 
-以下部署只需要部署一次，除非部署脚本（／deploy）有变更。
+以下部署只需要部署一次，除非部署脚本（／deploy）有修改。
 
 部署后，每次 built 分支的提交都会更新应用代码，并重启应用服务。
 
@@ -64,6 +62,15 @@ npm run server-production
 git clone https://github.com/ascoders/wokugame.git --depth=1
 ```
 
+### 安装依赖
+
+因为国内网速太慢，docker 容器内安装依赖经常卡顿，所以放在外面安装
+
+```bash
+cd wokugame
+npm install yarn -g
+yarn
+```
 
 ### 生成 docker image
 
