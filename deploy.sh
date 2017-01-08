@@ -16,6 +16,7 @@ mv ../built-production ./
 mv ../built ./
 mv ../package.json ./
 mv ../Dockerfile ./
+mv ../yarn.lock ./
 
 # Push
 git add -A

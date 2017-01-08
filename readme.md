@@ -59,7 +59,7 @@ npm run server-production
 ### 拉取主干代码
 
 ```bash
-git clone https://github.com/ascoders/wokugame.git --depth=1
+git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 ```
 
 ### 安装依赖
