@@ -10,7 +10,11 @@ git clone -b built --depth 1 git@github.com:ascoders/wokugame.git branchs
 cd branchs
 
 # Move build result
-rm -rf ./
+rm -rf ./built-production
+rm -rf ./built
+rm ./package.json
+rm ./Dockerfile
+rm ./yarn.lock
 
 mv ../built-production ./
 mv ../built ./
