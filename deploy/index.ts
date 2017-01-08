@@ -1,15 +1,17 @@
 import * as http from 'http'
 import * as createHandler from 'github-webhook-handler'
-const handler = createHandler({path: '/webhook', secret: 'myhashsecret'})
+import {execSync} from 'child_process'
+import * as config from '../config'
+const handler = createHandler({path: '/webhook', secret: '123456'})
 
-http.createServer(function (req, res) {
-    handler(req, res, function (err: any) {
+http.createServer((req, res) => {
+    handler(req, res, (err: any) => {
         res.statusCode = 404
         res.end('no such location')
     })
-}).listen(8000)
+}).listen(config.deployPort)
 
-handler.on('push', function (event: any) {
+handler.on('push', (event: any) => {
     console.log('Received a push event for %s to %s',
         event.payload.repository.name,
         event.payload.ref)
@@ -18,6 +20,6 @@ handler.on('push', function (event: any) {
 })
 
 // docker shutdown
-process.on('SIGINT', function () {
+process.on('SIGINT', () => {
 
 })

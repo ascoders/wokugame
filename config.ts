@@ -4,6 +4,9 @@ export const localPort = 8080
 // 本地 dev 模式 webpack 文件服务端口号
 export const localWebpackPort = 9091
 
+// 部署端口号，监听 push 信息
+export const deployPort = 3000
+
 // 静态资源路径前缀
 export const publicPath = 'static'
 
