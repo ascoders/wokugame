@@ -10,10 +10,12 @@ git clone -b built --depth 1 git@github.com:ascoders/wokugame.git branchs
 cd branchs
 
 # Move build result
-rm -rf built-production
+rm -rf ./
+
 mv ../built-production ./
-rm -rf built
 mv ../built ./
+mv ../package.json ./
+mv ../Dockerfile ./
 
 # Push
 git add -A

@@ -11,10 +11,7 @@ MAINTAINER ascoders www.ziyihuang@gmail.com
 
 # Copy file
 RUN mkdir app
-COPY ./built /app/built
-COPY ./node_modules /app/built/node_modules
-COPY ./yarn.lock /app/built/yarn.lock
-COPY ./package.json /app/package.json
+COPY ./ /app
 
 # Install node_modules
 WORKDIR /app
