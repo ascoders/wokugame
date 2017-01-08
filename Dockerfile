@@ -26,4 +26,4 @@ EXPOSE 8080
 
 # Run Container
 # CMD pm2 start /app/built/deploy/index.js
-CMD ["npm rm factory"]
+CMD ["npm run factory"]
