@@ -10,20 +10,14 @@ FROM node:latest
 MAINTAINER ascoders www.ziyihuang@gmail.com
 
 # Copy file
-RUN mkdir app
-COPY ./ /app
+RUN mkdir -p /app
+COPY . /app
 
-# Install node_modules
+# Change work dir
 WORKDIR /app
-# RUN yarn
-RUN npm install --registry https://registry.npm.taobao.org
-
-# Run tsc
-RUN npm run tsc
 
 # Expose the default port
 EXPOSE 8080
 
 # Run Container
-# CMD pm2 start /app/built/deploy/index.js
 CMD ["npm run factory"]
