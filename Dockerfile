@@ -17,7 +17,7 @@ COPY . /app
 WORKDIR /app
 
 # Expose the default port
-EXPOSE 8080
+EXPOSE 8080 8000
 
 # Run Container
 CMD npm run deploy
