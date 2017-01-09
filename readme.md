@@ -81,7 +81,10 @@ docker build -t woku-app ./
 ### 运行 docker
 
 ```bash
-docker run -p 8080:8080 -d woku-app
+docker run -p 5000:8000 -p 6000:8080 -d woku-app
 ```
+
+- 部署程序跑在本机 5000 端口
+- 网页跑在本机 6000 端口
 
 - [目录结构说明](docs/directory.md)
