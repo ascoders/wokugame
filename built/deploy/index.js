@@ -21,5 +21,6 @@ handler.on('push', (event) => {
     }
 });
 process.on('SIGINT', () => {
+    child_process_1.execSync(`npm run pm2-stop`);
 });
 //# sourceMappingURL=index.js.map
