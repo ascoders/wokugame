@@ -28,5 +28,5 @@ handler.on('push', (event: any) => {
 
 // docker shutdown
 process.on('SIGINT', () => {
-
+    execSync(`npm run pm2-stop`)
 })
