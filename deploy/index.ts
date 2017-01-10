@@ -5,11 +5,18 @@ import {execSync} from 'child_process'
 import * as config from '../config'
 
 /**
+ * 设置 github web hook
+ */
+const handler = createHandler({path: '/webhook', secret: '123456'})
+
+/**
  * 启动网站服务
  */
 execSync(`npm run app-run`)
 
-const handler = createHandler({path: '/webhook', secret: '123456'})
+/**
+ * 设置网站应用代理
+ */
 const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 })
