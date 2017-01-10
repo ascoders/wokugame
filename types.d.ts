@@ -38,3 +38,8 @@ declare module 'github-webhook-handler' {
     const api: any
     export = api
 }
+
+declare module 'http-proxy' {
+    const api: any
+    export = api
+}

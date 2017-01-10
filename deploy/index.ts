@@ -1,8 +1,13 @@
 import * as http from 'http'
 import * as createHandler from 'github-webhook-handler'
+import * as httpProxy from 'http-proxy'
 import {execSync} from 'child_process'
 import * as config from '../config'
+
 const handler = createHandler({path: '/webhook', secret: '123456'})
+const proxy = httpProxy.createProxyServer({
+    target: 'http://localhost:' + config.localPort
+})
 
 /**
  * 启动网站服务
@@ -20,18 +25,18 @@ http.createServer((req, res) => {
             res.end('no such location')
         })
     } else {
-        // 其余的代理到网站服务
-        const options = {
-            host: 'localhost',
-            port: config.localPort,
-            path: req.url,
-            method: req.method
-        }
-
-        http.request(options, response => {
-            response.pipe(res)
-            console.log(req.url)
-        }).end()
+        proxy.web(req, res)
+        // // 其余的代理到网站服务
+        // const options = {
+        //     host: 'localhost',
+        //     port: config.localPort,
+        //     path: req.url,
+        //     method: req.method
+        // }
+        //
+        // http.request(options, response => {
+        //     response.pipe(res)
+        // }).end()
     }
 }).listen(config.deployPort)
 
