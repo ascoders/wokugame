@@ -10,6 +10,10 @@ travis ci 验证 github 的信息
 
 生产环境下的部署脚本，基于 nodejs
 
+`dockers`
+
+mysql、nginx 等 docker 配置
+
 `docs`
 
 所有 md 文档都在这里
@@ -21,10 +25,6 @@ travis ci 验证 github 的信息
 `game-control`
 
 基于 pixi 的游戏引擎
-
-`nginx`
-
-nginx 相关
 
 `scripts`
 
