@@ -4,7 +4,7 @@ const createHandler = require("github-webhook-handler");
 const child_process_1 = require("child_process");
 const config = require("../config");
 const handler = createHandler({ path: '/webhook', secret: '123456' });
-child_process_1.execSync(`npm run deploy`);
+child_process_1.execSync(`npm run app-run`);
 http.createServer((req, res) => {
     if (req.url === '/webhook') {
         handler(req, res, (err) => {
@@ -32,10 +32,10 @@ handler.on('push', (event) => {
         child_process_1.execSync(`git clone -b built --depth 1 https://github.com/ascoders/wokugame.git /app`);
         child_process_1.execSync(`mv /app-cache /app/node_modules`);
         child_process_1.execSync(`cd /app`);
-        child_process_1.execSync(`npm run pm2-restart`);
+        child_process_1.execSync(`npm run app-restart`);
     }
 });
 process.on('SIGINT', () => {
-    child_process_1.execSync(`npm run pm2-stop`);
+    child_process_1.execSync(`npm run app-stop`);
 });
 //# sourceMappingURL=index.js.map
