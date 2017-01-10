@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (props = new typings.Props()) => {
     return (React.createElement("div", { className: styles.container },
         React.createElement("div", { className: styles.leftContainer },
-            React.createElement("div", { className: styles.categoryContainer }, "\u8BDD\u98981"),
-            React.createElement("div", { className: styles.titleContainer }, "\u6807\u98982"),
-            React.createElement("div", { className: styles.otherContainer }, "\u65E5\u671F3")),
+            React.createElement("div", { className: styles.categoryContainer }, "\u8BDD\u9898"),
+            React.createElement("div", { className: styles.titleContainer }, "\u6807\u9898"),
+            React.createElement("div", { className: styles.otherContainer }, "\u65E5\u671F")),
         React.createElement("div", { className: styles.rightContainer })));
 };
 //# sourceMappingURL=article-box.component.js.map
