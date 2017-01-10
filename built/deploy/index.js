@@ -1,9 +1,13 @@
 "use strict";
 const http = require("http");
 const createHandler = require("github-webhook-handler");
+const httpProxy = require("http-proxy");
 const child_process_1 = require("child_process");
 const config = require("../config");
 const handler = createHandler({ path: '/webhook', secret: '123456' });
+const proxy = httpProxy.createProxyServer({
+    target: 'http://localhost:' + config.localPort
+});
 child_process_1.execSync(`npm run app-run`);
 http.createServer((req, res) => {
     if (req.url === '/webhook') {
@@ -13,16 +17,7 @@ http.createServer((req, res) => {
         });
     }
     else {
-        const options = {
-            host: 'localhost',
-            port: config.localPort,
-            path: req.url,
-            method: req.method
-        };
-        http.request(options, response => {
-            response.pipe(res);
-            console.log(req.url);
-        }).end();
+        proxy.web(req, res);
     }
 }).listen(config.deployPort);
 handler.on('push', (event) => {

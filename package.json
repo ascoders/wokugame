@@ -31,6 +31,7 @@
     "github-webhook-handler": "^0.6.0",
     "graphql": "^0.8.2",
     "graphql-server-koa": "^0.4.3",
+    "http-proxy": "^1.16.2",
     "immutable": "^3.8.1",
     "invariant": "^2.2.2",
     "keymaster": "^1.6.2",
