@@ -12,16 +12,18 @@ http.createServer((req, res) => {
             res.end('no such location');
         });
     }
-    const options = {
-        host: 'localhost',
-        port: config.localPort,
-        path: req.url,
-        method: req.method
-    };
-    http.request(options, response => {
-        response.pipe(res);
-        console.log(req.url);
-    }).end();
+    else {
+        const options = {
+            host: 'localhost',
+            port: config.localPort,
+            path: req.url,
+            method: req.method
+        };
+        http.request(options, response => {
+            response.pipe(res);
+            console.log(req.url);
+        }).end();
+    }
 }).listen(config.deployPort);
 handler.on('push', (event) => {
     if (event.payload.ref === 'refs/heads/built') {
