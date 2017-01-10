@@ -18,7 +18,7 @@
     "start": "npm-run-all --parallel -l server gulp webpack tsc-watch",
     "deploy": "pm2-docker -i 1 /app/built/deploy/index.js",
     "app-run": "pm2 start -i 0 --name woku /app/built/src/server/index.js -- --production",
-    "app-restart": "pm2 restart woku",
+    "app-reload": "pm2 reload woku",
     "app-stop": "pm2 stop woku"
   },
   "repository": {

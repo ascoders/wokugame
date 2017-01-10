@@ -43,14 +43,22 @@ http.createServer((req, res) => {
 handler.on('push', (event: any) => {
     if (event.payload.ref === 'refs/heads/built') {
         // 重新 clone
-        execSync(`cp /app/node_modules /app-cache`)
-        execSync(`rm -rf /app`)
+        execSync(`mv node_modules /app-cache`)
+        execSync(`cd /; rm -rf /app`)
         execSync(`git clone -b built --depth 1 https://github.com/ascoders/wokugame.git /app`)
         execSync(`mv /app-cache /app/node_modules`)
         execSync(`cd /app`)
         //execSync(`yarn`)
-        execSync(`npm run app-restart`)
+        execSync(`npm run app-reload`)
     }
+})
+
+/**
+ * github webhook 异常处理
+ * 不处理的话，默认会抛出异常然后挂掉 app，太恐怖了
+ */
+handler.on('error', () => {
+
 })
 
 /**
