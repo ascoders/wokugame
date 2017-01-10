@@ -81,7 +81,7 @@ docker build -t woku-app ./
 ### 运行 docker
 
 ```bash
-docker run -p 5000:8000 -d woku-app --restart=always --rm
+docker run -p 5000:8000 -d woku-app
 ```
 
 - 部署程序跑在本机 5000 端口, docker 8000 端口

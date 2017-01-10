@@ -16,7 +16,7 @@
     "gulp-production": "gulp production --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
     "production": "npm-run-all --sequential -l tsc dll-production gulp-production webpack-production",
     "start": "npm-run-all --parallel -l server gulp webpack tsc-watch",
-    "deploy": "pm2-docker -i 1 /app/built/src/deploy/index.js",
+    "deploy": "pm2-docker -i 1 /app/built/deploy/index.js",
     "app-run": "pm2 start -i 0 --name woku /app/built/src/server/index.js -- --production",
     "app-restart": "pm2 restart woku",
     "app-stop": "pm2 stop woku"
