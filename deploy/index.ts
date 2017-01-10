@@ -19,20 +19,20 @@ http.createServer((req, res) => {
             res.statusCode = 404
             res.end('no such location')
         })
-    }
+    } else {
+        // 其余的代理到网站服务
+        const options = {
+            host: 'localhost',
+            port: config.localPort,
+            path: req.url,
+            method: req.method
+        }
 
-    // 其余的代理到网站服务
-    const options = {
-        host: 'localhost',
-        port: config.localPort,
-        path: req.url,
-        method: req.method
+        http.request(options, response => {
+            response.pipe(res)
+            console.log(req.url)
+        }).end()
     }
-
-    http.request(options, response => {
-        response.pipe(res)
-        console.log(req.url)
-    }).end()
 }).listen(config.deployPort)
 
 /**

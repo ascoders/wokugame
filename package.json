@@ -16,7 +16,8 @@
     "gulp-production": "gulp production --gulpfile built/scripts/gulp/gulpfile.js --cwd ./",
     "production": "npm-run-all --sequential -l tsc dll-production gulp-production webpack-production",
     "start": "npm-run-all --parallel -l server gulp webpack tsc-watch",
-    "deploy": "pm2-docker -i 0 /app/built/src/server/index.js -- --production"
+    "deploy": "pm2-docker -i 1 /app/built/src/server/index.js -- --production",
+    "app": "pm2-docker -i 0 /app/built/src/deploy/index.js"
   },
   "repository": {
     "type": "git",
