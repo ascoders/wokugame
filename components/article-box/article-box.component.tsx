@@ -13,7 +13,7 @@ export default (props: typings.PropsDefine = new typings.Props()) => {
                 </div>
                 {/* 标题容器 */}
                 <div className={styles.titleContainer}>
-                    标题
+                    标题123
                 </div>
                 {/* 日期等杂项容器 */}
                 <div className={styles.otherContainer}>
