@@ -9,11 +9,11 @@ export default (props: typings.PropsDefine = new typings.Props()) => {
             <div className={styles.leftContainer}>
                 {/* 类别容器 */}
                 <div className={styles.categoryContainer}>
-                    456
+                    666
                 </div>
                 {/* 标题容器 */}
                 <div className={styles.titleContainer}>
-                    标题123
+                    标题容器
                 </div>
                 {/* 日期等杂项容器 */}
                 <div className={styles.otherContainer}>
