@@ -22,13 +22,15 @@ http.createServer((req, res) => {
 }).listen(config.deployPort);
 handler.on('push', (event) => {
     if (event.payload.ref === 'refs/heads/built') {
-        child_process_1.execSync(`cp /app/node_modules /app-cache`);
-        child_process_1.execSync(`rm -rf /app`);
+        child_process_1.execSync(`mv node_modules /app-cache`);
+        child_process_1.execSync(`cd /; rm -rf /app`);
         child_process_1.execSync(`git clone -b built --depth 1 https://github.com/ascoders/wokugame.git /app`);
         child_process_1.execSync(`mv /app-cache /app/node_modules`);
         child_process_1.execSync(`cd /app`);
-        child_process_1.execSync(`npm run app-restart`);
+        child_process_1.execSync(`npm run app-reload`);
     }
+});
+handler.on('error', () => {
 });
 process.on('SIGINT', () => {
     child_process_1.execSync(`npm run app-stop`);
