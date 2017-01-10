@@ -42,13 +42,8 @@ http.createServer((req, res) => {
  */
 handler.on('push', (event: any) => {
     if (event.payload.ref === 'refs/heads/built') {
-        // 重新 clone
-        execSync(`mv node_modules /app-cache`)
-        execSync(`cd /; rm -rf /app`)
-        execSync(`git clone -b built --depth 1 https://github.com/ascoders/wokugame.git /app`)
-        execSync(`mv /app-cache /app/node_modules`)
-        execSync(`cd /app`)
-        //execSync(`yarn`)
+        // pull
+        execSync(`cd /app; git pull origin built`)
         execSync(`npm run app-reload`)
     }
 })
