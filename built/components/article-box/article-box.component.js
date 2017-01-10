@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (props = new typings.Props()) => {
     return (React.createElement("div", { className: styles.container },
         React.createElement("div", { className: styles.leftContainer },
-            React.createElement("div", { className: styles.categoryContainer }, "123"),
+            React.createElement("div", { className: styles.categoryContainer }, "456"),
             React.createElement("div", { className: styles.titleContainer }, "\u6807\u9898123"),
             React.createElement("div", { className: styles.otherContainer }, "\u65E5\u671F")),
         React.createElement("div", { className: styles.rightContainer })));

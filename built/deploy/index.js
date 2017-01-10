@@ -4,8 +4,8 @@ const createHandler = require("github-webhook-handler");
 const httpProxy = require("http-proxy");
 const child_process_1 = require("child_process");
 const config = require("../config");
-child_process_1.execSync(`npm run app-run`);
 const handler = createHandler({ path: '/webhook', secret: '123456' });
+child_process_1.execSync(`npm run app-run`);
 const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 });
