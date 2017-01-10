@@ -7,7 +7,7 @@ const handler = createHandler({path: '/webhook', secret: '123456'})
 /**
  * 启动网站服务
  */
-execSync(`npm run deploy`)
+execSync(`npm run app-run`)
 
 /**
  * 监听网络请求
@@ -47,7 +47,7 @@ handler.on('push', (event: any) => {
         execSync(`mv /app-cache /app/node_modules`)
         execSync(`cd /app`)
         //execSync(`yarn`)
-        execSync(`npm run pm2-restart`)
+        execSync(`npm run app-restart`)
     }
 })
 
@@ -55,5 +55,5 @@ handler.on('push', (event: any) => {
  * docker 关闭时，关闭网站服务
  */
 process.on('SIGINT', () => {
-    execSync(`npm run pm2-stop`)
+    execSync(`npm run app-stop`)
 })
