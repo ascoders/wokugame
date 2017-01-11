@@ -12,11 +12,9 @@ const handler = createHandler({path: '/webhook', secret: '123456'})
 /**
  * 启动网站服务
  */
-try {
-    exec(`npm run app-run`)
-} catch (err) {
+exec(`npm run app-run`, err => {
 
-}
+})
 
 /**
  * 设置网站应用代理
@@ -50,8 +48,14 @@ http.createServer((req, res) => {
 handler.on('push', (event: any) => {
     if (event.payload.ref === 'refs/heads/built') {
         // pull
-        execSync(`cd /app; git pull origin built`)
-        execSync(`npm run app-reload`)
+        exec(`
+                cd /app;
+                git pull origin built;
+                npm install --registry https://registry.npm.taobao.org;
+                npm run app-reload;
+            `, err => {
+
+        })
     }
 })
 
