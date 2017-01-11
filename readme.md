@@ -52,7 +52,7 @@ npm run server-production
 
 # 服务器部署
 
-以下部署只需要部署一次，除非部署脚本（／deploy）有修改。
+**只需要部署一次**，除非部署脚本（/deploy）有修改。
 
 部署后，每次 built 分支的提交都会更新应用代码，并重启应用服务。
 
@@ -84,7 +84,6 @@ docker build -t woku-app ./
 docker run -p 5000:8000 -d woku-app
 ```
 
-- 部署程序跑在本机 5000 端口, docker 8000 端口
-- 网页跑在本机 6000 端口, docker 8080 端口
+- 这样网页跑在本机的 5000 端口，对应 docker 的 8000 端口
 
 - [目录结构说明](docs/directory.md)

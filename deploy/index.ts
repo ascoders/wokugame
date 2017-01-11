@@ -51,7 +51,7 @@ handler.on('push', (event: any) => {
         exec(`
                 cd /app;
                 git pull origin built;
-                npm install --registry https://registry.npm.taobao.org;
+                npm install --production --registry https://registry.npm.taobao.org;
                 npm run app-reload;
             `, err => {
 
