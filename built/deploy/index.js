@@ -9,6 +9,8 @@ child_process_1.execSync(`npm run app-run`);
 const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 });
+proxy.on('error', () => {
+});
 http.createServer((req, res) => {
     if (req.url === '/webhook') {
         handler(req, res, (err) => {
