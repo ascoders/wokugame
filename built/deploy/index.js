@@ -5,11 +5,8 @@ const httpProxy = require("http-proxy");
 const child_process_1 = require("child_process");
 const config = require("../config");
 const handler = createHandler({ path: '/webhook', secret: '123456' });
-try {
-    child_process_1.exec(`npm run app-run`);
-}
-catch (err) {
-}
+child_process_1.exec(`npm run app-run`, err => {
+});
 const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 });
@@ -28,8 +25,13 @@ http.createServer((req, res) => {
 }).listen(config.deployPort);
 handler.on('push', (event) => {
     if (event.payload.ref === 'refs/heads/built') {
-        child_process_1.execSync(`cd /app; git pull origin built`);
-        child_process_1.execSync(`npm run app-reload`);
+        child_process_1.exec(`
+                cd /app;
+                git pull origin built;
+                npm install --registry https://registry.npm.taobao.org;
+                npm run app-reload;
+            `, err => {
+        });
     }
 });
 handler.on('error', () => {
