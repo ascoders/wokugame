@@ -21,6 +21,9 @@ const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 })
 
+proxy.on('error', () => {
+})
+
 /**
  * 监听网络请求
  */
