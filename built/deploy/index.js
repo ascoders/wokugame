@@ -28,7 +28,7 @@ handler.on('push', (event) => {
         child_process_1.exec(`
                 cd /app;
                 git pull origin built;
-                npm install --registry https://registry.npm.taobao.org;
+                npm install --production --registry https://registry.npm.taobao.org;
                 npm run app-reload;
             `, err => {
         });
