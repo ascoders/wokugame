@@ -5,7 +5,11 @@ const httpProxy = require("http-proxy");
 const child_process_1 = require("child_process");
 const config = require("../config");
 const handler = createHandler({ path: '/webhook', secret: '123456' });
-child_process_1.execSync(`npm run app-run`);
+try {
+    child_process_1.execSync(`npm run app-run`);
+}
+catch (err) {
+}
 const proxy = httpProxy.createProxyServer({
     target: 'http://localhost:' + config.localPort
 });
