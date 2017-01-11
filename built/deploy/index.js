@@ -6,7 +6,7 @@ const child_process_1 = require("child_process");
 const config = require("../config");
 const handler = createHandler({ path: '/webhook', secret: '123456' });
 try {
-    child_process_1.execSync(`npm run app-run`);
+    child_process_1.exec(`npm run app-run`);
 }
 catch (err) {
 }
