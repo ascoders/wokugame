@@ -1,7 +1,7 @@
 import * as http from 'http'
 import * as createHandler from 'github-webhook-handler'
 import * as httpProxy from 'http-proxy'
-import {execSync} from 'child_process'
+import {exec, execSync} from 'child_process'
 import * as config from '../config'
 
 /**
@@ -13,7 +13,7 @@ const handler = createHandler({path: '/webhook', secret: '123456'})
  * 启动网站服务
  */
 try {
-    execSync(`npm run app-run`)
+    exec(`npm run app-run`)
 } catch (err) {
 
 }
