@@ -5,7 +5,7 @@ let scripts;
 if (isProduction) {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.b97a8.js'></script>
+        <script src='/${config.publicPath}/bundle.a06d4.js'></script>
     `;
 }
 else {
