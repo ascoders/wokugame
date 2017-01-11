@@ -12,7 +12,11 @@ const handler = createHandler({path: '/webhook', secret: '123456'})
 /**
  * 启动网站服务
  */
-execSync(`npm run app-run`)
+try {
+    execSync(`npm run app-run`)
+} catch (err) {
+
+}
 
 /**
  * 设置网站应用代理
