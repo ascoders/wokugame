@@ -48,6 +48,25 @@ class Aircraft extends game_object_1.default {
             this.mouseLastPositionY = null;
             this.hasMouseUp = true;
         });
+        document.addEventListener('touchstart', event => {
+            this.offsetMouseX = this.object.x - event.touches[0].clientX;
+            this.offsetMouseY = this.object.y - event.touches[0].clientY;
+            this.mouseLastPositionX = event.touches[0].clientX + this.offsetMouseX;
+            this.mouseLastPositionY = event.touches[0].clientY + this.offsetMouseY;
+            this.hasMouseUp = false;
+        });
+        document.addEventListener('touchmove', event => {
+            if (this.hasMouseUp) {
+                return;
+            }
+            this.mouseLastPositionX = event.touches[0].clientX + this.offsetMouseX;
+            this.mouseLastPositionY = event.touches[0].clientY + this.offsetMouseY;
+        });
+        document.addEventListener('touchend', event => {
+            this.mouseLastPositionX = null;
+            this.mouseLastPositionY = null;
+            this.hasMouseUp = true;
+        });
         this.fireStream
             .throttleTime(this.fireInterval)
             .subscribe(() => {
