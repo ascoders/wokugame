@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as typings from './layout.type'
 import {connect} from '../../../frame/index'
+import {Link} from 'react-router'
 
-import Menu from '../../../components/menu/menu.component'
+import {Menu, MenuItem} from '../../../components/menu'
 
 export default connect<Models.Root>(state => {
     return {
@@ -11,7 +12,14 @@ export default connect<Models.Root>(state => {
 })((props: typings.PropsDefine = new typings.Props()) => {
     return (
         <div>
-            <Menu></Menu>
+            <Menu>
+                <MenuItem>
+                    <Link to="/">我酷</Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to="/game">游戏</Link>
+                </MenuItem>
+            </Menu>
             {props.children}
         </div>
     )

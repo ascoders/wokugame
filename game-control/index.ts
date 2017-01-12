@@ -155,9 +155,18 @@ export default class GameControl {
     /**
      * 暂停游戏
      */
-    pause(delay = 0) {
+    public pause(delay = 0) {
         setTimeout(() => {
             this.isPause = true
         }, delay)
+    }
+
+    /**
+     * 销毁游戏
+     */
+    public destroy() {
+        this.renderer.destroy(true)
+        PIXI.loader.reset()
+        this.pause()
     }
 }

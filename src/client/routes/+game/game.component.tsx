@@ -3,14 +3,20 @@ import * as typings from './game.type'
 import {connect} from '../../../../frame/index'
 const styles = require('./game.css')
 
-import game from './game/index'
+import Game from './game/index'
 
 @connect<Models.Root>(state => {
     return {}
 })
-export default class Game extends React.Component<typings.Props,any> {
+export default class GameScene extends React.Component<typings.Props,any> {
+    private game: Game
+
     componentDidMount() {
-        new game(document.getElementById('game-container'))
+        this.game = new Game(document.getElementById('game-container'))
+    }
+
+    componentWillUnmount() {
+        this.game.destroy()
     }
 
     render() {

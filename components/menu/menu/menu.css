@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: row;
+
+    height: 46px;
+    background-color: #333;
+}
+
+[name='woku-menu-item'], [name='woku-menu-item'] a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+[name='woku-menu-item']:hover {
+    background-color: #666;
+}

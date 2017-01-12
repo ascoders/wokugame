@@ -5,7 +5,7 @@ const styles = require('./menu.css')
 export default (props: typings.PropsDefine = new typings.Props()) => {
     return (
         <div className={styles.container}>
-
+            {props.children}
         </div>
     )
 }

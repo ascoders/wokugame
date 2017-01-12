@@ -227,4 +227,11 @@ export default class Game {
     gameLoop() {
         this.timer.onUpdate()
     }
+
+    /**
+     * 技术游戏
+     */
+    destroy() {
+        this.gameControl.destroy()
+    }
 }
