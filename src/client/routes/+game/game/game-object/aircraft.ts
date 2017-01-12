@@ -70,6 +70,29 @@ export default class Aircraft extends GameObject<PIXI.Sprite> {
             this.hasMouseUp = true
         })
 
+        document.addEventListener('touchstart', event => {
+            this.offsetMouseX = this.object.x - event.touches[0].clientX
+            this.offsetMouseY = this.object.y - event.touches[0].clientY
+
+            this.mouseLastPositionX = event.touches[0].clientX + this.offsetMouseX
+            this.mouseLastPositionY = event.touches[0].clientY + this.offsetMouseY
+            this.hasMouseUp = false
+        })
+
+        document.addEventListener('touchmove', event => {
+            if (this.hasMouseUp) {
+                return
+            }
+            this.mouseLastPositionX = event.touches[0].clientX + this.offsetMouseX
+            this.mouseLastPositionY = event.touches[0].clientY + this.offsetMouseY
+        })
+
+        document.addEventListener('touchend', event => {
+            this.mouseLastPositionX = null
+            this.mouseLastPositionY = null
+            this.hasMouseUp = true
+        })
+
         // 发射子弹的监听
         this.fireStream
             .throttleTime(this.fireInterval)
