@@ -16,6 +16,9 @@ COPY . /app
 # Change work dir
 WORKDIR /app
 
+# Npm install
+RUN npm install --production --registry https://registry.npm.taobao.org
+
 # Expose the default port
 EXPOSE 8080 8000
 

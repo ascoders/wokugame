@@ -62,16 +62,6 @@ npm run server-production
 git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 ```
 
-### 安装依赖
-
-因为国内网速太慢，docker 容器内安装依赖经常卡顿，所以放在外面安装
-
-```bash
-cd wokugame
-npm install yarn -g
-yarn
-```
-
 ### 生成 docker image
 
 ```bash
