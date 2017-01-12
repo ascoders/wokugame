@@ -12,20 +12,23 @@ const React = require("react");
 const index_1 = require("../../../../frame/index");
 const styles = require('./game.css');
 const index_2 = require("./game/index");
-let Game = class Game extends React.Component {
+let GameScene = class GameScene extends React.Component {
     componentDidMount() {
-        new index_2.default(document.getElementById('game-container'));
+        this.game = new index_2.default(document.getElementById('game-container'));
+    }
+    componentWillUnmount() {
+        this.game.destroy();
     }
     render() {
         return (React.createElement("div", { id: "game-container" }));
     }
 };
-Game = __decorate([
+GameScene = __decorate([
     index_1.connect(state => {
         return {};
     }),
     __metadata("design:paramtypes", [])
-], Game);
+], GameScene);
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Game;
+exports.default = GameScene;
 //# sourceMappingURL=game.component.js.map

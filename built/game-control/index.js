@@ -73,6 +73,11 @@ class GameControl {
             this.isPause = true;
         }, delay);
     }
+    destroy() {
+        this.renderer.destroy(true);
+        PIXI.loader.reset();
+        this.pause();
+    }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GameControl;

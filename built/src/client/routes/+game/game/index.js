@@ -178,6 +178,9 @@ class Game {
     gameLoop() {
         this.timer.onUpdate();
     }
+    destroy() {
+        this.gameControl.destroy();
+    }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Game;
