@@ -71,7 +71,7 @@ docker build -t woku-app ./
 ### 运行 docker
 
 ```bash
-docker run -p 5000:8000 -d woku-app
+docker run --restart=always -p 5000:8000 -d woku-app
 ```
 
 - 这样网页跑在本机的 5000 端口，对应 docker 的 8000 端口
