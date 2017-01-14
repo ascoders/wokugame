@@ -15,7 +15,9 @@ exports.default = index_1.connect(state => {
             React.createElement(menu_1.MenuItem, null,
                 React.createElement(react_router_1.Link, { to: "/" }, "\u6211\u9177")),
             React.createElement(menu_1.MenuItem, null,
-                React.createElement(react_router_1.Link, { to: "/game" }, "\u6E38\u620F"))),
+                React.createElement(menu_1.MenuTree, { title: "游戏" },
+                    React.createElement(react_router_1.Link, { to: "/game" }, "\u98DE\u673A\u5927\u6218"),
+                    React.createElement(react_router_1.Link, { to: "/game" }, "\u6A21\u62DF\u661F\u7403")))),
         props.children));
 });
 //# sourceMappingURL=layout.component.js.map
