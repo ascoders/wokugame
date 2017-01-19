@@ -41,7 +41,7 @@ exports.default = {
                 loader: 'happypack/loader?id=js'
             }, {
                 test: /\.(css)/,
-                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
             }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'

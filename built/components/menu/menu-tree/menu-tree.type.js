@@ -1,6 +1,8 @@
 "use strict";
-class Props {
+const redux_component_1 = require("../../redux-component");
+class Props extends redux_component_1.default {
     constructor() {
+        super(...arguments);
         this.title = '';
     }
 }

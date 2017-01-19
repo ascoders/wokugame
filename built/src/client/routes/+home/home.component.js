@@ -6,9 +6,7 @@ const styles = require('./home.css');
 const article_box_component_1 = require("../../../../components/article-box/article-box.component");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = index_1.connect(state => {
-    return {
-        headerColor: state.application.headerColor
-    };
+    return {};
 })((props = new typings.Props()) => {
     console.log('home render');
     const handleClick = () => {

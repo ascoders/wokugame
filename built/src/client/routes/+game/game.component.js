@@ -20,6 +20,7 @@ let GameScene = class GameScene extends React.Component {
         this.game.destroy();
     }
     render() {
+        console.log('render');
         return (React.createElement("div", { id: "game-container" }));
     }
 };
