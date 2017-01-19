@@ -10,6 +10,7 @@ exports.default = index_1.connect(state => {
         headerColor: state.application.headerColor
     };
 })((props = new typings.Props()) => {
+    console.log('home render');
     const handleClick = () => {
         props.dispatch({
             type: 'application/changeHeaderColor',

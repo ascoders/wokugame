@@ -10,6 +10,7 @@ exports.default = index_1.connect(state => {
         headerColor: state.application.headerColor
     };
 })((props = new typings.Props()) => {
+    console.log('layout render', props);
     return (React.createElement("div", null,
         React.createElement(menu_1.Menu, null,
             React.createElement(menu_1.MenuItem, null,

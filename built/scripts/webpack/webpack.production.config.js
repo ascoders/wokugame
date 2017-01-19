@@ -4,9 +4,14 @@ const path = require("path");
 const config = require("../../config");
 const happyPack = require("happypack");
 const bundle_production_change_html_hash_1 = require("./plugins/bundle-production-change-html-hash");
+const autoprefixer = require("autoprefixer");
+const stylesheet_hash_1 = require("./plugins/stylesheet-hash");
 const happyThreadPool = happyPack.ThreadPool({ size: 5 });
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSCSS = new ExtractTextPlugin('style.css');
+const styleName = stylesheet_hash_1.default();
+const extractSCSS = new ExtractTextPlugin(styleName, {
+    allChunks: true
+});
 function createHappyPlugin(id, loaders) {
     return new happyPack({
         id: id,
@@ -36,7 +41,7 @@ exports.default = {
                 loader: 'happypack/loader?id=js'
             }, {
                 test: /\.(css)/,
-                loader: 'happypack/loader?id=css'
+                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
             }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'
@@ -51,6 +56,9 @@ exports.default = {
                 loader: 'happypack/loader?id=text'
             }
         ]
+    },
+    postcss: function () {
+        return [autoprefixer];
     },
     plugins: [
         extractSCSS,
@@ -67,7 +75,6 @@ exports.default = {
             manifest: require(path.join(process.cwd(), 'built-production/static/dll/library-mainfest.json'))
         }),
         createHappyPlugin('js', ['babel']),
-        createHappyPlugin('css', ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']),
         createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
         createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
         createHappyPlugin('json', ['json']),

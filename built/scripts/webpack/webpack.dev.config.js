@@ -17,6 +17,7 @@ exports.createHappyPlugin = createHappyPlugin;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     debug: true,
+    devtool: 'cheap-module-eval-source-map',
     entry: [
         `webpack-dev-server/client?http://localhost:${config.localWebpackPort}`,
         'webpack/hot/only-dev-server',
@@ -59,10 +60,6 @@ exports.default = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.SourceMapDevToolPlugin({
-            filename: '[file].map',
-            columns: false
-        }),
         new webpack.DllReferencePlugin({
             context: '.',
             manifest: require(path.join(process.cwd(), 'built/static/dll/library-mainfest.json'))
