@@ -9,7 +9,7 @@ if (isProduction) {
         <script src='/${config.publicPath}/bundle.c6a6d.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.k5n5g.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.c6udp.css">
     `;
 }
 else {
