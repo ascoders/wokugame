@@ -1,9 +1,9 @@
 import * as React from 'react'
+import ReduxComponent from '../../../components/redux-component'
 
-export interface PropsDefine extends React.Props<any> {
-    dispatch?: any
-}
-
-export class Props implements PropsDefine {
-
+export class Props extends ReduxComponent {
+    /**
+     * [injected]
+     */
+    navbarHeight?: number
 }

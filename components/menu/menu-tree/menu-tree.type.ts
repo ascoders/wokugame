@@ -1,10 +1,14 @@
 import * as React from 'react'
+import ReduxComponent from '../../redux-component'
 
-export class Props implements React.Props<any> {
+export class Props extends ReduxComponent {
     /**
      * 子菜单标题
      */
     title?: string | (() => React.ReactElement<any>) = ''
 
-    children?: React.ReactNode
+    /**
+     * [injected]
+     */
+    height?: number
 }

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {IndexRoute, Route} from 'react-router'
+import LayoutComponent from './layout/layout.component'
 
 declare var require: any
 
@@ -24,11 +25,23 @@ const getGame = (nextState: any, callback: any) => {
     })
 }
 
-import LayoutComponent from './layout/layout.component'
+const getLogin = (nextState: any, callback: any) => {
+    require.ensure([], function (require: any) {
+        callback(null, require('./routes/+login/login.component').default)
+    })
+}
+
+const getRegister = (nextState: any, callback: any) => {
+    require.ensure([], function (require: any) {
+        callback(null, require('./routes/+register/register.component').default)
+    })
+}
 
 export default (
     <Route path="/" component={LayoutComponent}>
         <IndexRoute getComponent={getHome}/>
         <Route path="game" getComponent={getGame}/>
+        <Route path="login" getComponent={getLogin}/>
+        <Route path="register" getComponent={getRegister}/>
     </Route>
 )

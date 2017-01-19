@@ -1,9 +1,5 @@
-import * as React from 'react'
+import ReduxComponent from '../redux-component'
 
-export interface PropsDefine extends React.Props<any> {
-
-}
-
-export class Props implements PropsDefine {
+export class Props extends ReduxComponent {
 
 }

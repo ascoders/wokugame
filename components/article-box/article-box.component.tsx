@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as typings from './article-box.type'
 const styles = require('./article-box.css')
 
-export default (props: typings.PropsDefine = new typings.Props()) => {
+export default (props = new typings.Props()) => {
     return (
         <div className={styles.container}>
             {/* 文章左侧容器 */}

@@ -1,5 +1,5 @@
 declare namespace Models {
     export interface Application {
-        headerColor?: string
+        navbarHeight?: number
     }
 }

@@ -1,11 +1,11 @@
 export default {
     namespace: 'application',
     defaultState: {
-        headerColor: 'red'
+        navbarHeight: 46
     },
     reducers: {
         changeHeaderColor: (state, action) => {
-            return state.setIn(['headerColor'], action.payload)
+            return state.setIn(['navbarHeight'], action.payload)
         }
     }
 } as God.Model<Models.Application>

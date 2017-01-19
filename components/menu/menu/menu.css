@@ -1,15 +1,12 @@
 .container {
     display: flex;
     flex-direction: row;
-
-    height: 46px;
     background-color: #333;
 }
 
 [name='woku-menu-item'], [name='woku-menu-item'] a {
     color: #ccc;
     text-decoration: none;
-    height: 46px;
 }
 
 [name='woku-menu-item']:hover, [name='woku-menu-subtree'] a:hover {

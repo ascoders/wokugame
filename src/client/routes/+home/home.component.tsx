@@ -7,9 +7,9 @@ import ArticleBox from '../../../../components/article-box/article-box.component
 
 export default connect<Models.Root>(state => {
     return {
-        headerColor: state.application.headerColor
+
     }
-})((props: typings.PropsDefine = new typings.Props()) => {
+})((props = new typings.Props()) => {
     console.log('home render')
 
     const handleClick = () => {

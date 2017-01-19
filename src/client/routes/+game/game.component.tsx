@@ -20,6 +20,7 @@ export default class GameScene extends React.Component<typings.Props,any> {
     }
 
     render() {
+        console.log('render')
         return (
             <div id="game-container"/>
         )

@@ -9,6 +9,9 @@ declare module 'webpack' {
     interface Webpack {
         DllReferencePlugin: any
     }
+    interface Optimize {
+        AggressiveSplittingPlugin: any
+    }
 }
 
 export function createHappyPlugin(id: string, loaders: string[]) {

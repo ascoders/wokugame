@@ -8,16 +8,17 @@ let links: string
 if (isProduction) {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.732e2.js'></script>
+        <script src='/${config.publicPath}/bundle.a4c85.js'></script>
     `
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.oc746.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.galsn.css">
     `
 } else {
     scripts = `
         <script src='/${config.publicPath}/dll/library.dll.js'></script>
         <script src='http://localhost:${config.localWebpackPort}/bundle.js'></script>
     `
+    links = ''
 }
 
 export default `
