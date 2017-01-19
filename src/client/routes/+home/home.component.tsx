@@ -10,6 +10,7 @@ export default connect<Models.Root>(state => {
         headerColor: state.application.headerColor
     }
 })((props: typings.PropsDefine = new typings.Props()) => {
+    console.log('home render')
 
     const handleClick = () => {
         props.dispatch({

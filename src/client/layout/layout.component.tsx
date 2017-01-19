@@ -10,6 +10,7 @@ export default connect<Models.Root>(state => {
         headerColor: state.application.headerColor
     }
 })((props: typings.PropsDefine = new typings.Props()) => {
+    console.log('layout render', props)
     return (
         <div>
             <Menu>

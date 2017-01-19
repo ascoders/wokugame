@@ -4,11 +4,18 @@ import * as path from 'path'
 import * as config from '../../config'
 import * as happyPack from 'happypack'
 import BundleProductionChangeHtmlHash from './plugins/bundle-production-change-html-hash'
+import * as autoprefixer from 'autoprefixer'
+import styleSheetHash from './plugins/stylesheet-hash'
 
 const happyThreadPool = happyPack.ThreadPool({size: 5})
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractSCSS = new ExtractTextPlugin('style.css')
+
+// 生成 style hash 文件名，同时对 html.ts 完成修改
+const styleName = styleSheetHash()
+const extractSCSS = new ExtractTextPlugin(styleName, {
+    allChunks: true
+})
 
 export function createHappyPlugin(id: string, loaders: string[]) {
     return new happyPack({
@@ -41,7 +48,7 @@ export default {
                 loader: 'happypack/loader?id=js'
             }, {
                 test: /\.(css)/,
-                loader: 'happypack/loader?id=css'
+                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
             }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'
@@ -56,6 +63,10 @@ export default {
                 loader: 'happypack/loader?id=text'
             }
         ]
+    },
+
+    postcss: function () {
+        return [autoprefixer]
     },
 
     plugins: [
@@ -73,7 +84,6 @@ export default {
             manifest: require(path.join(process.cwd(), 'built-production/static/dll/library-mainfest.json'))
         }),
         createHappyPlugin('js', ['babel']),
-        createHappyPlugin('css', ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']),
         createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
         createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
         createHappyPlugin('json', ['json']),

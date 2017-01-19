@@ -43,3 +43,8 @@ declare module 'http-proxy' {
     const api: any
     export = api
 }
+
+declare module 'autoprefixer' {
+    const api: any
+    export = api
+}

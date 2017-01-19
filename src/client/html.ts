@@ -3,11 +3,15 @@ import * as config from '../../config'
 const isProduction = process.argv[2] === '--production'
 
 let scripts: string
+let links: string
 
 if (isProduction) {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.b5429.js'></script>
+        <script src='/${config.publicPath}/bundle.732e2.js'></script>
+    `
+    links = `
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.oc746.css">
     `
 } else {
     scripts = `
@@ -24,6 +28,7 @@ export default `
       content="IE=edge">
 <meta name="format-detection"
       content="telephone=no">
+${links}
 <title>还没取名字</title>
 <body>
 <div id='react-dom'></div>
