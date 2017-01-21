@@ -11,7 +11,7 @@ export const deployPort = 8000
 export const publicPath = 'static'
 
 // 数据库地址
-export const dbHostName = process.env['production'] ? 'db' : 'localhost'
+export const dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost'
 
 export const webpackDlls = [
     /** 基础库 */

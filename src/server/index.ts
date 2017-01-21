@@ -8,13 +8,12 @@ import templateHtml from '../client/html'
 import './models'
 
 const app = new koa()
-const isProduction = process.argv[2] === '--production'
 
 const proxy = require('koa-proxy')
 const router = new Router()
 
 // 编译后的静态文件路径
-const builtStaticPath = isProduction ? 'built-production/static' : 'built/static'
+const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
 
 // 设置静态资源缓存
 app.use(staticCache(`${builtStaticPath}`, {
