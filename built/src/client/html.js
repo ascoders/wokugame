@@ -6,10 +6,10 @@ let links;
 if (isProduction) {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.441ef.js'></script>
+        <script src='/${config.publicPath}/bundle.0ffcb.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.almle.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.r6fvh.css">
     `;
 }
 else {

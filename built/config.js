@@ -3,6 +3,7 @@ exports.localPort = 8080;
 exports.localWebpackPort = 9091;
 exports.deployPort = 8000;
 exports.publicPath = 'static';
+exports.dbHostName = process.env['production'] ? 'db' : 'localhost';
 exports.webpackDlls = [
     'react',
     'react-dom',
@@ -12,7 +13,7 @@ exports.webpackDlls = [
     'lodash',
     'classnames',
     'seamless-immutable',
-    'rxjs',
+    'rxjs'
 ];
 exports.staticPathPrefixProduction = '/';
 //# sourceMappingURL=config.js.map

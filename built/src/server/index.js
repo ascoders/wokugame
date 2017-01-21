@@ -6,6 +6,7 @@ const graphql_server_koa_1 = require("graphql-server-koa");
 const schema_1 = require("../graphql/schema");
 const Router = require("koa-router");
 const html_1 = require("../client/html");
+require("./models");
 const app = new koa();
 const isProduction = process.argv[2] === '--production';
 const proxy = require('koa-proxy');

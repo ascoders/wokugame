@@ -9,6 +9,7 @@ exports.default = index_1.connect(state => {
         navbarHeight: state.application.navbarHeight
     };
 })((props = new typings.Props()) => {
-    return (React.createElement("div", { className: styles.container }));
+    return (React.createElement("div", { className: styles.container },
+        React.createElement("div", { className: styles.centerContainer }, "\u6CE8\u518C")));
 });
 //# sourceMappingURL=register.component.js.map
