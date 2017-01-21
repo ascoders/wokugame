@@ -13,6 +13,7 @@ cd branchs
 rm -rf ./built-production
 rm -rf ./built
 rm -rf ./dockers
+rm -rf ./scripts
 rm ./package.json
 rm ./Dockerfile
 rm ./yarn.lock
@@ -21,6 +22,7 @@ rm ./docker-compose.yml
 mv ../built-production ./
 mv ../built ./
 mv ../dockers ./
+mv ../scripts ./
 mv ../package.json ./
 mv ../Dockerfile ./
 mv ../yarn.lock ./

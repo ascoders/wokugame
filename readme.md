@@ -1,5 +1,12 @@
 <a href="https://travis-ci.org/ascoders/wokugame"><img src="https://img.shields.io/travis/ascoders/wokugame/master.svg?style=flat" alt="Build Status"></a>
 
+# 环境依赖
+
+- nodejs `v7.3`
+- yarn
+- docker
+- docker-compose
+
 # 本地开发
 
 ### 安装项目依赖
