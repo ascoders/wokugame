@@ -16,7 +16,7 @@ rm -rf ./dockers
 rm ./package.json
 rm ./Dockerfile
 rm ./yarn.lock
-rm ./docker-compose.dev.yml
+rm ./docker-compose.yml
 
 mv ../built-production ./
 mv ../built ./
@@ -24,7 +24,7 @@ mv ../dockers ./
 mv ../package.json ./
 mv ../Dockerfile ./
 mv ../yarn.lock ./
-mv ./docker-compose.dev.yml
+mv ./docker-compose.yml ./
 
 # Push
 git add -A
