@@ -3,7 +3,7 @@ exports.localPort = 8080;
 exports.localWebpackPort = 9091;
 exports.deployPort = 8000;
 exports.publicPath = 'static';
-exports.dbHostName = process.env['production'] ? 'db' : 'localhost';
+exports.dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost';
 exports.webpackDlls = [
     'react',
     'react-dom',

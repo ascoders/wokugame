@@ -8,10 +8,9 @@ const Router = require("koa-router");
 const html_1 = require("../client/html");
 require("./models");
 const app = new koa();
-const isProduction = process.argv[2] === '--production';
 const proxy = require('koa-proxy');
 const router = new Router();
-const builtStaticPath = isProduction ? 'built-production/static' : 'built/static';
+const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static';
 app.use(staticCache(`${builtStaticPath}`, {
     prefix: '/static',
     maxAge: 365 * 24 * 60 * 60,
