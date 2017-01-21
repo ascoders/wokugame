@@ -83,7 +83,7 @@ git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 docker-compose up -d
 ```
 
-# 服务器停止
+# 停止服务
 
 ```bash
 docker-compose down
