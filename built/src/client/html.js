@@ -1,15 +1,14 @@
 "use strict";
 const config = require("../../config");
-const isProduction = process.argv[2] === '--production';
 let scripts;
 let links;
-if (isProduction) {
+if (process.env.NODE_ENV === 'production') {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
         <script src='/${config.publicPath}/bundle.d6cfa.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.9v1ci.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.q7g86.css">
     `;
 }
 else {
