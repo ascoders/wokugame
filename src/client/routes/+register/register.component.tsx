@@ -10,7 +10,9 @@ export default connect<Models.Root>(state => {
 })((props = new typings.Props()) => {
     return (
         <div className={styles.container}>
-
+            <div className={styles.centerContainer}>
+                注册
+            </div>
         </div>
     )
 })

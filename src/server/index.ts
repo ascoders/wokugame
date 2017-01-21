@@ -5,6 +5,7 @@ import {graphqlKoa} from 'graphql-server-koa'
 import myGraphQLSchema from '../graphql/schema'
 import * as Router from 'koa-router'
 import templateHtml from '../client/html'
+import './models'
 
 const app = new koa()
 const isProduction = process.argv[2] === '--production'

@@ -2,10 +2,16 @@
 
 # 本地开发
 
-### 安装依赖
+### 安装项目依赖
 
 ```bash
 yarn
+```
+
+### 启动本地依赖服务
+
+```bash
+docker-compose --file docker-compose.dev.yml up -d
 ```
 
 ### 预编译
@@ -62,18 +68,16 @@ npm run server-production
 git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 ```
 
-### 生成 docker image
-
-```bash
-docker build -t woku-app ./
-```
-
 ### 运行 docker
 
 ```bash
-docker run --restart=always -p 5000:8000 -d woku-app
+docker-compose up -d
 ```
 
-- 这样网页跑在本机的 5000 端口，对应 docker 的 8000 端口
+# 服务器停止
+
+```bash
+docker-compose down
+```
 
 - [目录结构说明](docs/directory.md)

@@ -1,0 +1,3 @@
+# slave
+log-bin   = slave-bin
+server-id = 2

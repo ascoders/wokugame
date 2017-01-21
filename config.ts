@@ -10,6 +10,9 @@ export const deployPort = 8000
 // 静态资源路径前缀
 export const publicPath = 'static'
 
+// 数据库地址
+export const dbHostName = process.env['production'] ? 'db' : 'localhost'
+
 export const webpackDlls = [
     /** 基础库 */
     'react',
@@ -22,10 +25,7 @@ export const webpackDlls = [
     'lodash',
     'classnames',
     'seamless-immutable',
-    'rxjs',
-
-    /** 额外 */
-    // 'pixi.js'
+    'rxjs'
 ]
 
 // 发布静态资源路径前缀
