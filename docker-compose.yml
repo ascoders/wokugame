@@ -1,17 +1,23 @@
-app:
-  build: ./
-  restart: always
-  ports:
-    - "5000:8000"
-  links:
-    - db
+version: "2"
+services:
+  app:
+    build: ./
+    restart: always
+    ports:
+      - "5000:8000"
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      WAIT_HOSTS: db:3306
 
-db:
-  build: ./dockers/mysql
-  restart: always
-  ports:
-    - "3306:3306"
-  volumes:
-    - /tmp/wokudata:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: test
+  db:
+    build: ./dockers/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - /tmp/wokudata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test
