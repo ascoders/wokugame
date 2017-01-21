@@ -12,15 +12,19 @@ cd branchs
 # Move build result
 rm -rf ./built-production
 rm -rf ./built
+rm -rf ./dockers
 rm ./package.json
 rm ./Dockerfile
 rm ./yarn.lock
+rm ./docker-compose.dev.yml
 
 mv ../built-production ./
 mv ../built ./
+mv ../dockers ./
 mv ../package.json ./
 mv ../Dockerfile ./
 mv ../yarn.lock ./
+mv ./docker-compose.dev.yml
 
 # Push
 git add -A

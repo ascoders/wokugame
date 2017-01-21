@@ -41,6 +41,8 @@ git push
 
 - travis 测试
 - travis 编译并把产出提交到 built 分支
+- push 触发 github webhook
+- app 部署端收到 webhook，更新产出并重启应用
 
 # 本地生产环境
 
