@@ -24,7 +24,7 @@ mv ../dockers ./
 mv ../package.json ./
 mv ../Dockerfile ./
 mv ../yarn.lock ./
-mv ./docker-compose.yml ./
+mv ../docker-compose.yml ./
 
 # Push
 git add -A
