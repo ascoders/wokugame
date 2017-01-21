@@ -1,17 +1,15 @@
 import * as config from '../../config'
 
-const isProduction = process.argv[2] === '--production'
-
 let scripts: string
 let links: string
 
-if (isProduction) {
+if (process.env.NODE_ENV === 'production') {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.a4c85.js'></script>
+        <script src='/${config.publicPath}/bundle.8d4d6.js'></script>
     `
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.galsn.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.au3lf.css">
     `
 } else {
     scripts = `
