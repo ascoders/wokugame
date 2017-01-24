@@ -5,10 +5,10 @@ let links;
 if (process.env.NODE_ENV === 'production') {
     scripts = `
         <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.d6cfa.js'></script>
+        <script src='/${config.publicPath}/bundle.c33c9.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.o95l3.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.5vpzf.css">
     `;
 }
 else {

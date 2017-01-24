@@ -12,7 +12,7 @@ exports.default = index_1.connect(state => {
     const handleClick = () => {
         props.dispatch({
             type: 'application/changeHeaderColor',
-            payload: '123'
+            payload: '123556'
         });
     };
     return (React.createElement("div", null,

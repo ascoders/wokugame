@@ -1,38 +1,34 @@
 "use strict";
-const koa = require("koa");
+const express = require("express");
 const config = require("../../config");
-const staticCache = require("koa-static-cache");
-const graphql_server_koa_1 = require("graphql-server-koa");
-const schema_1 = require("../graphql/schema");
-const Router = require("koa-router");
 const html_1 = require("../client/html");
+const compression = require("compression");
+const bodyParser = require("body-parser");
 require("./models");
-const app = new koa();
-const proxy = require('koa-proxy');
-const router = new Router();
+const user_1 = require("./controllers/user");
+const app = express();
 const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static';
-app.use(staticCache(`${builtStaticPath}`, {
-    prefix: '/static',
-    maxAge: 365 * 24 * 60 * 60,
-    buffer: true,
-    gzip: true,
-    usePrecompiledGzip: true
-}));
-app.on('error', (err) => {
-    if (err) {
-        console.log('error:', err);
-    }
+app.use(compression());
+app.use('/static', express.static(builtStaticPath));
+app.use('/api', bodyParser());
+app.use('/api', user_1.default);
+app.get('*', (req, res) => {
+    res.set('Content-Type', 'text/html');
+    res.send(html_1.default);
 });
 process.on('uncaughtException', (err) => {
-    if (err) {
-        console.log('error:', err);
-    }
+    console.log('uncaughtException', err);
 });
-router.get('*', function* () {
-    this.type = 'text/html; charset=utf-8';
-    this.body = html_1.default;
+process.on('unhandledRejection', (err) => {
+    console.log('unhandledRejection', err);
 });
-router.post('/graphql', graphql_server_koa_1.graphqlKoa({ schema: schema_1.default }));
-app.use(router.routes());
-module.exports = app.listen(config.localPort);
+app.use((err, req, res, next) => {
+    res.status(err.status || 500).send({
+        message: err.message,
+        error: err
+    });
+});
+app.listen(config.localPort, function () {
+    console.log(`woku app listening on port ${config.localPort}!`);
+});
 //# sourceMappingURL=index.js.map

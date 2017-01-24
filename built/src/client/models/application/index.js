@@ -11,4 +11,4 @@ exports.default = {
         }
     }
 };
-//# sourceMappingURL=application.js.map
+//# sourceMappingURL=index.js.map
