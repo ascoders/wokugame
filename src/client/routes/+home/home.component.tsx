@@ -6,16 +6,14 @@ const styles = require('./home.css')
 import ArticleBox from '../../../../components/article-box/article-box.component'
 
 export default connect<Models.Root>(state => {
-    return {
-
-    }
+    return {}
 })((props = new typings.Props()) => {
     console.log('home render')
 
     const handleClick = () => {
         props.dispatch({
             type: 'application/changeHeaderColor',
-            payload: '123'
+            payload: '123556'
         })
     }
 

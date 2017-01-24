@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
         <script src='/${config.publicPath}/bundle.8d4d6.js'></script>
     `
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.au3lf.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.cgkue.css">
     `
 } else {
     scripts = `

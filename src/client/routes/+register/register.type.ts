@@ -1,6 +1,12 @@
-import * as React from 'react'
 import ReduxComponent from '../../../../components/redux-component'
 
 export class Props extends ReduxComponent {
-    navbarHeight?: number
+    /**
+     * [injected]
+     */
+    nickname?: string
+    /**
+     * [injected]
+     */
+    password?: string
 }

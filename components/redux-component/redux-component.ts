@@ -15,4 +15,6 @@ export default class ReduxComponent implements React.Props<any> {
      * [injected] Redux dispatch
      */
     dispatch?: (action: IAction) => void
+
+    style?: React.CSSProperties
 }

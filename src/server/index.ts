@@ -1,50 +1,79 @@
-import * as koa from 'koa'
+import * as express from 'express'
 import * as config from '../../config'
-import * as staticCache from 'koa-static-cache'
-import {graphqlKoa} from 'graphql-server-koa'
+import * as path from 'path'
 import myGraphQLSchema from '../graphql/schema'
-import * as Router from 'koa-router'
 import templateHtml from '../client/html'
+import * as compression from 'compression'
+import * as bodyParser from 'body-parser'
 import './models'
 
-const app = new koa()
+import userRouter from './controllers/user'
 
-const proxy = require('koa-proxy')
-const router = new Router()
+const app = express()
 
 // 编译后的静态文件路径
 const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
 
-// 设置静态资源缓存
-app.use(staticCache(`${builtStaticPath}`, {
-    prefix: '/static',
-    maxAge: 365 * 24 * 60 * 60,
-    buffer: true,
-    gzip: true,
-    usePrecompiledGzip: true
-}))
+/**
+ * 压缩资源
+ */
+app.use(compression())
 
-// 监听错误
-app.on('error', (err: any) => {
-    if (err) {
-        console.log('error:', err)
-    }
+/**
+ * 设置静态资源缓存
+ */
+app.use('/static', express.static(builtStaticPath))
+
+/**
+ * 解析请求 body
+ */
+app.use('/api', bodyParser())
+
+/**
+ * 接口
+ */
+app.use('/api', userRouter)
+
+/**
+ * 默认输出页面模板
+ */
+app.get('*', (req, res) => {
+    res.set('Content-Type', 'text/html')
+    res.send(templateHtml)
 })
 
-// 抓住未捕获的错误
+/**
+ * 捕获最上层错误
+ */
 process.on('uncaughtException', (err: any) => {
-    if (err) {
-        console.log('error:', err)
-    }
+    console.log('uncaughtException', err)
 })
 
-router.get('*', function *(): any {
-    this.type = 'text/html; charset=utf-8'
-    this.body = templateHtml
+/**
+ * 捕获最上层 promise 抛出的错误
+ */
+process.on('unhandledRejection', (err: any) => {
+    console.log('unhandledRejection', err)
 })
 
-router.post('/graphql', graphqlKoa({schema: myGraphQLSchema}))
+/**
+ * 捕获应用抛出的错误
+ */
+interface Error {
+    status?: number
+    message?: string
+}
 
-app.use(router.routes())
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.status(err.status || 500).send({
+        message: err.message,
+        error: err
+    })
+})
 
-module.exports = app.listen(config.localPort)
+/**
+ * 监听端口
+ */
+app.listen(config.localPort, function () {
+    console.log(`woku app listening on port ${config.localPort}!`)
+})
