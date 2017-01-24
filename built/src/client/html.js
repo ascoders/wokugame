@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
         <script src='/${config.publicPath}/bundle.c33c9.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.5vpzf.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.nyexd.css">
     `;
 }
 else {
