@@ -1,3 +1,5 @@
+import * as path from 'path'
+
 // 本地 server 端口号
 export const localPort = 8080
 
@@ -13,18 +15,22 @@ export const publicPath = 'static'
 // 数据库地址
 export const dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost'
 
+// 数据库端口
+export const dbPort = 3306
+
+// 日志路径
+export const logDirectory = path.join(__dirname, 'log')
+
 export const webpackDlls = [
     /** 基础库 */
     'react',
     'react-dom',
     'react-router',
-    'react-router-redux',
-    'redux',
+    'mobx',
+    'mobx-react',
 
     /** 工具库 */
     'lodash',
-    'classnames',
-    'seamless-immutable',
     'rxjs'
 ]
 

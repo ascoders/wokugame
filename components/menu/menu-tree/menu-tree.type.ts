@@ -1,5 +1,6 @@
 import * as React from 'react'
 import ReduxComponent from '../../redux-component'
+import Menu from '../stores/index'
 
 export class Props extends ReduxComponent {
     /**
@@ -10,5 +11,5 @@ export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    height?: number
+    menu?: Menu
 }

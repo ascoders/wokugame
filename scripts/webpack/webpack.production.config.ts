@@ -5,17 +5,8 @@ import * as config from '../../config'
 import * as happyPack from 'happypack'
 import BundleProductionChangeHtmlHash from './plugins/bundle-production-change-html-hash'
 import * as autoprefixer from 'autoprefixer'
-import styleSheetHash from './plugins/stylesheet-hash'
 
 const happyThreadPool = happyPack.ThreadPool({size: 5})
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-// 生成 style hash 文件名，同时对 html.ts 完成修改
-const styleName = styleSheetHash()
-const extractSCSS = new ExtractTextPlugin(styleName, {
-    allChunks: true
-})
 
 export function createHappyPlugin(id: string, loaders: string[]) {
     return new happyPack({
@@ -47,9 +38,6 @@ export default {
                 exclude: [/node_modules/],
                 loader: 'happypack/loader?id=js'
             }, {
-                test: /\.(css)/,
-                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
-            }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'
             }, {
@@ -70,7 +58,6 @@ export default {
     },
 
     plugins: [
-        extractSCSS,
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')

@@ -1,21 +1,20 @@
 import * as React from 'react'
 import * as typings from './layout.type'
-import {connect} from '../../../frame/index'
 import {Link} from 'react-router'
 
 import {Menu, MenuItem, MenuTree} from '../../../components/menu'
 
-const styles = require('./layout.css')
+import {Container} from './layout.style'
 
-export default connect<Models.Root>(state => {
-    return {
-        navbarHeight: state.application.navbarHeight
-    }
-})((props = new typings.Props()) => {
-    console.log('layout render', props)
+let MobxReactDevtools: any
+if (process.env.NODE_ENV !== 'production') {
+    MobxReactDevtools = require('mobx-react-devtools').default
+}
+
+export default (props = new typings.Props()) => {
     return (
-        <div className={styles.container}>
-            <Menu height={props.navbarHeight}>
+        <Container>
+            <Menu>
                 <MenuItem>
                     <Link to="/">我酷</Link>
                 </MenuItem>
@@ -38,6 +37,9 @@ export default connect<Models.Root>(state => {
                 </MenuItem>
             </Menu>
             {props.children}
-        </div>
+
+            {process.env.NODE_ENV !== 'production' &&
+            <MobxReactDevtools position={{ left: 0, bottom: 0 }}/>}
+        </Container>
     )
-})
+}

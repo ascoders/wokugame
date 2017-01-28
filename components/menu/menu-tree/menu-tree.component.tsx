@@ -1,23 +1,18 @@
 import * as React from 'react'
 import * as typings from './menu-tree.type'
-import {connect} from 'react-redux'
-import {IState} from '../reducers'
-const styles = require('./menu-tree.css')
+import {observer, inject} from 'mobx-react'
+import {Container, TreeItem} from './menu-tree.style'
 
-export default connect<IState>(state => {
-    return {
-        height: state.height
-    }
-})((props = new typings.Props()) => {
+export default inject('menu')(observer((props: typings.Props = new typings.Props()) => {
     return (
-        <div className={styles.container} name="woku-menu-item" style={{height:props.height}}>
+        <Container theme={{ height: props.menu.store.height }} name="woku-menu-tree">
             {typeof props.title === 'string'
                 ? props.title
                 : props.title()}
 
-            <div className={styles.treeItem} name="woku-menu-subtree" style={{top:props.height}}>
+            <TreeItem name="woku-menu-subtree" theme={{ top: props.menu.store.height }}>
                 {props.children}
-            </div>
-        </div>
+            </TreeItem>
+        </Container>
     )
-})
+}))

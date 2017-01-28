@@ -1,29 +1,19 @@
 import * as React from 'react'
 import * as typings from './home.type'
-import {connect} from '../../../../frame/index'
-const styles = require('./home.css')
+import {observer} from 'mobx-react'
 
 import ArticleBox from '../../../../components/article-box/article-box.component'
 
-export default connect<Models.Root>(state => {
-    return {}
-})((props = new typings.Props()) => {
-    console.log('home render')
+import {ArticleContainer, BannerImage} from './home.style'
 
-    const handleClick = () => {
-        props.dispatch({
-            type: 'application/changeHeaderColor',
-            payload: '123556'
-        })
-    }
-
+export default (props = new typings.Props()) => {
     return (
         <div>
-            <div className={styles.bannerImage}/>
+            <BannerImage/>
 
-            <div className={styles.articleContainer}>
+            <ArticleContainer>
                 <ArticleBox/>
-            </div>
+            </ArticleContainer>
         </div>
     )
-})
+}

@@ -1,48 +1,41 @@
 import * as React from 'react'
 import * as typings from './register.type'
-import {connect} from '../../../../frame/index'
-const styles = require('./register.css')
+import {observer, inject} from 'mobx-react'
 
 import Button from '../../../../components/button'
 import Input from '../../../../components/input'
+import {Container, CenterContainer, PasswordContainer} from './register.style'
 
-export default connect<Models.Root>(state => {
-    return {
-        nickname: state.pageRegister.nickname,
-        password: state.pageRegister.password
-    }
-})((props = new typings.Props()) => {
-    const handleSubmit = () => {
-        props.dispatch({
-            type: 'user/create',
-            payload: {
-                nickname: props.nickname,
-                password: props.password
-            }
-        })
+export default inject('User', 'RegisterPage')(observer((props: typings.Props = new typings.Props()) => {
+    const handleSubmit = async() => {
+        // const user = await UsersService.create({
+        //     nickname: props.nickname,
+        //     password: props.password
+        // })
+        // console.log(123)
+        // props.dispatch({
+        //     type: 'users/create',
+        //     payload: user
+        // })
     }
 
     const handleNicknameChange = (event: React.FormEvent<HTMLInputElement>) => {
-        props.dispatch({
-            type: 'pageRegister/updateNickname',
-            payload: event.currentTarget.value
-        })
+        props.RegisterPage.setNickname(event.currentTarget.value)
     }
 
     const handlePasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
-        props.dispatch({
-            type: 'pageRegister/updatePassword',
-            payload: event.currentTarget.value
-        })
+        props.RegisterPage.setPassword(event.currentTarget.value)
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.centerContainer}>
-                <Input label="昵称" value={props.nickname} onChange={handleNicknameChange}/>
-                <Input label="密码" value={props.password} onChange={handlePasswordChange} style={{marginTop:-2}}/>
+        <Container>
+            <CenterContainer>
+                <Input label="昵称" value={props.RegisterPage.store.nickname} onChange={handleNicknameChange}/>
+                <PasswordContainer>
+                    <Input label="密码" value={props.RegisterPage.store.password} onChange={handlePasswordChange}/>
+                </PasswordContainer>
                 <Button onclick={handleSubmit}>完成</Button>
-            </div>
-        </div>
+            </CenterContainer>
+        </Container>
     )
-})
+}))

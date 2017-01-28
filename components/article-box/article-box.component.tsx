@@ -1,28 +1,33 @@
 import * as React from 'react'
 import * as typings from './article-box.type'
-const styles = require('./article-box.css')
+
+import {
+    Container,
+    LeftContainer,
+    RightContainer,
+    CategoryContainer,
+    TitleContainer,
+    OtherContainer
+} from './article-box.style'
 
 export default (props = new typings.Props()) => {
     return (
-        <div className={styles.container}>
-            {/* 文章左侧容器 */}
-            <div className={styles.leftContainer}>
-                {/* 类别容器 */}
-                <div className={styles.categoryContainer}>
+        <Container>
+            <LeftContainer>
+                <CategoryContainer>
                     类别
-                </div>
-                {/* 标题容器 */}
-                <div className={styles.titleContainer}>
-                    标题
-                </div>
-                {/* 日期等杂项容器 */}
-                <div className={styles.otherContainer}>
-                    日期
-                </div>
-            </div>
+                </CategoryContainer>
 
-            {/* 文章右侧容器 */}
-            <div className={styles.rightContainer}></div>
-        </div>
+                <TitleContainer>
+                    标题
+                </TitleContainer>
+
+                <OtherContainer>
+                    日期
+                </OtherContainer>
+            </LeftContainer>
+
+            <RightContainer></RightContainer>
+        </Container>
     )
 }

@@ -1,32 +1,29 @@
 import * as React from 'react'
 import * as typings from './menu.type'
-import {createStore, Store} from 'redux'
-import {Provider} from 'react-redux'
-import {default as reducer, IState} from '../reducers'
-const styles = require('./menu.css')
+import {Provider} from 'mobx-react'
+import MenuStore from '../stores/index'
+
+import {Container} from './menu.style'
 
 export default class Menu extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
 
-    private store: Store<IState>
+    private menu: MenuStore
 
     componentWillMount() {
-        this.store = createStore(reducer)
+        this.menu = new MenuStore()
 
         if (this.props.height) {
-            this.store.dispatch({
-                type: 'setHeight',
-                payload: this.props.height
-            })
+            this.menu.setHeight(this.props.height)
         }
     }
 
     render() {
         return (
-            <Provider store={this.store}>
-                <div className={styles.container} style={{height:this.store.getState().height}}>
+            <Provider menu={this.menu}>
+                <Container theme={{ height: this.menu.store.height }}>
                     {this.props.children}
-                </div>
+                </Container>
             </Provider>
         )
     }

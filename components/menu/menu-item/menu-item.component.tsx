@@ -1,17 +1,12 @@
 import * as React from 'react'
 import * as typings from './menu-item.type'
-import {connect} from 'react-redux'
-import {IState} from '../reducers'
-const styles = require('./menu-item.css')
+import {observer, inject} from 'mobx-react'
+import {Container} from './menu-item.style'
 
-export default connect<IState>(state => {
-    return {
-        height: state.height
-    }
-})((props = new typings.Props()) => {
+export default inject('menu')(observer((props: typings.Props = new typings.Props()) => {
     return (
-        <div className={styles.container} name="woku-menu-item" style={{height:props.height}}>
+        <Container name="woku-menu-item" theme={{ height: props.menu.store.height }}>
             {props.children}
-        </div>
+        </Container>
     )
-})
+}))

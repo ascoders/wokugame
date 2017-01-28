@@ -1,18 +1,26 @@
 import * as express from 'express'
 import * as config from '../../config'
-import * as path from 'path'
-import myGraphQLSchema from '../graphql/schema'
 import templateHtml from '../client/html'
 import * as compression from 'compression'
 import * as bodyParser from 'body-parser'
-import './models'
+import logger from './logger'
+import * as morgan from 'morgan'
+import 'reflect-metadata'
+import './db'
 
 import userRouter from './controllers/user'
 
 const app = express()
 
-// 编译后的静态文件路径
-const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
+/**
+ * 日志处理
+ */
+app.use(morgan('combined', {
+    stream: {
+        write: message => logger.error(message.trim())
+    },
+    skip: (req, res) => res.statusCode < 400
+}))
 
 /**
  * 压缩资源
@@ -22,12 +30,15 @@ app.use(compression())
 /**
  * 设置静态资源缓存
  */
+// 编译后的静态文件路径
+const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
 app.use('/static', express.static(builtStaticPath))
 
 /**
  * 解析请求 body
  */
-app.use('/api', bodyParser())
+app.use('/api', bodyParser.json())
+app.use('/api', bodyParser.urlencoded({extended: true}))
 
 /**
  * 接口
@@ -45,15 +56,15 @@ app.get('*', (req, res) => {
 /**
  * 捕获最上层错误
  */
-process.on('uncaughtException', (err: any) => {
-    console.log('uncaughtException', err)
+process.on('uncaughtException', (error: any) => {
+    logger.error('uncaughtException', error)
 })
 
 /**
  * 捕获最上层 promise 抛出的错误
  */
-process.on('unhandledRejection', (err: any) => {
-    console.log('unhandledRejection', err)
+process.on('unhandledRejection', (error: any) => {
+    logger.error('unhandledRejection', error)
 })
 
 /**
@@ -64,16 +75,20 @@ interface Error {
     message?: string
 }
 
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.status(err.status || 500).send({
-        message: err.message,
-        error: err
+app.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.status(error.status || 500).send({
+        message: error.message
     })
+    logger.error('handledError', error, {requestParam: req.body})
 })
 
 /**
  * 监听端口
  */
-app.listen(config.localPort, function () {
-    console.log(`woku app listening on port ${config.localPort}!`)
+app.listen(config.localPort, () => {
+    // 开发模式弹窗，告知已重启 node 服务
+    if (process.env.NODE_ENV !== 'production') {
+        const notifier = require('node-notifier')
+        notifier.notify(`server start on port: ${config.localPort}`)
+    }
 })

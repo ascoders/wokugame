@@ -1,8 +1,9 @@
 import * as React from 'react'
 import * as typings from './input.type'
-const styles = require('./input.css')
 
-export default class Input extends React.Component<typings.Props, typings.State> {
+import { LabelContainer, Label, InputContainer, Shadow, Input } from './input.style'
+
+export default class InputComponent extends React.Component<typings.Props, typings.State> {
     static defaultProps = new typings.Props()
     public state = new typings.State()
 
@@ -19,30 +20,25 @@ export default class Input extends React.Component<typings.Props, typings.State>
     }
 
     render() {
-        const containerStyle = Object.assign({}, {
-            zIndex: this.state.focus ? 1 : 0
-        }, this.props.style)
-
         return (
-            <label className={styles.container} style={containerStyle}>
+            <LabelContainer theme={{ focus: this.state.focus }}>
                 {/** 文案 */}
                 {this.props.label !== null &&
-                <span className={styles.label}>{this.props.label}</span>
+                    <Label>{this.props.label}</Label>
                 }
 
-                <div className={styles.inputContainer}>
+                <InputContainer>
                     {/** 输入框 */}
-                    <input className={styles.inputField}
-                           value={this.props.value}
-                           defaultValue={this.props.defaultValue}
-                           onFocus={this.handleFocus}
-                           onBlur={this.handleBlur}
-                           onChange={this.props.onChange}/>
+                    <Input value={this.props.value}
+                        defaultValue={this.props.defaultValue}
+                        onFocus={this.handleFocus}
+                        onBlur={this.handleBlur}
+                        onChange={this.props.onChange} />
 
                     {/** 阴影特效 */}
-                    <span className={styles.shadow}/>
-                </div>
-            </label>
+                    <Shadow name="woku-input-shadow" />
+                </InputContainer>
+            </LabelContainer>
         )
     }
 }
