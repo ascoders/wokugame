@@ -1,23 +1,19 @@
 "use strict";
 const React = require("react");
 const typings = require("./menu.type");
-const redux_1 = require("redux");
-const react_redux_1 = require("react-redux");
-const reducers_1 = require("../reducers");
-const styles = require('./menu.css');
+const mobx_react_1 = require("mobx-react");
+const index_1 = require("../stores/index");
+const menu_style_1 = require("./menu.style");
 class Menu extends React.Component {
     componentWillMount() {
-        this.store = redux_1.createStore(reducers_1.default);
+        this.menu = new index_1.default();
         if (this.props.height) {
-            this.store.dispatch({
-                type: 'setHeight',
-                payload: this.props.height
-            });
+            this.menu.setHeight(this.props.height);
         }
     }
     render() {
-        return (React.createElement(react_redux_1.Provider, { store: this.store },
-            React.createElement("div", { className: styles.container, style: { height: this.store.getState().height } }, this.props.children)));
+        return (React.createElement(mobx_react_1.Provider, { menu: this.menu },
+            React.createElement(menu_style_1.Container, { theme: { height: this.menu.store.height } }, this.props.children)));
     }
 }
 Menu.defaultProps = new typings.Props();

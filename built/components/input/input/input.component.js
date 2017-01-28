@@ -1,8 +1,8 @@
 "use strict";
 const React = require("react");
 const typings = require("./input.type");
-const styles = require('./input.css');
-class Input extends React.Component {
+const input_style_1 = require("./input.style");
+class InputComponent extends React.Component {
     constructor() {
         super(...arguments);
         this.state = new typings.State();
@@ -18,18 +18,15 @@ class Input extends React.Component {
         };
     }
     render() {
-        const containerStyle = Object.assign({}, {
-            zIndex: this.state.focus ? 1 : 0
-        }, this.props.style);
-        return (React.createElement("label", { className: styles.container, style: containerStyle },
+        return (React.createElement(input_style_1.LabelContainer, { theme: { focus: this.state.focus } },
             this.props.label !== null &&
-                React.createElement("span", { className: styles.label }, this.props.label),
-            React.createElement("div", { className: styles.inputContainer },
-                React.createElement("input", { className: styles.inputField, value: this.props.value, defaultValue: this.props.defaultValue, onFocus: this.handleFocus, onBlur: this.handleBlur, onChange: this.props.onChange }),
-                React.createElement("span", { className: styles.shadow }))));
+                React.createElement(input_style_1.Label, null, this.props.label),
+            React.createElement(input_style_1.InputContainer, null,
+                React.createElement(input_style_1.Input, { value: this.props.value, defaultValue: this.props.defaultValue, onFocus: this.handleFocus, onBlur: this.handleBlur, onChange: this.props.onChange }),
+                React.createElement(input_style_1.Shadow, { name: "woku-input-shadow" }))));
     }
 }
-Input.defaultProps = new typings.Props();
+InputComponent.defaultProps = new typings.Props();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Input;
+exports.default = InputComponent;
 //# sourceMappingURL=input.component.js.map

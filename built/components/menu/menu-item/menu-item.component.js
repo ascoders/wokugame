@@ -1,14 +1,10 @@
 "use strict";
 const React = require("react");
 const typings = require("./menu-item.type");
-const react_redux_1 = require("react-redux");
-const styles = require('./menu-item.css');
+const mobx_react_1 = require("mobx-react");
+const menu_item_style_1 = require("./menu-item.style");
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = react_redux_1.connect(state => {
-    return {
-        height: state.height
-    };
-})((props = new typings.Props()) => {
-    return (React.createElement("div", { className: styles.container, name: "woku-menu-item", style: { height: props.height } }, props.children));
-});
+exports.default = mobx_react_1.inject('menu')(mobx_react_1.observer((props = new typings.Props()) => {
+    return (React.createElement(menu_item_style_1.Container, { name: "woku-menu-item", theme: { height: props.menu.store.height } }, props.children));
+}));
 //# sourceMappingURL=menu-item.component.js.map

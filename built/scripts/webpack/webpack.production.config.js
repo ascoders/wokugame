@@ -5,13 +5,7 @@ const config = require("../../config");
 const happyPack = require("happypack");
 const bundle_production_change_html_hash_1 = require("./plugins/bundle-production-change-html-hash");
 const autoprefixer = require("autoprefixer");
-const stylesheet_hash_1 = require("./plugins/stylesheet-hash");
 const happyThreadPool = happyPack.ThreadPool({ size: 5 });
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const styleName = stylesheet_hash_1.default();
-const extractSCSS = new ExtractTextPlugin(styleName, {
-    allChunks: true
-});
 function createHappyPlugin(id, loaders) {
     return new happyPack({
         id: id,
@@ -40,9 +34,6 @@ exports.default = {
                 exclude: [/node_modules/],
                 loader: 'happypack/loader?id=js'
             }, {
-                test: /\.(css)/,
-                loader: extractSCSS.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
-            }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'
             }, {
@@ -61,7 +52,6 @@ exports.default = {
         return [autoprefixer];
     },
     plugins: [
-        extractSCSS,
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')

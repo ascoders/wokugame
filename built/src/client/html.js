@@ -4,11 +4,11 @@ let scripts;
 let links;
 if (process.env.NODE_ENV === 'production') {
     scripts = `
-        <script src='/${config.publicPath}/dll/library.6d8f1.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.c33c9.js'></script>
+        <script src='/${config.publicPath}/dll/library.1f4b0.dll.js'></script>
+        <script src='/${config.publicPath}/bundle.38858.js'></script>
     `;
     links = `
-        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.nyexd.css">
+        <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.zvuad.css">
     `;
 }
 else {

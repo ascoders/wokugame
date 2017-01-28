@@ -1,18 +1,14 @@
 "use strict";
 const React = require("react");
 const typings = require("./menu-tree.type");
-const react_redux_1 = require("react-redux");
-const styles = require('./menu-tree.css');
+const mobx_react_1 = require("mobx-react");
+const menu_tree_style_1 = require("./menu-tree.style");
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = react_redux_1.connect(state => {
-    return {
-        height: state.height
-    };
-})((props = new typings.Props()) => {
-    return (React.createElement("div", { className: styles.container, name: "woku-menu-item", style: { height: props.height } },
+exports.default = mobx_react_1.inject('menu')(mobx_react_1.observer((props = new typings.Props()) => {
+    return (React.createElement(menu_tree_style_1.Container, { theme: { height: props.menu.store.height }, name: "woku-menu-tree" },
         typeof props.title === 'string'
             ? props.title
             : props.title(),
-        React.createElement("div", { className: styles.treeItem, name: "woku-menu-subtree", style: { top: props.height } }, props.children)));
-});
+        React.createElement(menu_tree_style_1.TreeItem, { name: "woku-menu-subtree", theme: { top: props.menu.store.height } }, props.children)));
+}));
 //# sourceMappingURL=menu-tree.component.js.map

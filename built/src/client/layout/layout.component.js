@@ -1,19 +1,17 @@
 "use strict";
 const React = require("react");
 const typings = require("./layout.type");
-const index_1 = require("../../../frame/index");
 const react_router_1 = require("react-router");
 const menu_1 = require("../../../components/menu");
-const styles = require('./layout.css');
+const layout_style_1 = require("./layout.style");
+let MobxReactDevtools;
+if (process.env.NODE_ENV !== 'production') {
+    MobxReactDevtools = require('mobx-react-devtools').default;
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = index_1.connect(state => {
-    return {
-        navbarHeight: state.application.navbarHeight
-    };
-})((props = new typings.Props()) => {
-    console.log('layout render', props);
-    return (React.createElement("div", { className: styles.container },
-        React.createElement(menu_1.Menu, { height: props.navbarHeight },
+exports.default = (props = new typings.Props()) => {
+    return (React.createElement(layout_style_1.Container, null,
+        React.createElement(menu_1.Menu, null,
             React.createElement(menu_1.MenuItem, null,
                 React.createElement(react_router_1.Link, { to: "/" }, "\u6211\u9177")),
             React.createElement(menu_1.MenuItem, null,
@@ -26,6 +24,8 @@ exports.default = index_1.connect(state => {
                 React.createElement(react_router_1.Link, { to: "/login" }, "\u767B\u5F55")),
             React.createElement(menu_1.MenuItem, null,
                 React.createElement(react_router_1.Link, { to: "/register" }, "\u6CE8\u518C"))),
-        props.children));
-});
+        props.children,
+        process.env.NODE_ENV !== 'production' &&
+            React.createElement(MobxReactDevtools, { position: { left: 0, bottom: 0 } })));
+};
 //# sourceMappingURL=layout.component.js.map

@@ -35,9 +35,6 @@ exports.default = {
                 exclude: [/node_modules/],
                 loader: 'happypack/loader?id=js'
             }, {
-                test: /\.(css)/,
-                loader: 'happypack/loader?id=css'
-            }, {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'happypack/loader?id=image'
             }, {
@@ -65,7 +62,6 @@ exports.default = {
             manifest: require(path.join(process.cwd(), 'built/static/dll/library-mainfest.json'))
         }),
         createHappyPlugin('js', ['react-hot']),
-        createHappyPlugin('css', ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]']),
         createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
         createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
         createHappyPlugin('json', ['json']),

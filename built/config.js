@@ -1,18 +1,19 @@
 "use strict";
+const path = require("path");
 exports.localPort = 8080;
 exports.localWebpackPort = 9091;
 exports.deployPort = 8000;
 exports.publicPath = 'static';
 exports.dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost';
+exports.dbPort = 3306;
+exports.logDirectory = path.join(__dirname, 'log');
 exports.webpackDlls = [
     'react',
     'react-dom',
     'react-router',
-    'react-router-redux',
-    'redux',
+    'mobx',
+    'mobx-react',
     'lodash',
-    'classnames',
-    'seamless-immutable',
     'rxjs'
 ];
 exports.staticPathPrefixProduction = '/';
