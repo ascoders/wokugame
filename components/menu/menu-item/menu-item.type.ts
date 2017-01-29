@@ -5,5 +5,5 @@ export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    menu?: Menu
+    Menu?: Menu
 }

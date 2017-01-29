@@ -1,3 +1,7 @@
+/**
+ * 增、更新操作时拦截自定义的校验
+ */
+
 import {validate, ValidationError} from 'class-validator'
 import {EventSubscriber, EntitySubscriberInterface, InsertEvent, UpdateEvent} from 'typeorm'
 

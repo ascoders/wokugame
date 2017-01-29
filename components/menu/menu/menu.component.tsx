@@ -5,23 +5,23 @@ import MenuStore from '../stores/index'
 
 import {Container} from './menu.style'
 
-export default class Menu extends React.Component<typings.Props, any> {
+export default class MenuComponent extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
 
-    private menu: MenuStore
+    private Menu: MenuStore
 
     componentWillMount() {
-        this.menu = new MenuStore()
+        this.Menu = new MenuStore()
 
         if (this.props.height) {
-            this.menu.setHeight(this.props.height)
+            this.Menu.setHeight(this.props.height)
         }
     }
 
     render() {
         return (
-            <Provider menu={this.menu}>
-                <Container theme={{ height: this.menu.store.height }}>
+            <Provider Menu={this.Menu}>
+                <Container theme={{ height: this.Menu.store.height }}>
                     {this.props.children}
                 </Container>
             </Provider>

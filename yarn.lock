@@ -61,6 +61,10 @@
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-0.0.2.tgz#0da4934902fbf68a97a0f53204a35ad2224917bc"
 
+"@types/node@^7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.4.tgz#9aabc135979ded383325749f508894c662948c8b"
+
 "@types/orchestrator@*":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/orchestrator/-/orchestrator-0.0.30.tgz#dcdda8d647b568b7b1e34178cb1f0b44ac9a98e5"
@@ -5194,6 +5198,12 @@ typedi@^0.4.3:
 typeorm-browser@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typeorm-browser/-/typeorm-browser-0.0.6.tgz#1fd623259d125192793955886dc4f6f26a2ea3c2"
+
+typeorm-typedi-extensions@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/typeorm-typedi-extensions/-/typeorm-typedi-extensions-0.0.8.tgz#af62535f571d7e3e3b8a36cd7b2780b31b9196f8"
+  dependencies:
+    "@types/node" "^7.0.4"
 
 typeorm@^0.0.7:
   version "0.0.7"

@@ -1,6 +1,9 @@
-import {createConnection} from 'typeorm'
+import {createConnection, useContainer} from 'typeorm'
+import {Container} from 'typedi'
 import * as config from '../../config'
 import * as path from 'path'
+
+useContainer(Container)
 
 export default createConnection({
     driver: {

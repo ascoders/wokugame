@@ -6,52 +6,8 @@ import * as bodyParser from 'body-parser'
 import logger from './logger'
 import * as morgan from 'morgan'
 import 'reflect-metadata'
-import './db'
-
-import userRouter from './controllers/user'
-
-const app = express()
-
-/**
- * 日志处理
- */
-app.use(morgan('combined', {
-    stream: {
-        write: message => logger.error(message.trim())
-    },
-    skip: (req, res) => res.statusCode < 400
-}))
-
-/**
- * 压缩资源
- */
-app.use(compression())
-
-/**
- * 设置静态资源缓存
- */
-// 编译后的静态文件路径
-const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
-app.use('/static', express.static(builtStaticPath))
-
-/**
- * 解析请求 body
- */
-app.use('/api', bodyParser.json())
-app.use('/api', bodyParser.urlencoded({extended: true}))
-
-/**
- * 接口
- */
-app.use('/api', userRouter)
-
-/**
- * 默认输出页面模板
- */
-app.get('*', (req, res) => {
-    res.set('Content-Type', 'text/html')
-    res.send(templateHtml)
-})
+import db from './db'
+import routes from './routes'
 
 /**
  * 捕获最上层错误
@@ -67,28 +23,79 @@ process.on('unhandledRejection', (error: any) => {
     logger.error('unhandledRejection', error)
 })
 
-/**
- * 捕获应用抛出的错误
- */
-interface Error {
-    status?: number
-    message?: string
-}
+const start = async() => {
+    const app = express()
 
-app.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.status(error.status || 500).send({
-        message: error.message
+    /**
+     * 日志处理
+     */
+    app.use(morgan('combined', {
+        stream: {
+            write: message => logger.error(message.trim())
+        },
+        skip: (req, res) => res.statusCode < 400
+    }))
+
+    /**
+     * 压缩资源
+     */
+    app.use(compression())
+
+    /**
+     * 设置静态资源缓存
+     */
+
+        // 编译后的静态文件路径
+    const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static'
+    app.use('/static', express.static(builtStaticPath))
+
+    /**
+     * 解析请求 body
+     */
+    app.use('/api', bodyParser.json())
+    app.use('/api', bodyParser.urlencoded({extended: true}))
+
+    /**
+     * 接口
+     */
+
+    // 等待数据库连接 ready
+    await db
+    app.use('/api', routes())
+
+    /**
+     * 默认输出页面模板
+     */
+    app.get('*', (req, res) => {
+        res.set('Content-Type', 'text/html')
+        res.send(templateHtml)
     })
-    logger.error('handledError', error, {requestParam: req.body})
-})
 
-/**
- * 监听端口
- */
-app.listen(config.localPort, () => {
-    // 开发模式弹窗，告知已重启 node 服务
-    if (process.env.NODE_ENV !== 'production') {
+    /**
+     * 捕获应用抛出的错误
+     */
+    interface Error {
+        status?: number
+        message?: string
+    }
+
+    app.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+        res.status(error.status || 500).send({
+            message: error.message
+        })
+        logger.error('handledError', error, {requestParam: req.body})
+    })
+
+    /**
+     * 监听端口
+     */
+    app.listen(config.localPort, () => {
+        // 开发模式弹窗，告知已重启 node 服务
+        //if (process.env.NODE_ENV !== 'production') {
         const notifier = require('node-notifier')
         notifier.notify(`server start on port: ${config.localPort}`)
-    }
-})
+        //}
+    })
+}
+
+start()

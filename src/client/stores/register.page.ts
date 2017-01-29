@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx'
+import mobxAsyncClass from '../mobx-async-class'
 
 class RegisterPageStore {
     @observable nickname?: string = ''
@@ -6,14 +7,17 @@ class RegisterPageStore {
     @observable password?: string = ''
 }
 
+@mobxAsyncClass
 export default class RegisterPage {
     store = new RegisterPageStore()
 
-    @action.bound setNickname(nickname: string) {
+    @action setNickname = async(nickname: string) => {
         this.store.nickname = nickname
     }
 
-    @action.bound setPassword(password: string) {
+
+    @action.bound
+    async setPassword(password: string) {
         this.store.password = password
     }
 }

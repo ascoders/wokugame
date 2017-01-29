@@ -8,15 +8,7 @@ import {Container, CenterContainer, PasswordContainer} from './register.style'
 
 export default inject('User', 'RegisterPage')(observer((props: typings.Props = new typings.Props()) => {
     const handleSubmit = async() => {
-        // const user = await UsersService.create({
-        //     nickname: props.nickname,
-        //     password: props.password
-        // })
-        // console.log(123)
-        // props.dispatch({
-        //     type: 'users/create',
-        //     payload: user
-        // })
+        props.User.registerWithNicknamePassword(props.RegisterPage.store.nickname, props.RegisterPage.store.password)
     }
 
     const handleNicknameChange = (event: React.FormEvent<HTMLInputElement>) => {

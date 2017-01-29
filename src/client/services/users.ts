@@ -1,4 +1,4 @@
-import iFetch from '../../utils/fetch'
+import iFetch from '../utils/fetch'
 
 /**
  * 创建新用户
