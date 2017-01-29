@@ -4,18 +4,23 @@ const path = require("path");
 const config = require("../../config");
 const fs = require("fs");
 fs.existsSync(config.logDirectory) || fs.mkdirSync(config.logDirectory);
-const logger = new winston.Logger({
+const logger = process.env.NODE_ENV !== 'production'
+    ? new winston.Logger({
+        transports: [
+            new winston.transports.File({
+                level: 'info',
+                filename: path.join(config.logDirectory, 'all.log'),
+                handleExceptions: true,
+                json: true,
+                maxsize: 5242880,
+                maxFiles: 5,
+                colorize: false
+            })
+        ],
+        exitOnError: false
+    }) : new winston.Logger({
     transports: [
-        new winston.transports.File({
-            level: 'info',
-            filename: path.join(config.logDirectory, 'all.log'),
-            handleExceptions: true,
-            json: true,
-            maxsize: 5242880,
-            maxFiles: 5,
-            colorize: false
-        }),
-        process.env.NODE_ENV !== 'production' && new winston.transports.Console({
+        new winston.transports.Console({
             level: 'debug',
             handleExceptions: true,
             json: false,

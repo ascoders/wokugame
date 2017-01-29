@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const fetch_1 = require("../../utils/fetch");
+const fetch_1 = require("../utils/fetch");
 exports.create = (options) => __awaiter(this, void 0, void 0, function* () {
     return yield fetch_1.default('/api/users', {
         nickname: options.nickname,
@@ -20,4 +20,4 @@ exports.login = (options) => __awaiter(this, void 0, void 0, function* () {
         password: options.password
     });
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=users.js.map

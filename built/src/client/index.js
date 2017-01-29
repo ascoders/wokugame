@@ -24,7 +24,6 @@ req.keys().forEach((key) => {
     const Store = req(key).default;
     injects[Store.name] = new Store();
 });
-console.log(injects);
 const IProvider = (React.createElement(mobx_react_1.Provider, __assign({}, injects),
     React.createElement(react_router_1.Router, { history: react_router_1.browserHistory }, routes_1.default)));
 ReactDOM.render(IProvider, document.getElementById('react-dom'));

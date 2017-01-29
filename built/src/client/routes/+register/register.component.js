@@ -16,6 +16,7 @@ const register_style_1 = require("./register.style");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = mobx_react_1.inject('User', 'RegisterPage')(mobx_react_1.observer((props = new typings.Props()) => {
     const handleSubmit = () => __awaiter(this, void 0, void 0, function* () {
+        props.User.registerWithNicknamePassword(props.RegisterPage.store.nickname, props.RegisterPage.store.password);
     });
     const handleNicknameChange = (event) => {
         props.RegisterPage.setNickname(event.currentTarget.value);
