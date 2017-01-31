@@ -9,14 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (url, options) => __awaiter(this, void 0, void 0, function* () {
-    const result = yield fetch(url, {
+    const result = yield fetch(url, Object.assign({}, {
         method: 'post',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(options)
-    });
+        }
+    }, options));
     const body = yield result.json();
     if (result.status >= 400) {
         return Promise.reject(body.message);

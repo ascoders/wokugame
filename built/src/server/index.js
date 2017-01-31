@@ -17,6 +17,9 @@ const morgan = require("morgan");
 require("reflect-metadata");
 const db_1 = require("./db");
 const routes_1 = require("./routes");
+const expressSession = require("express-session");
+const cookieParser = require("cookie-parser");
+const connectRedis = require("connect-redis");
 process.on('uncaughtException', (error) => {
     logger_1.default.error('uncaughtException', error);
 });
@@ -31,6 +34,20 @@ const start = () => __awaiter(this, void 0, void 0, function* () {
         },
         skip: (req, res) => res.statusCode < 400
     }));
+    const RedisStore = connectRedis(expressSession);
+    app.use(expressSession({
+        secret: config.sessionSecret,
+        cookie: {
+            maxAge: config.sessionMaxAge
+        },
+        saveUninitialized: false,
+        resave: false,
+        store: new RedisStore({
+            host: config.redisHostName,
+            port: config.redisPort
+        })
+    }));
+    app.use(cookieParser(config.sessionSecret));
     app.use(compression());
     const builtStaticPath = process.env.NODE_ENV === 'production' ? 'built-production/static' : 'built/static';
     app.use('/static', express.static(builtStaticPath));

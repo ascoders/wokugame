@@ -10,13 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const React = require("react");
 const typings = require("./register.type");
 const mobx_react_1 = require("mobx-react");
+const react_router_1 = require("react-router");
 const button_1 = require("../../../../components/button");
 const input_1 = require("../../../../components/input");
 const register_style_1 = require("./register.style");
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = mobx_react_1.inject('User', 'RegisterPage')(mobx_react_1.observer((props = new typings.Props()) => {
     const handleSubmit = () => __awaiter(this, void 0, void 0, function* () {
-        props.User.registerWithNicknamePassword(props.RegisterPage.store.nickname, props.RegisterPage.store.password);
+        const result = yield props.User.registerWithNicknamePassword(props.RegisterPage.store.nickname, props.RegisterPage.store.password);
+        if (result) {
+            react_router_1.browserHistory.goBack();
+        }
     });
     const handleNicknameChange = (event) => {
         props.RegisterPage.setNickname(event.currentTarget.value);

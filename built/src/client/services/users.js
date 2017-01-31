@@ -10,14 +10,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const fetch_1 = require("../utils/fetch");
 exports.create = (options) => __awaiter(this, void 0, void 0, function* () {
     return yield fetch_1.default('/api/users', {
-        nickname: options.nickname,
-        password: options.password
+        method: 'post',
+        body: JSON.stringify({
+            nickname: options.nickname,
+            password: options.password
+        })
     });
 });
 exports.login = (options) => __awaiter(this, void 0, void 0, function* () {
     return yield fetch_1.default('/api/users/login', {
-        nickname: options.nickname,
-        password: options.password
+        method: 'post',
+        body: JSON.stringify({
+            nickname: options.nickname,
+            password: options.password
+        })
+    });
+});
+exports.getAuthenticatedUser = () => __awaiter(this, void 0, void 0, function* () {
+    return yield fetch_1.default('/api/user', {
+        method: 'get'
+    });
+});
+exports.logOut = () => __awaiter(this, void 0, void 0, function* () {
+    return yield fetch_1.default('/api/user', {
+        method: 'delete'
     });
 });
 //# sourceMappingURL=users.js.map

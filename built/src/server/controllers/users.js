@@ -48,11 +48,22 @@ let Users = class Users {
             });
         });
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            if (!req.body.password) {
+                return res.status(400).send({
+                    message: '必须设置密码'
+                });
+            }
+            if (req.body.password.length < 5) {
+                return res.status(400).send({
+                    message: '密码长度不能小于 5'
+                });
+            }
             const user = new user_1.default();
             user.nickname = req.body.nickname;
             user.password = utils.md5(req.body.password);
             user.passwordRetry = 0;
             const result = yield this.userRepository.persist(user);
+            req.session['userId'] = user.id;
             delete result.password;
             res.send(result);
         });
@@ -101,8 +112,27 @@ let Users = class Users {
                 user.passwordRetry = 0;
                 yield this.userRepository.persist(user);
             }
+            req.session['userId'] = user.id;
             delete user.password;
             res.send(user);
+        });
+        this.getAuthenticatedUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            if (!req.session['userId']) {
+                return res.status(404).send({
+                    message: '用户不存在'
+                });
+            }
+            const user = yield this.userRepository.findOneById(req.session['userId']);
+            if (!user) {
+                return res.status(404).send({
+                    message: '用户不存在'
+                });
+            }
+            res.send(user);
+        });
+        this.deleteAuthenticatedUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            yield req.session.destroy(null);
+            res.send(true);
         });
     }
 };

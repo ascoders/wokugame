@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const mobx_1 = require("mobx");
-const mobx_async_class_1 = require("../mobx-async-class");
+const mobx_async_action_1 = require("../mobx-async-action");
 class LoginPageStore {
     constructor() {
         this.nickname = '';
@@ -32,7 +32,7 @@ __decorate([
     mobx_1.observable,
     __metadata("design:type", String)
 ], LoginPageStore.prototype, "password", void 0);
-let LoginPage = class LoginPage {
+class LoginPage {
     constructor() {
         this.store = new LoginPageStore();
     }
@@ -46,23 +46,19 @@ let LoginPage = class LoginPage {
             this.store.password = password;
         });
     }
-};
+}
 __decorate([
-    mobx_1.action.bound,
+    mobx_async_action_1.default,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LoginPage.prototype, "setNickname", null);
 __decorate([
-    mobx_1.action.bound,
+    mobx_async_action_1.default,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LoginPage.prototype, "setPassword", null);
-LoginPage = __decorate([
-    mobx_async_class_1.default,
-    __metadata("design:paramtypes", [])
-], LoginPage);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = LoginPage;
 //# sourceMappingURL=login.page.js.map

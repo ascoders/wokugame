@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const mobx_1 = require("mobx");
-const mobx_async_class_1 = require("../mobx-async-class");
+const mobx_async_action_1 = require("../mobx-async-action");
 class RegisterPageStore {
     constructor() {
         this.nickname = '';
@@ -32,10 +32,12 @@ __decorate([
     mobx_1.observable,
     __metadata("design:type", String)
 ], RegisterPageStore.prototype, "password", void 0);
-let RegisterPage = class RegisterPage {
+class RegisterPage {
     constructor() {
         this.store = new RegisterPageStore();
-        this.setNickname = (nickname) => __awaiter(this, void 0, void 0, function* () {
+    }
+    setNickname(nickname) {
+        return __awaiter(this, void 0, void 0, function* () {
             this.store.nickname = nickname;
         });
     }
@@ -44,21 +46,19 @@ let RegisterPage = class RegisterPage {
             this.store.password = password;
         });
     }
-};
+}
 __decorate([
-    mobx_1.action,
-    __metadata("design:type", Object)
-], RegisterPage.prototype, "setNickname", void 0);
+    mobx_async_action_1.default,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], RegisterPage.prototype, "setNickname", null);
 __decorate([
-    mobx_1.action.bound,
+    mobx_async_action_1.default,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], RegisterPage.prototype, "setPassword", null);
-RegisterPage = __decorate([
-    mobx_async_class_1.default,
-    __metadata("design:paramtypes", [])
-], RegisterPage);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RegisterPage;
 //# sourceMappingURL=register.page.js.map

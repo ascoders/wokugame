@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 const React = require("react");
 const ReactDOM = require("react-dom");
 const routes_1 = require("./routes");
+const mobx_1 = require("mobx");
 const mobx_react_1 = require("mobx-react");
 const react_router_1 = require("react-router");
 require("isomorphic-fetch");
@@ -18,6 +19,7 @@ require("../../components/css-beautify");
 if (process.env.NODE_ENV !== 'deploy') {
     window.perf = require('react-addons-perf');
 }
+mobx_1.useStrict(true);
 const req = require.context('./stores', true, /\.js$/);
 let injects = {};
 req.keys().forEach((key) => {
