@@ -16,13 +16,13 @@ export const publicPath = 'static'
 export const dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost'
 
 // 数据库端口
-export const dbPort = 3306
+export const dbPort = 5002
 
 // redis地址
 export const redisHostName = process.env.NODE_ENV === 'production' ? 'redis' : 'localhost'
 
 // redis接口
-export const redisPort = 6379
+export const redisPort = 5001
 
 // 日志路径
 export const logDirectory = path.join(__dirname, 'log')

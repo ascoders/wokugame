@@ -80,7 +80,7 @@ git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 ### 运行 docker
 
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 # 停止服务
