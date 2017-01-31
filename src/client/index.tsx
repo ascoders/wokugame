@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import routes from './routes'
+import {useStrict} from 'mobx'
 import {Provider} from 'mobx-react'
 import {Router, browserHistory} from 'react-router'
 import 'isomorphic-fetch'
@@ -16,6 +17,9 @@ if (process.env.NODE_ENV !== 'deploy') {
     // window.perf 暴露性能监控工具
     window.perf = require('react-addons-perf')
 }
+
+// mobx 严格模式
+useStrict(true)
 
 // // 捕获最上层错误
 // window.addEventListener('unhandledrejection', (event: any) => {

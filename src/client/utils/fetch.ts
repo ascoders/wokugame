@@ -1,12 +1,11 @@
-export default async <T>(url: string, options?: T) => {
-    const result = await fetch(url, {
+export default async(url: string, options?: RequestInit) => {
+    const result = await fetch(url, Object.assign({}, {
         method: 'post',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(options)
-    })
+        }
+    }, options))
 
     const body = await result.json()
 

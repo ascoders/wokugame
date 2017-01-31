@@ -11,11 +11,11 @@ export default class Aircraft extends BaseEnemyAircraft {
     constructor() {
         super(4)
 
-        const texture = PIXI.utils.TextureCache['static/game/aircraft1.png']
+        const texture = PIXI.utils.TextureCache['/static/game/aircraft1.png']
         texture.frame = new PIXI.Rectangle(425, 0, 86, 88)
 
         this.object = new PIXI.Sprite(
-            PIXI.loader.resources['static/game/aircraft1.png'].texture
+            PIXI.loader.resources['/static/game/aircraft1.png'].texture
         )
         this.object.width = 100
         this.object.height = 100

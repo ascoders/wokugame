@@ -17,11 +17,11 @@ export default class Bomber extends BaseEnemyAircraft {
     constructor() {
         super(20)
 
-        const texture = PIXI.utils.TextureCache['static/game/aircraft2.png']
+        const texture = PIXI.utils.TextureCache['/static/game/aircraft2.png']
         texture.frame = new PIXI.Rectangle(310, 0, 76, 88)
 
         this.object = new PIXI.Sprite(
-            PIXI.loader.resources['static/game/aircraft2.png'].texture
+            PIXI.loader.resources['/static/game/aircraft2.png'].texture
         )
         this.object.width = 120
         this.object.height = 120

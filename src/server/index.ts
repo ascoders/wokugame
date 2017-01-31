@@ -8,6 +8,9 @@ import * as morgan from 'morgan'
 import 'reflect-metadata'
 import db from './db'
 import routes from './routes'
+import * as expressSession from 'express-session'
+import * as cookieParser from 'cookie-parser'
+import * as connectRedis from 'connect-redis'
 
 /**
  * 捕获最上层错误
@@ -35,6 +38,28 @@ const start = async() => {
         },
         skip: (req, res) => res.statusCode < 400
     }))
+
+    /**
+     * session 中间件
+     */
+    const RedisStore = connectRedis(expressSession)
+    app.use(expressSession({
+        secret: config.sessionSecret,
+        cookie: {
+            maxAge: config.sessionMaxAge
+        },
+        saveUninitialized: false,
+        resave: false,
+        store: new RedisStore({
+            host: config.redisHostName,
+            port: config.redisPort
+        })
+    }))
+
+    /**
+     * cookie 中间件
+     */
+    app.use(cookieParser(config.sessionSecret))
 
     /**
      * 压缩资源

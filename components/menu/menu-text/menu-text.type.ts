@@ -6,6 +6,4 @@ export class Props extends ReduxComponent {
      * [injected]
      */
     Menu?: Menu
-
-    onClick?: (event?: React.MouseEvent<HTMLDivElement>) => void
 }

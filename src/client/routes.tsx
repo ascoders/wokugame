@@ -21,7 +21,13 @@ const getHome = (nextState: any, callback: any) => {
 
 const getGame = (nextState: any, callback: any) => {
     require.ensure([], function (require: any) {
-        callback(null, require('./routes/+game/game.component').default)
+        callback(null, require('./routes/+game-play-aircraft/game-play-aircraft.component').default)
+    })
+}
+
+const getGameSimulatedPlanet = (nextState: any, callback: any) => {
+    require.ensure([], function (require: any) {
+        callback(null, require('./routes/+game-simulated-planet/game-simulated-planet.component').default)
     })
 }
 
@@ -40,8 +46,11 @@ const getRegister = (nextState: any, callback: any) => {
 export default (
     <Route path="/" component={LayoutComponent}>
         <IndexRoute getComponent={getHome}/>
-        <Route path="game" getComponent={getGame}/>
         <Route path="login" getComponent={getLogin}/>
         <Route path="register" getComponent={getRegister}/>
+        <Route path="/game">
+            <Route path="play-aircraft" getComponent={getGame}/>
+            <Route path="simulated-planet" getComponent={getGameSimulatedPlanet}/>
+        </Route>
     </Route>
 )

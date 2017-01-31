@@ -20,11 +20,11 @@ export default class Fighter extends BaseEnemyAircraft {
     constructor() {
         super(60)
 
-        const texture = PIXI.utils.TextureCache['static/game/aircraft3.png']
+        const texture = PIXI.utils.TextureCache['/static/game/aircraft3.png']
         texture.frame = new PIXI.Rectangle(840, 0, 140, 128)
 
         this.object = new PIXI.Sprite(
-            PIXI.loader.resources['static/game/aircraft3.png'].texture
+            PIXI.loader.resources['/static/game/aircraft3.png'].texture
         )
         this.object.width = 180
         this.object.height = 180

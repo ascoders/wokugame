@@ -47,12 +47,27 @@ export default class Users {
      * 创建用户
      */
     create = async(req: express.Request, res: express.Response) => {
+        if (!req.body.password) {
+            return res.status(400).send({
+                message: '必须设置密码'
+            })
+        }
+
+        if (req.body.password.length < 5) {
+            return res.status(400).send({
+                message: '密码长度不能小于 5'
+            })
+        }
+
         const user = new User()
         user.nickname = req.body.nickname
         user.password = utils.md5(req.body.password)
         user.passwordRetry = 0
 
         const result = await this.userRepository.persist(user)
+
+        // 注册成功，设置 session
+        req.session['userId'] = user.id
 
         // 用户不应看到自己的密码
         delete result.password
@@ -115,7 +130,40 @@ export default class Users {
             await this.userRepository.persist(user)
         }
 
+        // 登录成功，设置 session
+        req.session['userId'] = user.id
+
         delete user.password
         res.send(user)
+    }
+
+    /**
+     * 获取当前登录用户信息
+     */
+    getAuthenticatedUser = async(req: express.Request, res: express.Response) => {
+        if (!req.session['userId']) {
+            return res.status(404).send({
+                message: '用户不存在'
+            })
+        }
+
+        const user = await this.userRepository.findOneById(req.session['userId'])
+
+        if (!user) {
+            // session 中存储的用户不存在，可能用户被删除了
+            return res.status(404).send({
+                message: '用户不存在'
+            })
+        }
+
+        res.send(user)
+    }
+
+    /**
+     * 注销当前登录用户
+     */
+    deleteAuthenticatedUser = async(req: express.Request, res: express.Response) => {
+        await req.session.destroy(null)
+        res.send(true)
     }
 }

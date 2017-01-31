@@ -32,7 +32,7 @@ export default class Aircraft extends GameObject<PIXI.Sprite> {
     constructor() {
         super()
 
-        const texture = PIXI.utils.TextureCache['static/game/my-aircraft.png']
+        const texture = PIXI.utils.TextureCache['/static/game/my-aircraft.png']
         texture.frame = new PIXI.Rectangle(650, 0, 131, 128)
 
         this.object = new PIXI.Sprite(texture)

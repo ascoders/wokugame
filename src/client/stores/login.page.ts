@@ -1,5 +1,5 @@
-import {observable, action} from 'mobx'
-import mobxAsyncClass from '../mobx-async-class'
+import {observable} from 'mobx'
+import asyncAction from '../mobx-async-action'
 
 class LoginPageStore {
     @observable nickname?: string = ''
@@ -7,16 +7,15 @@ class LoginPageStore {
     @observable password?: string = ''
 }
 
-@mobxAsyncClass
 export default class LoginPage {
     store = new LoginPageStore()
 
-    @action.bound
+    @asyncAction
     async setNickname(nickname: string) {
         this.store.nickname = nickname
     }
 
-    @action.bound
+    @asyncAction
     async setPassword(password: string) {
         this.store.password = password
     }

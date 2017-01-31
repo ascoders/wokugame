@@ -1,39 +1,70 @@
-import {observable, action} from 'mobx'
+import {observable} from 'mobx'
 import {UsersService} from '../services'
-import mobxAsyncClass from '../mobx-async-class'
+import asyncAction from '../mobx-async-action'
 
 class UserStore {
     /**
      * 主态用户
      */
-    @observable currentUser?: any
+    @observable authenticatedUser?: any = {
+        id: null,
+        nickname: null
+    }
 }
 
-@mobxAsyncClass
 export default class User {
     store = new UserStore()
 
     /**
      * 设置主态用户
      */
-    @action.bound
-    async setCurrentUser(user?: any) {
-        this.store.currentUser = user
+    @asyncAction
+    async setAuthenticatedUser(user?: any) {
+        this.store.authenticatedUser = user
     }
 
     /**
      * 根据用户名密码登录
      */
-    @action.bound
+    @asyncAction
     async loginWithNicknamePassword(nickname: string, password: string) {
-        await UsersService.login({nickname, password})
+        const user = await UsersService.login({nickname, password})
+        this.setAuthenticatedUser(user)
+        return true
     }
 
     /**
      * 根据用户名密码注册
      */
-    @action.bound
+    @asyncAction
     async registerWithNicknamePassword(nickname: string, password: string) {
-        await UsersService.create({nickname, password})
+        const user = await UsersService.create({nickname, password})
+        this.setAuthenticatedUser(user)
+        return true
+    }
+
+    /**
+     * 如果当前已经处于登录状态，设置主态用户信息
+     */
+    @asyncAction
+    async loginAuthenticatedUser() {
+        try {
+            const user = await UsersService.getAuthenticatedUser()
+            this.setAuthenticatedUser(user)
+        } catch (error) {
+            // 异常静默处理
+        }
+    }
+
+    /**
+     * 注销当前认证用户
+     */
+    @asyncAction
+    async loginOut() {
+        const user = await UsersService.logOut()
+        this.setAuthenticatedUser({
+            id: null,
+            nickname: null
+        })
     }
 }

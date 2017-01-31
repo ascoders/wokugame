@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as typings from './login.type'
 import {observer, inject} from 'mobx-react'
+import {browserHistory} from 'react-router'
 
 import Button from '../../../../components/button'
 import Input from '../../../../components/input'
@@ -8,8 +9,12 @@ import Input from '../../../../components/input'
 import {Container, CenterContainer, PasswordContainer} from '../+register/register.style'
 
 export default inject('User', 'LoginPage')(observer((props: typings.Props = new typings.Props()) => {
-    const handleSubmit = () => {
-        props.User.loginWithNicknamePassword(props.LoginPage.store.nickname, props.LoginPage.store.password)
+    const handleSubmit = async() => {
+        const result = await props.User.loginWithNicknamePassword(props.LoginPage.store.nickname, props.LoginPage.store.password)
+        if (result) {
+            // 登录成功，跳转回去
+            browserHistory.goBack()
+        }
     }
 
     const handleNicknameChange = (event: React.FormEvent<HTMLInputElement>) => {

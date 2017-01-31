@@ -16,18 +16,18 @@ export default class BombBullet extends GameObject<PIXI.Sprite> {
         super()
 
         this.object = new PIXI.Sprite(
-            PIXI.loader.resources[`static/game/air-damage/explosion air_${this.animateIndex}.png`].texture
+            PIXI.loader.resources[`/static/game/big-damage/explosion big_${this.animateIndex}.png`].texture
         )
-        this.object.width = 30
-        this.object.height = 30
+        this.object.width = 100
+        this.object.height = 100
         this.object.anchor.x = 0.5
         this.object.anchor.y = 0.5
 
         this.bombStream
             .throttleTime(50)
             .subscribe(() => {
-                this.object.texture = PIXI.loader.resources[`static/game/air-damage/explosion air_${this.animateIndex++}.png`].texture
-                if (this.animateIndex === 10) {
+                this.object.texture = PIXI.loader.resources[`/static/game/big-damage/explosion big_${this.animateIndex++}.png`].texture
+                if (this.animateIndex === 12) {
                     this.gameControl.destoryGameObject(this)
                 }
             })

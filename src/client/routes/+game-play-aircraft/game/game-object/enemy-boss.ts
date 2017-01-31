@@ -21,7 +21,7 @@ export default class Boss extends BaseEnemyAircraft {
         super(500)
 
         this.object = new PIXI.Sprite(
-            PIXI.loader.resources['static/game/boss.png'].texture
+            PIXI.loader.resources['/static/game/boss.png'].texture
         )
         this.object.width = 300
         this.object.height = 250

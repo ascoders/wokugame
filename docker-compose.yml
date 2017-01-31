@@ -7,10 +7,12 @@ services:
       - "5000:8000"
     links:
       - db
+      - redis
     depends_on:
       - db
+      - redis
     environment:
-      WAIT_HOSTS: db:3306
+      WAIT_HOSTS: db:3306 redis:6379
 
   db:
     build: ./dockers/mysql
@@ -21,3 +23,12 @@ services:
       - /tmp/wokudata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: test
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /tmp/wokuredis:/data
+    command: redis-server --appendonly yes

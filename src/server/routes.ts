@@ -8,6 +8,8 @@ const wrap = (fn: express.RequestHandler) => (...args: any[]) => (<any>fn)(...ar
 
 export default () => {
     const users = Container.get(Users)
+    router.get('/user', wrap(users.getAuthenticatedUser))
+    router.delete('/user', wrap(users.deleteAuthenticatedUser))
     router.get('/users', wrap(users.findAndCountAll))
     router.post('/users', wrap(users.create))
     router.post('/users/login', wrap(users.login))

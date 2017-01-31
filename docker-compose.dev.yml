@@ -7,3 +7,12 @@ db:
     - /tmp/wokudata:/var/lib/mysql
   environment:
     MYSQL_ROOT_PASSWORD: test
+
+redis:
+  image: redis
+  restart: always
+  ports:
+    - "6379:6379"
+  volumes:
+    - /tmp/wokuredis:/data
+  command: redis-server --appendonly yes
