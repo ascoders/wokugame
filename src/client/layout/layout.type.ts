@@ -1,10 +1,15 @@
 import * as React from 'react'
 import ReduxComponent from '../../../components/redux-component'
-import User from '../stores/user'
+import {Actions} from '../models'
 
 export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    User?: User
+    user?: Entitys.User
+
+    /**
+     * [injected]
+     */
+    actions?: Actions
 }

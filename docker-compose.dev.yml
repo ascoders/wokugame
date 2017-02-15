@@ -1,18 +1,42 @@
-db:
-  build: ./dockers/mysql
-  restart: always
-  ports:
-    - "3306:3306"
-  volumes:
-    - /tmp/wokudata:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: test
+version: "2"
+services:
+#  dev:
+#    build: ./dockers/dev
+#    restart: always
+#    ports:
+#      - "8080:8080"
+#      - "9091:9091"
+#    links:
+#      - db
+#      - redis
+#    depends_on:
+#      - db
+#      - redis
+#    volumes:
+#      - ./:/work
 
-redis:
-  image: redis
-  restart: always
-  ports:
-    - "6379:6379"
-  volumes:
-    - /tmp/wokuredis:/data
-  command: redis-server --appendonly yes
+  db:
+    build: ./dockers/mysql
+    restart: always
+    ports:
+      - "5002:3306"
+    volumes:
+      - /tmp/wokudata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "5001:6379"
+    volumes:
+      - /tmp/wokuredis:/data
+    command: redis-server --appendonly yes
+
+#  nginx:
+#      build: ./dockers/nginx
+#      restart: always
+#      ports:
+#        - "80:80"
+#      command: /bin/bash -c "nginx -g 'daemon off;'"

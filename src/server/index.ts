@@ -11,6 +11,8 @@ import routes from './routes'
 import * as expressSession from 'express-session'
 import * as cookieParser from 'cookie-parser'
 import * as connectRedis from 'connect-redis'
+import * as fs from 'fs'
+import * as path from 'path'
 
 /**
  * 捕获最上层错误
@@ -85,7 +87,12 @@ const start = async() => {
      */
 
     // 等待数据库连接 ready
-    await db
+    try {
+        await db
+    } catch (error) {
+        console.log('数据库连接失败', db)
+    }
+
     app.use('/api', routes())
 
     /**
@@ -116,10 +123,10 @@ const start = async() => {
      */
     app.listen(config.localPort, () => {
         // 开发模式弹窗，告知已重启 node 服务
-        //if (process.env.NODE_ENV !== 'production') {
-        const notifier = require('node-notifier')
-        notifier.notify(`server start on port: ${config.localPort}`)
-        //}
+        // if (process.env.NODE_ENV !== 'production') {
+        //     const notifier = require('node-notifier')
+        //     notifier.notify(`server start on port: ${config.localPort}`)
+        // }
     })
 }
 

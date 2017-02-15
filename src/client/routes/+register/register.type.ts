@@ -1,14 +1,17 @@
 import ReduxComponent from '../../../../components/redux-component'
-import User from '../../stores/user'
-import RegisterPage from '../../stores/register.page'
+import {State, Actions} from '../../models'
 
 export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    User?: User
+    nickname?: string
     /**
      * [injected]
      */
-    RegisterPage?: RegisterPage
+    password?: string
+    /**
+     * [injected]
+     */
+    actions?: Actions
 }

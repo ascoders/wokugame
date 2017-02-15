@@ -1,28 +1,31 @@
 import * as React from 'react'
 import * as typings from './layout.type'
 import {Link} from 'react-router'
-import {observer, inject} from 'mobx-react'
+import {connect} from '../../../components/reax'
+import {State, Actions} from '../models'
 
 import {Menu, MenuItem, MenuTree, MenuText} from '../../../components/menu'
 
 import {Container} from './layout.style'
 
-let MobxReactDevtools: any
-if (process.env.NODE_ENV !== 'production') {
-    MobxReactDevtools = require('mobx-react-devtools').default
-}
-
-@inject('User')
-@observer
+@connect<State, typings.Props>(state => {
+    return {
+        user: state.user.authenticatedUser
+    }
+}, dispatch => {
+    return {
+        actions: new Actions(dispatch)
+    }
+})
 export default class LayoutScene extends React.Component<typings.Props,any> {
     static defaultProps = new typings.Props()
 
     componentWillMount() {
-        this.props.User.loginAuthenticatedUser()
+        this.props.actions.user.loginAuthenticatedUser()
     }
 
     handleLogout = () => {
-        this.props.User.loginOut()
+        this.props.actions.user.loginOut()
     }
 
     render() {
@@ -43,7 +46,7 @@ export default class LayoutScene extends React.Component<typings.Props,any> {
                         </MenuTree>
                     </MenuItem>
 
-                    {this.props.User.store.authenticatedUser.id === null
+                    {!this.props.user
                         ? [
                             <MenuItem key="0">
                                 <Link to="/login">登录</Link>
@@ -53,7 +56,7 @@ export default class LayoutScene extends React.Component<typings.Props,any> {
                             </MenuItem>
                         ]
                         :<MenuItem>
-                            <MenuTree title={this.props.User.store.authenticatedUser.nickname}>
+                            <MenuTree title={this.props.user.nickname}>
                                 <MenuItem onClick={this.handleLogout}>
                                     <MenuText>退出</MenuText>
                                 </MenuItem>
@@ -62,9 +65,6 @@ export default class LayoutScene extends React.Component<typings.Props,any> {
                     }
                 </Menu>
                 {this.props.children}
-
-                {process.env.NODE_ENV !== 'production' &&
-                <MobxReactDevtools position={{ left: 0, bottom: 0 }}/>}
             </Container>
         )
     }

@@ -1,3 +1,0 @@
-# master
-log-bin   = master-bin
-server-id = 1

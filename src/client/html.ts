@@ -6,7 +6,7 @@ let links: string
 if (process.env.NODE_ENV === 'production') {
     scripts = `
         <script src='/${config.publicPath}/dll/library.1f4b0.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.549b6.js'></script>
+        <script src='/${config.publicPath}/bundle.9a375.js'></script>
     `
     links = `
         <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.zvuad.css">
@@ -28,7 +28,7 @@ export default `
 <meta name="format-detection"
       content="telephone=no">
 ${links}
-<title>还没取名字</title>
+<title>我酷科技</title>
 <body>
 <div id='react-dom'></div>
 </body>

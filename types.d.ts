@@ -21,7 +21,7 @@ declare module 'graphql-server-koa' {
 }
 
 declare module 'react-redux' {
-    const connect: <T>(mapStateToProps?: (state?: T) => any) => any
+    const connect: <T, P>(mapStateToProps?: (state?: T, props?: P) => any, mapDispatchToProps?: (dispatch?: any) => any) => any
     const Provider: any
     export {
         connect,
@@ -45,6 +45,11 @@ declare module 'http-proxy' {
 }
 
 declare module 'autoprefixer' {
+    const api: any
+    export = api
+}
+
+declare module 'http2' {
     const api: any
     export = api
 }

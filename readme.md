@@ -18,7 +18,7 @@ yarn
 ### 启动本地依赖服务
 
 ```bash
-docker-compose --file docker-compose.dev.yml up -d
+docker-compose --file docker-compose.dev.yml up -d --build
 ```
 
 ### 预编译
@@ -86,7 +86,7 @@ docker-compose up -d --build
 # 停止服务
 
 ```bash
-docker-compose down
+docker-compose down --remove-orphans
 ```
 
 - [目录结构说明](docs/directory.md)

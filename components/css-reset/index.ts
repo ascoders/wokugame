@@ -277,10 +277,6 @@ injectGlobal`
         vertical-align: baseline;
     }
     
-    svg:not(:root) {
-        overflow: hidden; /* Internet Explorer 11- */
-    }
-    
     audio,
     canvas,
     progress,

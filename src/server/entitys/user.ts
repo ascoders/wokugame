@@ -1,9 +1,12 @@
-import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn} from 'typeorm'
+import {Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToOne} from 'typeorm'
 import * as Validator from 'class-validator'
+import GameSimulatedPlanetUser from './game-simulated-planet-user'
 
 @Entity()
-export default class User {
-    @PrimaryGeneratedColumn()
+export default class User implements Entitys.User {
+    @PrimaryGeneratedColumn({
+        comment: '主键'
+    })
     id: number
 
     /**
@@ -36,7 +39,7 @@ export default class User {
     @Validator.IsInt({message: '必须为整型'})
     @Validator.Min(0, {message: '最小为 0'})
     @Validator.Max(9, {message: '最大为 9'})
-    passwordRetry: number
+    passwordRetry: number = 0
 
     @Column({
         comment: '邮箱',
@@ -60,4 +63,9 @@ export default class User {
     @Validator.ValidateIf(user => user.updated !== undefined)
     @Validator.IsDate({message: '格式必须为日期'})
     updated: Date
+
+    @OneToOne(type => GameSimulatedPlanetUser, gameSimulatedPlanetUser => gameSimulatedPlanetUser.user, {
+        cascadeAll: true
+    })
+    gameSimulatedPlanetUser: GameSimulatedPlanetUser
 }

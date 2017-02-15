@@ -1,13 +1,14 @@
-import * as React from 'react'
-import User from '../../stores/user'
+import ReduxComponent from '../../../../components/redux-component'
+import {State, Actions} from '../../models'
 
-export interface PropsDefine {
+export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    User?: User
-}
+    gameUserProcess?: number
 
-export class Props implements PropsDefine {
-
+    /**
+     * [injected]
+     */
+    actions?: Actions
 }

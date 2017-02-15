@@ -1,15 +1,6 @@
-############################################################
-# Dockerfile to build woku container images
-# Based on Nginx
-############################################################
-
-# Set the base image
 FROM nginx:latest
 
-# File Author
-MAINTAINER ascoders www.ziyihuang@gmail.com
+RUN mkdir -p /https
+COPY ./https /https
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose the default port
-EXPOSE 80
+# COPY ./nginx.conf /etc/nginx/nginx.conf

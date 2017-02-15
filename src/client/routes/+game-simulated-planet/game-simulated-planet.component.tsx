@@ -1,29 +1,91 @@
 import * as React from 'react'
 import * as typings from './game-simulated-planet.type'
-import {observer, inject} from 'mobx-react'
+import {connect} from '../../../../components/reax'
+import {State, Actions} from '../../models'
 
-import Button from '../../../../components/button'
+import {Tabs, TabPane} from '../../../../components/tabs'
+import {Interval} from '../../../../components/timer'
 
-import {GridContainer, Header, Main, Sidebar, Footer} from './game-simulated-planet.style'
+import {tips} from '../../../common/game-simulated-planet'
 
-export default inject('User')(observer((props: typings.Props = new typings.Props()) => {
-    return (
-        <GridContainer>
-            <Header>
+import {
+    GridContainer,
+    Header,
+    Main,
+    SidebarTop,
+    SidebarBottom,
+    Footer,
+    NotifyContainer,
+    SidebarMenuItem,
+    ScrollXContainer
+} from './game-simulated-planet.style'
 
-            </Header>
+import TabsHome from './tabs/home/home.component'
 
-            <Sidebar>
-                家园
-            </Sidebar>
+@connect<State,typings.Props>(state => {
+    if (!state.gameSimulated.gameUser) {
+        return {}
+    }
 
-            <Main>
-                总人口 20
-            </Main>
+    return {
+        gameUserProcess: state.gameSimulated.gameUser.progress
+    }
+}, dispatch => {
+    return {
+        actions: new Actions(dispatch)
+    }
+})
+export default class GameSimulatedPlanetScene extends React.Component<typings.Props,any> {
+    static defaultProps = new typings.Props()
+    private interval: Interval
 
-            <Footer>
+    componentWillMount = async() => {
+        await this.props.actions.gameSimulated.loginAuthenticatedUser()
+        this.interval = new Interval(() => {
+            this.props.actions.gameSimulated.freshCurrentPlanet()
+        }, 1000)
+    }
 
-            </Footer>
-        </GridContainer>
-    )
-}))
+    componentWillUnmount() {
+        this.interval.stop()
+    }
+
+    render() {
+        if (!this.props.gameUserProcess) {
+            return null
+        }
+
+        return (
+            <GridContainer>
+                <Header>
+
+                </Header>
+
+                {this.props.gameUserProcess >= 1 &&
+                <SidebarTop>
+                    <SidebarMenuItem theme={{active:true}}>家园</SidebarMenuItem>
+                </SidebarTop>
+                }
+
+                <SidebarBottom>
+                    <Tabs>
+                        <TabPane title="提醒">
+                            <NotifyContainer
+                                dangerouslySetInnerHTML={{__html:tips.get(this.props.gameUserProcess)}}/>
+                        </TabPane>
+                    </Tabs>
+                </SidebarBottom>
+
+                <Main>
+                    <ScrollXContainer>
+                        <TabsHome/>
+                    </ScrollXContainer>
+                </Main>
+
+                <Footer>
+
+                </Footer>
+            </GridContainer>
+        )
+    }
+}

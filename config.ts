@@ -15,14 +15,14 @@ export const publicPath = 'static'
 // 数据库地址
 export const dbHostName = process.env.NODE_ENV === 'production' ? 'db' : 'localhost'
 
-// 数据库端口
-export const dbPort = 5002
+// 数据库端口【容器内部端口号】
+export const dbPort = process.env.NODE_ENV === 'production' ? 3306 : 5002
 
 // redis地址
 export const redisHostName = process.env.NODE_ENV === 'production' ? 'redis' : 'localhost'
 
-// redis接口
-export const redisPort = 5001
+// redis接口【容器内部端口号】
+export const redisPort = process.env.NODE_ENV === 'production' ? 6379 : 5001
 
 // 日志路径
 export const logDirectory = path.join(__dirname, 'log')
@@ -39,8 +39,9 @@ export const webpackDlls = [
     'react',
     'react-dom',
     'react-router',
-    'mobx',
-    'mobx-react',
+    'redux',
+    'react-redux',
+    'react-router-redux',
 
     /** 工具库 */
     'lodash',

@@ -62,7 +62,6 @@ export default class Users {
         const user = new User()
         user.nickname = req.body.nickname
         user.password = utils.md5(req.body.password)
-        user.passwordRetry = 0
 
         const result = await this.userRepository.persist(user)
 
@@ -164,6 +163,7 @@ export default class Users {
      */
     deleteAuthenticatedUser = async(req: express.Request, res: express.Response) => {
         await req.session.destroy(null)
+
         res.send(true)
     }
 }
