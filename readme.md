@@ -77,7 +77,7 @@ npm run server-production
 git clone https://github.com/ascoders/wokugame.git -b built --depth=1
 ```
 
-### 运行 docker
+### 启动数据库等依赖程序
 
 ```bash
 docker-compose up -d --build

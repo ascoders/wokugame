@@ -5,7 +5,7 @@ let links: string
 
 if (process.env.NODE_ENV === 'production') {
     scripts = `
-        <script src='/${config.publicPath}/dll/library.1f4b0.dll.js'></script>
+        <script src='/${config.publicPath}/dll/library.f2191.dll.js'></script>
         <script src='/${config.publicPath}/bundle.9a375.js'></script>
     `
     links = `
