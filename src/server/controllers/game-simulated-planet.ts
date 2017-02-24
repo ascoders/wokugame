@@ -8,7 +8,13 @@ import User from '../entitys/user'
 import { OrmRepository } from 'typeorm-typedi-extensions'
 import * as utils from '../../../components/node-utils'
 import { tips } from '../../common/game-simulated-planet'
-import { buildings, BuildingHelper, planetFresh, upgradeUserProgress } from '../../common/game-simulated-planet'
+import {
+    buildings,
+    BuildingHelper,
+    planetFresh,
+    upgradeUserProgress,
+    collectionInterval
+} from '../../common/game-simulated-planet'
 import { division } from '../../../components/math'
 
 // 服务器端是0时差
@@ -97,7 +103,7 @@ export default class GameSimulatedPlanet {
      */
     private upgradeUserProgressAndSave = async (user: User, req: express.Request, res: express.Response): Promise<User> => {
         // 更新用户进度
-        user.gameSimulatedPlanetUser = upgradeUserProgress(user.gameSimulatedPlanetUser, buildingHelper)
+        upgradeUserProgress(user.gameSimulatedPlanetUser, buildingHelper)
         // 保存用户信息
         await this.gameUserRepository.persist(user.gameSimulatedPlanetUser)
         return user
@@ -152,7 +158,7 @@ export default class GameSimulatedPlanet {
             throw Error('已经存在自动收集机器')
         }
 
-        if (new Date().getTime() < user.gameSimulatedPlanetUser.lastCollection.getTime() + 1000 * 10) {
+        if (new Date().getTime() < user.gameSimulatedPlanetUser.lastCollection.getTime() + collectionInterval) {
             throw Error('还未到采集周期')
         }
 

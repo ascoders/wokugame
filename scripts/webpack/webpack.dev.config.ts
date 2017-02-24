@@ -2,15 +2,6 @@ import * as webpack from 'webpack'
 import * as config from '../../config'
 import * as path from 'path'
 
-// declare module 'webpack' {
-//     interface Webpack {
-//         DllReferencePlugin: any
-//     }
-//     interface Optimize {
-//         AggressiveSplittingPlugin: any
-//     }
-// }
-
 export default {
     devtool: 'cheap-module-source-map' as 'cheap-module-source-map',
 

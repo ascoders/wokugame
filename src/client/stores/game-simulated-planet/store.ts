@@ -12,6 +12,13 @@ export default class GameSimulatedPlanetStore {
     currentPlanetIndex = 0
 
     /**
+     * 当前选择的星球
+     */
+    get currentPlanet() {
+        return this.gameUser.planets[this.currentPlanetIndex]
+    }
+
+    /**
      * 当前星球人口上限
      */
     currentPlanetPopulationLimit = 0

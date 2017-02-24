@@ -14,9 +14,12 @@ import {
     BuildingButton,
     BuildingTitle,
     BuildingDescription,
-    BuildingCost,
+    BuildingCostContainer,
     BuildingTop,
-    BuildingBottom
+    BuildingBottom,
+    BuildingCostItemContainer,
+    BuildingCostTitle,
+    BuildingCostValue
 } from './build.style'
 
 import Modal from '../../../../../../../components/modal'
@@ -88,14 +91,42 @@ export default class Build extends React.Component<typings.Props, typings.State>
                 <BuildingContainer key={index}>
                     <BuildingTop>
                         <BuildingTitle>{buildingInfo.name}</BuildingTitle>
-                        <BuildingCost>
-                            <CrystalSvg style={{ width: 25, height: 25, marginRight: 1 }} />
-                            {this.colorfulText(buildingInfo.data[0][0].toString(), this.props.currentPlanet.crystal >= buildingInfo.data[0][0][0])}
-                            <HouseSvg style={{ width: 20, height: 20, marginLeft: 20, marginRight: 3 }} />
-                            {this.colorfulText(buildingInfo.size.toString(), this.props.currentPlanet.size - this.props.currentPlanetBuiltSize >= buildingInfo.size)}
-                            <TimeSvg style={{ width: 17, height: 17, marginLeft: 20, marginRight: 5 }} />
-                            <span style={{ color: 'green' }}> {friendlyMillisecond(buildingInfo.data[0][1][0])}</span>
-                        </BuildingCost>
+                        <BuildingCostContainer>
+                            <BuildingCostItemContainer>
+                                <BuildingCostTitle>晶体矿</BuildingCostTitle>
+                                <BuildingCostValue>
+                                    {this.colorfulText(buildingInfo.data[0][0].toString(), this.props.currentPlanet.crystal >= buildingInfo.data[0][0][0])}
+                                </BuildingCostValue>
+                            </BuildingCostItemContainer>
+
+                            <BuildingCostItemContainer>
+                                <BuildingCostTitle>瓦斯</BuildingCostTitle>
+                                <BuildingCostValue>
+                                    ??
+                                </BuildingCostValue>
+                            </BuildingCostItemContainer>
+
+                            <BuildingCostItemContainer>
+                                <BuildingCostTitle>人口</BuildingCostTitle>
+                                <BuildingCostValue>
+                                    ??
+                                </BuildingCostValue>
+                            </BuildingCostItemContainer>
+
+                            <BuildingCostItemContainer>
+                                <BuildingCostTitle>耗时</BuildingCostTitle>
+                                <BuildingCostValue>
+                                    <span style={{ color: 'green' }}> {friendlyMillisecond(buildingInfo.data[0][1][0])}</span>
+                                </BuildingCostValue>
+                            </BuildingCostItemContainer>
+
+                            <BuildingCostItemContainer>
+                                <BuildingCostTitle>体积</BuildingCostTitle>
+                                <BuildingCostValue>
+                                    {this.colorfulText(buildingInfo.size.toString(), this.props.currentPlanet.size - this.props.currentPlanetBuiltSize >= buildingInfo.size)}
+                                </BuildingCostValue>
+                            </BuildingCostItemContainer>
+                        </BuildingCostContainer>
                     </BuildingTop>
                     <BuildingBottom>
                         <BuildingDescription>{buildingInfo.description}</BuildingDescription>

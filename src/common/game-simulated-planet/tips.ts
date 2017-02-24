@@ -1,9 +1,9 @@
 import Buildings from './buildings'
 
-const tips = new Map<number,string>()
+const tips = new Map<number, string>()
 
 // todo 与 upgrade user 合并
-tips.set(0, `你进入了一个宏伟的虚拟世界，并控制了一个星球。现在点击『采集』按钮来收集资源。`)
+tips.set(0, `你进入了一个宏伟的虚拟世界，并控制了一个星球。现在点击『采集』按钮来收集资源，收集至少 50 块晶体矿。`)
 
 tips.set(1, `你需要建造五座 ${Buildings.get('house').name} 发展你的星球。`)
 

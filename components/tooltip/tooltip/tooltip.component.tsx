@@ -2,9 +2,9 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as typings from './tooltip.type'
 
-import {Container, Shadow} from './tooltip.style'
+import { Container, Shadow } from './tooltip.style'
 
-export default class ToolTip extends React.Component <typings.PropsDefine, typings.StateDefine> {
+export default class ToolTip extends React.Component<typings.PropsDefine, typings.StateDefine> {
     static defaultProps: typings.PropsDefine = new typings.Props()
     public state: typings.StateDefine = new typings.State()
 
@@ -123,7 +123,7 @@ export default class ToolTip extends React.Component <typings.PropsDefine, typin
                 toolTipStyle.left = this.state.childrenLeft - this.state.tooltipWidth - 7
                 toolTipStyle.top = this.state.childrenTop - (this.state.tooltipHeight / 2 - this.state.childrenHeight / 2)
                 break
-            case'top':
+            case 'top':
                 toolTipStyle.left = this.state.childrenLeft + this.state.childrenWidth / 2 - this.state.tooltipWidth / 2
                 toolTipStyle.top = this.state.childrenTop - this.state.tooltipHeight - 7
                 break
@@ -168,13 +168,13 @@ export default class ToolTip extends React.Component <typings.PropsDefine, typin
         }
 
         const TooltipElement = (
-            <Container theme={{show:this.state.show,simple:this.props.simple,position}} style={toolTipStyle}>
+            <Container theme={{ show: this.state.show, simple: this.props.simple, position }} style={toolTipStyle}>
                 {this.props.title === '' ? this.props.titleRender() : this.props.title}
             </Container>
         )
 
         const TooltipShadowElement = (
-            <Shadow theme={{show:this.state.show,zIndex:this.props.shadowZIndex}} onClick={this.handleClose}/>
+            <Shadow theme={{ show: this.state.show, zIndex: this.props.shadowZIndex }} onClick={this.handleClose} />
         )
 
         ReactDOM.render(TooltipElement, this.tooltipDom)

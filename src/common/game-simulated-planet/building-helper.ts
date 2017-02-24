@@ -1,4 +1,4 @@
-import {default as buildings, BuildingInfo} from './buildings'
+import { default as buildings, BuildingInfo } from './buildings'
 
 export default class BuildingHelper {
     // 与服务器的时差
@@ -6,6 +6,17 @@ export default class BuildingHelper {
 
     constructor(serverTimeDiff: number) {
         this.serverTimeDiff = serverTimeDiff
+    }
+
+    /**
+     * 获取建筑基础信息，根据字符串的建筑名
+     */
+    getInfoByName = (name: string) => {
+        const buildingInfo = buildings.get(name)
+        if (!buildingInfo) {
+            throw Error('不存在的建筑')
+        }
+        return buildingInfo
     }
 
     /**
@@ -64,6 +75,9 @@ export default class BuildingHelper {
         return buildingInfo.data[level - 1][0][0]
     }
 
+    /**
+     * 获取建筑建造花费
+     */
     getCost = (building: Entitys.GameSimulatedPlanetBuilding) => {
         const buildingInfo = this.getInfo(building)
         let buildingLevel = this.getLevel(building)

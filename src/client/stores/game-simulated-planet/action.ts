@@ -27,6 +27,8 @@ export default class GameSimulatedPlanetAction {
     async collection(planetId: number) {
         const { crystal } = await GameSimulatedPlanetService.collection(planetId)
         this.store.gameUser.planets.find(planet => planet.id === planetId).crystal += crystal
+
+        this.store.gameUser.lastCollection = new Date()
     }
 
     /**
@@ -35,6 +37,11 @@ export default class GameSimulatedPlanetAction {
     async building(planetId: number, buildingName: string) {
         const building = await GameSimulatedPlanetService.building(planetId, buildingName)
         this.store.gameUser.planets.find(planet => planet.id === planetId).buildings.push(building)
+
+        // 扣除花费
+        const buildingInfo = this.store.buildingHelper.getInfoByName(buildingName)
+        const cost = this.store.buildingHelper.getCostByInfo(buildingInfo, 1)
+        this.store.currentPlanet.crystal -= cost
     }
 
     /**
@@ -72,7 +79,7 @@ export default class GameSimulatedPlanetAction {
         this.store.currentPlanetBuiltSize = result.builtSize
         this.store.currentPlanetPopulationLimit = result.populationLimit
 
-        // // 刷新用户进度
-        // upgradeUserProgress(this.store.authenticatedUser, this.store.buildingHelper)
+        // 刷新用户进度
+        upgradeUserProgress(this.store.gameUser, this.store.buildingHelper)
     }
 }

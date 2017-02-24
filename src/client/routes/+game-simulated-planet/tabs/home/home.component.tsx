@@ -21,6 +21,7 @@ export default Connect<Stores>(state => {
     const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex]
 
     return {
+        progress: state.GameSimulatedPlanetStore.gameUser.progress,
         currentPlanet,
         currentPlanetPopulationLimit: state.GameSimulatedPlanetStore.currentPlanetPopulationLimit,
         currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize
@@ -77,7 +78,9 @@ export default Connect<Stores>(state => {
                     <TabPane title="建筑">
                         <ButtonContainer>
                             <Collection />
-                            <Build />
+                            {props.progress >= 1 &&
+                                <Build />
+                            }
                         </ButtonContainer>
 
                         {props.currentPlanet.progress > 0 &&

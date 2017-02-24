@@ -20,6 +20,14 @@ export const Container = styled.div`
     &:active {
         background-color: #eee;
     }
+
+    ${props => props.theme.disabled && `
+        background-color: #eee;
+        cursor: default;
+        &:active {
+            background-color: whitesmoke;
+        }
+    `}
 `
 
 
@@ -32,9 +40,14 @@ export const Text = styled.span`
     top: 0;
     right: 0;
     bottom: 0;
+
+     ${props => props.theme.disabled && `
+       color: #aaa;
+    `}
 `
 
 export const Progress = styled.div`
-    background-color: whitesmoke;
+    background-color: #ddd;
     height: 2rem;
+    transition: width .3s;
 `

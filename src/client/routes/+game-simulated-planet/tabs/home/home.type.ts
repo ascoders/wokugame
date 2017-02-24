@@ -16,6 +16,10 @@ export class Props extends ReduxComponent {
      */
     currentPlanetBuiltSize?: number
     /**
+     * [injected] 游戏进度
+     */
+    progress?: number
+    /**
      * [injected]
      */
     actions?: Actions

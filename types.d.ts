@@ -53,3 +53,8 @@ declare module 'http2' {
     const api: any
     export = api
 }
+
+declare module 'webpack' {
+    const api: any
+    export = api
+}

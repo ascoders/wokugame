@@ -1,7 +1,28 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color .3s;
+    user-select: none;
+    color: #555;
+    overflow: hidden;
+    margin-left: 1rem;
+    
+    &:hover {
+        background-color: whitesmoke;
+    }
+    
+    &:active {
+        background-color: #eee;
+    }
 `
 
 export const BuildingContainer = styled.div`
@@ -36,7 +57,7 @@ export const BuildingTitle = styled.span`
     color: #333;
 `
 
-export const BuildingCost = styled.span`
+export const BuildingCostContainer = styled.span`
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -66,4 +87,20 @@ export const BuildingBottom = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`
+
+export const BuildingCostItemContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+`
+
+export const BuildingCostTitle = styled.div`
+    color: #666;
+    margin-right: 5px;
+`
+
+export const BuildingCostValue = styled.div`
+   
 `

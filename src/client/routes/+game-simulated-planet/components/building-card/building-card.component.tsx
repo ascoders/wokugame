@@ -65,7 +65,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
             } else {
                 this.forceUpdate()
             }
-        }, 500)
+        }, 200)
     }
 
     render() {
