@@ -1,31 +1,29 @@
 import * as React from 'react'
 import * as typings from './home.type'
-import {connect} from '../../../../../../components/reax'
-import {State, Actions} from '../../../../models'
-import {buildingList} from '../../../../../common/game-simulated-planet'
+
+import { Connect } from '../../../../../../components/dynamic-react'
+import { Stores } from '../../../../stores'
+
+import { buildingList } from '../../../../../common/game-simulated-planet'
 
 import {
     Container, Title, ListContainer, HeaderContainer, MainContainer,
-    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem
+    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem, ButtonContainer
 } from './home.style'
 
-import {Tabs, TabPane} from '../../../../../../components/tabs'
+import { Tabs, TabPane } from '../../../../../../components/tabs'
 
 import BuildingCard from '../../components/building-card/building-card.component'
 import Build from './build/build.component'
+import Collection from './collection/collection.component'
 
-export default connect<State,typings.Props>(state => {
-    const currentPlanet = state.gameSimulated.gameUser.planets[state.gameSimulated.currentPlanetIndex]
+export default Connect<Stores>(state => {
+    const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex]
 
     return {
         currentPlanet,
-        buildings: currentPlanet.buildings,
-        currentPlanetPopulationLimit: state.gameSimulated.currentPlanetPopulationLimit,
-        currentPlanetBuiltSize: state.gameSimulated.currentPlanetBuiltSize
-    }
-}, dispatch => {
-    return {
-        actions: new Actions(dispatch)
+        currentPlanetPopulationLimit: state.GameSimulatedPlanetStore.currentPlanetPopulationLimit,
+        currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize
     }
 })((props: typings.Props = new typings.Props()) => {
     // 如果没有当前星球信息，不渲染页面
@@ -33,7 +31,7 @@ export default connect<State,typings.Props>(state => {
         return null
     }
 
-    const BuildingCards = props.buildings.sort((left, right) => {
+    const BuildingCards = props.currentPlanet.buildings.sort((left, right) => {
         if (left.type === right.type) {
             if (right.level == left.level) {
                 // 等级相同，则按照建造时间排序
@@ -44,7 +42,7 @@ export default connect<State,typings.Props>(state => {
         return buildingList.findIndex(name => name === right.type) - buildingList.findIndex(name => name === left.type)
     }).map((building, index) => {
         return (
-            <BuildingCard key={building.id} buildingId={building.id}/>
+            <BuildingCard key={building.id} buildingId={building.id} />
         )
     })
 
@@ -77,10 +75,13 @@ export default connect<State,typings.Props>(state => {
             <MainContainer>
                 <Tabs>
                     <TabPane title="建筑">
-                        <Build/>
+                        <ButtonContainer>
+                            <Collection />
+                            <Build />
+                        </ButtonContainer>
 
                         {props.currentPlanet.progress > 0 &&
-                        <Title>生产建筑</Title>
+                            <Title>生产建筑</Title>
                         }
 
                         <ListContainer>
@@ -88,25 +89,25 @@ export default connect<State,typings.Props>(state => {
                         </ListContainer>
 
                         {props.currentPlanet.progress > 10 &&
-                        <Title>防御建筑</Title>
+                            <Title>防御建筑</Title>
                         }
 
                         {props.currentPlanet.progress > 20 &&
-                        <Title>军事建筑</Title>
+                            <Title>军事建筑</Title>
                         }
                     </TabPane>
 
                     {props.currentPlanet.buildings.length > 10 &&
-                    <TabPane title="科技">
+                        <TabPane title="科技">
 
-                    </TabPane>
+                        </TabPane>
                     }
 
 
                     {props.currentPlanet.buildings.length > 20 &&
-                    <TabPane title="舰队">
+                        <TabPane title="舰队">
 
-                    </TabPane>
+                        </TabPane>
                     }
                 </Tabs>
             </MainContainer>

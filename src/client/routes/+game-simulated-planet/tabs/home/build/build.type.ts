@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ReduxComponent from '../../../../../../../components/redux-component'
-import {Actions} from '../../../../../models'
+import { Actions } from '../../../../../stores'
 
 export class Props extends ReduxComponent {
     /**
@@ -14,7 +14,7 @@ export class Props extends ReduxComponent {
     /**
      * [injected]
      */
-    gameUserId?: number
+    planetId?: number
     /**
      * [injected]
      */

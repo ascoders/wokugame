@@ -48,4 +48,9 @@ export default class GameSimulatedPlanetUser implements Entitys.GameSimulatedPla
         comment: '上次计算收益时间'
     })
     lastHarvest: Date = new Date()
+
+    @Column({
+        comment: '上次采集时间'
+    })
+    lastCollection: Date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24)
 }

@@ -1,12 +1,14 @@
 import * as React from 'react'
 import * as typings from './building-card.type'
-import {connect} from '../../../../../../components/reax'
-import {State, Actions} from '../../../../models'
 
-import {buildings, effectDescription} from '../../../../../common/game-simulated-planet'
-import {Linear} from '../../../../../../components/progress'
-import {Interval, friendlyMillisecond} from '../../../../../../components/timer'
+import { Connect } from '../../../../../../components/dynamic-react'
+import { Stores } from '../../../../stores'
+
+import { buildings, effectDescription } from '../../../../../common/game-simulated-planet'
+import { Linear } from '../../../../../../components/progress'
+import { Interval, friendlyMillisecond } from '../../../../../../components/timer'
 import Tooltip from '../../../../../../components/tooltip'
+import highlightRender from '../../utils/highlight-render'
 
 import {
     Container,
@@ -19,81 +21,16 @@ import {
     ProgressText
 } from './building-card.style'
 
-const replaceRender = (origin: any, replaceFunction: (index: number) => React.ReactElement<any>) => {
-    // 存储已扫描的字符串
-    let strStore = ''
-
-    // 第几次遇到变量
-    let variableCount = 0
-
-    // 字符串 react 数组
-    const strElement: React.ReactElement<any>[] = []
-
-    for (let index in origin) {
-        const indexNumber = Number(index)
-
-        // 遇到了 %
-        if (origin[indexNumber] === '%') {
-            if (indexNumber === origin.length - 1) {
-                // 最后一个，没有含义，扔给后面处理
-            } else {
-                // 除了最后一个，都需要判断
-                if (origin[indexNumber + 1] === 'd') {
-                    // 下一个是 d
-                    strElement.push((
-                        <span key={indexNumber+'str'}>{strStore}</span>
-                    ))
-                    strStore = ''
-                    strElement.push(replaceFunction(variableCount++))
-                    continue
-                } else {
-                    // 下一个不是 d，不管了，扔给后面处理
-                }
-            }
-        }
-
-        // 遇到了 d
-        if (origin[indexNumber] === 'd') {
-            if (indexNumber === 0) {
-                // 第一个，没有含义，扔给后面处理
-            } else {
-                // 除了第一个，都需要判断
-                if (origin[indexNumber - 1] === '%') {
-                    // 前一个是 %, 已经处理过了，这里不做处理
-                    continue
-                } else {
-                    // 前一个不是 %，不管了，扔给后面处理处理
-                }
-            }
-        }
-
-        strStore += origin[indexNumber]
-
-        // 兜底，如果是最后一个，还执行到了这里，字符串store还有值，那就显示出来
-        if (indexNumber === origin.length - 1 && strStore !== '') {
-            strElement.push((
-                <span key={indexNumber}>{strStore}</span>
-            ))
-        }
-    }
-
-    return strElement
-}
-
-@connect<State, typings.Props>((state, props) => {
+@Connect<Stores>((state, props: typings.Props) => {
     return {
-        gameUserId: state.gameSimulated.gameUser.id,
-        building: state.gameSimulated.gameUser.planets[state.gameSimulated.currentPlanetIndex].buildings.find(building => building.id === props.buildingId),
-        buildingHelper: state.gameSimulated.buildingHelper,
+        planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
+        building: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].buildings.find(building => building.id === props.buildingId),
+        buildingHelper: state.GameSimulatedPlanetStore.buildingHelper,
         // todo 要去掉
-        serverTimeDiff: state.gameSimulated.serverTimeDiff
-    }
-}, dispatch => {
-    return {
-        actions: new Actions(dispatch)
+        serverTimeDiff: state.GameSimulatedPlanetStore.serverTimeDiff
     }
 })
-export default class GameSimulatedPlanetScene extends React.Component<typings.Props,any> {
+export default class GameSimulatedPlanetScene extends React.Component<typings.Props, any> {
     private interval: Interval
     private built: boolean = false
 
@@ -145,10 +82,10 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
         const Effects = buildingInfo.effects.map((effect, index) => {
             let effectDesc = effectDescription.get(effect)
 
-            const descriptionColorful = replaceRender(effectDesc, replaceIndex => {
+            const descriptionColorful = highlightRender(effectDesc, replaceIndex => {
                 return (
-                    <span key={replaceIndex+'colorFul'}
-                          style={{color:'green'}}>{currentLevelData[index + 2][replaceIndex].toString()}</span>
+                    <span key={replaceIndex + 'colorFul'}
+                        style={{ color: 'green' }}>{currentLevelData[index + 2][replaceIndex].toString()}</span>
                 )
             })
 
@@ -161,14 +98,14 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
          * 拆除建筑
          */
         const destroyBuilding = () => {
-            this.props.actions.gameSimulated.destroyBuilding(this.props.gameUserId, this.props.building.id)
+            this.props.actions.GameSimulatedPlanetAction.destroyBuilding(this.props.planetId, this.props.building.id)
         }
 
         /**
          * 升级建筑
          */
         const upgradeBuilding = () => {
-            this.props.actions.gameSimulated.upgradeBuilding(this.props.gameUserId, this.props.building.id)
+            this.props.actions.GameSimulatedPlanetAction.upgradeBuilding(this.props.planetId, this.props.building.id)
         }
 
         // 如果还没建造完毕，显示进度条
@@ -188,7 +125,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
 
                     <DescriptionContainer>
                         <ProgressContainer>
-                            <Linear progress={progress}/>
+                            <Linear progress={progress} />
                             <ProgressText>
                                 {buildingText} 剩余 {friendlyMillisecond(Math.abs(remainingTime))}
                             </ProgressText>
@@ -214,8 +151,8 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
 
                 <OperateContainer>
                     {this.props.buildingHelper.hasLevelByInfo(buildingInfo, this.props.building.level + 1) === false
-                        ?<OperateButton theme={{max:true}}>已达顶级</OperateButton>
-                        :<Tooltip position="left"><OperateButton onClick={upgradeBuilding}>升级</OperateButton></Tooltip>
+                        ? <OperateButton theme={{ max: true }}>已达顶级</OperateButton>
+                        : <Tooltip position="left"><OperateButton onClick={upgradeBuilding}>升级</OperateButton></Tooltip>
                     }
                     <OperateButton onClick={destroyBuilding}>拆除</OperateButton>
                 </OperateContainer>

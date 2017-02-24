@@ -1,6 +1,5 @@
 import * as React from 'react'
 import ReduxComponent from '../../redux-component'
-import Menu from '../reducers/index'
 
 export class Props extends ReduxComponent {
     /**

@@ -1,15 +1,15 @@
 import * as express from 'express'
-import {Repository} from 'typeorm'
-import {Service} from 'typedi'
+import { Repository } from 'typeorm'
+import { Service } from 'typedi'
 import GameUser from '../entitys/game-simulated-planet-user'
 import GamePlanet from '../entitys/game-simulated-planet-planet'
 import GameBuilding from '../entitys/game-simulated-planet-building'
 import User from '../entitys/user'
-import {OrmRepository} from 'typeorm-typedi-extensions'
+import { OrmRepository } from 'typeorm-typedi-extensions'
 import * as utils from '../../../components/node-utils'
-import {tips} from '../../common/game-simulated-planet'
-import {buildings, BuildingHelper, planetFresh, upgradeUserProgress} from '../../common/game-simulated-planet'
-import {division} from '../../../components/math'
+import { tips } from '../../common/game-simulated-planet'
+import { buildings, BuildingHelper, planetFresh, upgradeUserProgress } from '../../common/game-simulated-planet'
+import { division } from '../../../components/math'
 
 // 服务器端是0时差
 const buildingHelper = new BuildingHelper(0)
@@ -42,14 +42,14 @@ export default class GameSimulatedPlanet {
     /**
      * 获取包含游戏用户信息的用户
      */
-    private getUser = async(req: express.Request, res: express.Response): Promise<User> => {
+    private getUser = async (req: express.Request, res: express.Response): Promise<User> => {
         if (!req.session['userId']) {
             throw Error('用户不存在')
         }
 
         // 查找用户的所有星球，已经每个星球上所有建筑
         const user = await this.userRepository.createQueryBuilder('user')
-            .where('user.id=:id', {id: Number(req.session['userId'])})
+            .where('user.id=:id', { id: Number(req.session['userId']) })
             .leftJoinAndMapOne('user.gameSimulatedPlanetUser', GameUser, 'gameUser', 'gameUser.user=user.id')
             .leftJoinAndMapMany('gameUser.planets', GamePlanet, 'gamePlanet', 'gameUser.id=gamePlanet.gameUser')
             .leftJoinAndMapMany('gamePlanet.buildings', GameBuilding, 'gameBuilding', 'gamePlanet.id=gameBuilding.planet')
@@ -65,7 +65,7 @@ export default class GameSimulatedPlanet {
     /**
      * 刷新用户收益
      */
-    private harvestUser = async(user: User, req: express.Request, res: express.Response): Promise<User> => {
+    private harvestUser = async (user: User, req: express.Request, res: express.Response): Promise<User> => {
         if (!user.gameSimulatedPlanetUser) {
             throw Error('游戏用户不存在')
         }
@@ -73,8 +73,8 @@ export default class GameSimulatedPlanet {
         const currentDate = new Date()
 
         // 刷新每个星球的状态
-        user.gameSimulatedPlanetUser.planets = user.gameSimulatedPlanetUser.planets.map(planet => {
-            return planetFresh(planet, user.gameSimulatedPlanetUser.lastHarvest.getTime(), 0).planet
+        user.gameSimulatedPlanetUser.planets.forEach(planet => {
+            planetFresh(planet, user.gameSimulatedPlanetUser.lastHarvest.getTime(), 0)
         })
 
         // 更新计算收益的时间
@@ -86,7 +86,7 @@ export default class GameSimulatedPlanet {
     /**
      * 获取用户信息，同时刷新用户收益
      */
-    private getAndHarvestUser = async(req: express.Request, res: express.Response): Promise<User> => {
+    private getAndHarvestUser = async (req: express.Request, res: express.Response): Promise<User> => {
         const user = await this.getUser(req, res)
         await this.harvestUser(user, req, res)
         return user
@@ -95,9 +95,9 @@ export default class GameSimulatedPlanet {
     /**
      * 用户进度更新，同时保存用户信息
      */
-    private upgradeUserProgressAndSave = async(user: User, req: express.Request, res: express.Response): Promise<User> => {
+    private upgradeUserProgressAndSave = async (user: User, req: express.Request, res: express.Response): Promise<User> => {
         // 更新用户进度
-        upgradeUserProgress(user.gameSimulatedPlanetUser, buildingHelper)
+        user.gameSimulatedPlanetUser = upgradeUserProgress(user.gameSimulatedPlanetUser, buildingHelper)
         // 保存用户信息
         await this.gameUserRepository.persist(user.gameSimulatedPlanetUser)
         return user
@@ -107,7 +107,7 @@ export default class GameSimulatedPlanet {
      * 获取游戏用户信息
      * 如果还未创建用户，但已经登录，会自动创建游戏帐号
      */
-    getAuthenticatedUser = async(req: express.Request, res: express.Response) => {
+    getAuthenticatedUser = async (req: express.Request, res: express.Response) => {
         const user = await this.getUser(req, res)
 
         if (!user.gameSimulatedPlanetUser) { // 游戏用户不存在
@@ -139,13 +139,39 @@ export default class GameSimulatedPlanet {
     }
 
     /**
+     * 用户手动点击采集
+     */
+    collection = async (req: express.Request, res: express.Response) => {
+        const user = await this.getAndHarvestUser(req, res)
+        const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === req.body.planetId)
+        if (!planet) {
+            throw Error('星球不存在')
+        }
+
+        if (planet.buildings.findIndex(building => building.type === 'digger') > -1) {
+            throw Error('已经存在自动收集机器')
+        }
+
+        if (new Date().getTime() < user.gameSimulatedPlanetUser.lastCollection.getTime() + 1000 * 10) {
+            throw Error('还未到采集周期')
+        }
+
+        planet.crystal += 10
+        user.gameSimulatedPlanetUser.lastCollection = new Date()
+
+        await this.upgradeUserProgressAndSave(user, req, res)
+
+        res.send({
+            crystal: 10
+        })
+    }
+
+    /**
      * 在星球建造建筑
      */
-    building = async(req: express.Request, res: express.Response) => {
+    building = async (req: express.Request, res: express.Response) => {
         const user = await this.getAndHarvestUser(req, res)
-
         const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === req.body.planetId)
-
         if (!planet) {
             throw Error('星球不存在')
         }
@@ -193,11 +219,9 @@ export default class GameSimulatedPlanet {
     /**
      * 拆除一个建筑在星球上
      */
-    destroyBuilding = async(req: express.Request, res: express.Response) => {
+    destroyBuilding = async (req: express.Request, res: express.Response) => {
         const user = await this.getAndHarvestUser(req, res)
-
         const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.body.planetId))
-
         if (!planet) {
             throw Error('星球不存在')
         }
@@ -221,11 +245,9 @@ export default class GameSimulatedPlanet {
     /**
      * 升级一个建筑在星球上
      */
-    upgradeBuilding = async(req: express.Request, res: express.Response) => {
+    upgradeBuilding = async (req: express.Request, res: express.Response) => {
         const user = await this.getAndHarvestUser(req, res)
-
         const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.body.planetId))
-
         if (!planet) {
             throw Error('星球不存在')
         }

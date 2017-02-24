@@ -18,6 +18,7 @@ export default () => {
 
     // 星球模拟资源
     const gameSimulatedPlanet = Container.get(GameSimulatedPlanet)
+    router.post('/game-simulated-planet/collection', wrap(gameSimulatedPlanet.collection))
     router.get('/game-simulated-planet/user', wrap(gameSimulatedPlanet.getAuthenticatedUser))
     router.post('/game-simulated-planet/building', wrap(gameSimulatedPlanet.building))
     router.delete('/game-simulated-planet/building/:buildingId', wrap(gameSimulatedPlanet.destroyBuilding))

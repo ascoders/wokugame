@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const lightColor = '#333'
 const lightColorActive = '#666'
 
-export const Container = styled.div`
+export const ContainerComponent = styled.div`
     display: flex;
     flex-direction: row;
     background-color: ${lightColor};

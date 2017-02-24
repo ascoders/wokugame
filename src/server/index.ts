@@ -123,10 +123,10 @@ const start = async() => {
      */
     app.listen(config.localPort, () => {
         // 开发模式弹窗，告知已重启 node 服务
-        // if (process.env.NODE_ENV !== 'production') {
-        //     const notifier = require('node-notifier')
-        //     notifier.notify(`server start on port: ${config.localPort}`)
-        // }
+        if (process.env.NODE_ENV !== 'production') {
+            const notifier = require('node-notifier')
+            notifier.notify(`server start on port: ${config.localPort}`)
+        }
     })
 }
 

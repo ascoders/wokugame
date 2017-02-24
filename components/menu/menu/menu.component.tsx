@@ -1,33 +1,37 @@
 import * as React from 'react'
 import * as typings from './menu.type'
-import {createStore, Store} from 'redux'
-import {Provider} from 'react-redux'
-import {default as reducer, IState} from '../reducers'
 
-import {Container} from './menu.style'
+import { Provider } from '../../dynamic-react'
+import { Container } from '../../dependency-inject'
+import { Action, Store } from '../store'
+
+import { ContainerComponent } from './menu.style'
 
 export default class MenuComponent extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
 
-    private store: Store<IState>
+    private store: Store
+    private action: Action
 
     componentWillMount() {
-        this.store = createStore(reducer)
+        const container = new Container()
+        container.set(Store, new Store())
+        container.set(Action, new Action())
+
+        this.store = container.get(Store)
+        this.action = container.get(Action)
 
         if (this.props.height) {
-            this.store.dispatch({
-                type: 'setHeight',
-                payload: this.props.height
-            })
+            this.action.setHeight(this.props.height)
         }
     }
 
     render() {
         return (
-            <Provider store={this.store}>
-                <Container theme={{ height: this.store.getState().height }}>
+            <Provider stores={{ store: this.store }} actions={{ action: this.action }}>
+                <ContainerComponent theme={{ height: this.store.height }}>
                     {this.props.children}
-                </Container>
+                </ContainerComponent>
             </Provider>
         )
     }

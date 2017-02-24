@@ -52,3 +52,8 @@ export const HeaderOperationContainer = styled.div`
     padding: 0 20px;
     height: 60px;
 `
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    padding: 20px;
+`

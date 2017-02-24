@@ -1,11 +1,12 @@
 import * as React from 'react'
 import * as typings from './build.type'
-import {connect} from '../../../../../../../components/reax'
-import {State, Actions} from '../../../../../models'
 
-import {friendlyMillisecond} from '../../../../../../../components/timer'
+import { Connect } from '../../../../../../../components/dynamic-react'
+import { Stores } from '../../../../../stores'
 
-import {buildingList, buildings} from '../../../../../../common/game-simulated-planet'
+import { friendlyMillisecond } from '../../../../../../../components/timer'
+
+import { buildingList, buildings } from '../../../../../../common/game-simulated-planet'
 
 import {
     Container,
@@ -25,41 +26,37 @@ import GasSvg from '../../../svgs/gas.component'
 import HouseSvg from '../../../svgs/house.component'
 import TimeSvg from '../../../svgs/time.component'
 
-@connect<State,typings.Props>(state => {
-    const currentPlanet = state.gameSimulated.gameUser.planets[state.gameSimulated.currentPlanetIndex]
+@Connect<Stores>(state => {
+    const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex]
 
     return {
-        gameUserId: state.gameSimulated.gameUser.id,
-        gameUserProcess: state.gameSimulated.gameUser.progress,
+        planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
+        gameUserProcess: state.GameSimulatedPlanetStore.gameUser.progress,
         currentPlanet,
-        currentPlanetBuiltSize: state.gameSimulated.currentPlanetBuiltSize,
+        currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize,
         buildings: currentPlanet.buildings
     }
-}, dispatch => {
-    return {
-        actions: new Actions(dispatch)
-    }
 })
-export default class Build extends React.Component<typings.Props,typings.State> {
+export default class Build extends React.Component<typings.Props, typings.State> {
     static defaultProps = new typings.Props()
     state = new typings.State()
 
     handleClose = () => {
-        this.setState({show: false})
+        this.setState({ show: false })
     }
 
     handleShow = () => {
-        this.setState({show: true})
+        this.setState({ show: true })
     }
 
     colorfulText = (text: string, good: boolean) => {
         if (good) {
             return (
-                <span style={{color:'green'}}>{text}</span>
+                <span style={{ color: 'green' }}>{text}</span>
             )
         }
         return (
-            <span style={{color:'red'}}>{text}</span>
+            <span style={{ color: 'red' }}>{text}</span>
         )
     }
 
@@ -67,7 +64,7 @@ export default class Build extends React.Component<typings.Props,typings.State> 
      * 建造这个建筑
      */
     handleBuild = (buildingName: string) => {
-        this.props.actions.gameSimulated.building(this.props.gameUserId, buildingName)
+        this.props.actions.GameSimulatedPlanetAction.building(this.props.planetId, buildingName)
     }
 
     render() {
@@ -92,18 +89,18 @@ export default class Build extends React.Component<typings.Props,typings.State> 
                     <BuildingTop>
                         <BuildingTitle>{buildingInfo.name}</BuildingTitle>
                         <BuildingCost>
-                            <CrystalSvg style={{width:25,height:25,marginRight:1}}/>
+                            <CrystalSvg style={{ width: 25, height: 25, marginRight: 1 }} />
                             {this.colorfulText(buildingInfo.data[0][0].toString(), this.props.currentPlanet.crystal >= buildingInfo.data[0][0][0])}
-                            <HouseSvg style={{width:20,height:20,marginLeft:20,marginRight:3}}/>
+                            <HouseSvg style={{ width: 20, height: 20, marginLeft: 20, marginRight: 3 }} />
                             {this.colorfulText(buildingInfo.size.toString(), this.props.currentPlanet.size - this.props.currentPlanetBuiltSize >= buildingInfo.size)}
-                            <TimeSvg style={{width:17,height:17,marginLeft:20,marginRight:5}}/>
-                            <span style={{color:'green'}}> {friendlyMillisecond(buildingInfo.data[0][1][0])}</span>
+                            <TimeSvg style={{ width: 17, height: 17, marginLeft: 20, marginRight: 5 }} />
+                            <span style={{ color: 'green' }}> {friendlyMillisecond(buildingInfo.data[0][1][0])}</span>
                         </BuildingCost>
                     </BuildingTop>
                     <BuildingBottom>
                         <BuildingDescription>{buildingInfo.description}</BuildingDescription>
 
-                        <BuildingButton onClick={this.handleBuild.bind(this,buildingName)}>
+                        <BuildingButton onClick={this.handleBuild.bind(this, buildingName)}>
                             {buildCount} / {buildingInfo.limit} 建造
                         </BuildingButton>
                     </BuildingBottom>

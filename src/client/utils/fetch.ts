@@ -1,4 +1,4 @@
-export default async(url: string, options?: RequestInit) => {
+export default async <T>(url: string, options?: RequestInit): Promise<T> => {
     const result = await fetch(url, Object.assign({}, {
         method: 'post',
         credentials: 'same-origin',

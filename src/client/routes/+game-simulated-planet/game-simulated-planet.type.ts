@@ -1,5 +1,5 @@
 import ReduxComponent from '../../../../components/redux-component'
-import {State, Actions} from '../../models'
+import { Actions } from '../../stores'
 
 export class Props extends ReduxComponent {
     /**

@@ -17,6 +17,7 @@ declare namespace Entitys {
         hasReadProgress: boolean
         planets: GameSimulatedPlanetPlanet[]
         lastHarvest: Date
+        lastCollection: Date
     }
 
     export interface GameSimulatedPlanetPlanet {

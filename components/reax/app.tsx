@@ -8,14 +8,6 @@ import {routerReducer} from 'react-router-redux'
 import * as invariant from 'invariant'
 import {Imodel, Iaction} from './model'
 
-declare const window: any
-
-// 开发环境
-if (process.env.NODE_ENV !== 'production') {
-    // window.perf 暴露性能监控工具
-    window.perf = require('react-addons-perf')
-}
-
 export default class App {
     // 路由设置
     private routes: React.ReactElement<any> = null
@@ -45,11 +37,8 @@ export default class App {
         this.models.push(model)
     }
 
-    // 渲染
-    // 每个实例仅应最后调用一次
-    public render() {
+    private createStore() {
         invariant(!this.hasRendered, 'app.render: render can only call once')
-        invariant(this.routes !== null, 'app.render: router should be defined')
 
         this.hasRendered = true
 
@@ -81,7 +70,13 @@ export default class App {
         })
 
         // 生成 store
-        const store = createStore({}, combineReducers(rootReducerCombineObject))
+        return createStore({}, combineReducers(rootReducerCombineObject))
+    }
+
+    // 渲染
+    // 每个实例仅应最后调用一次
+    public renderWithRouter() {
+        const store = this.createStore()
 
         // 生成 history
         const history = syncHistoryWithStore(browserHistory, store)
@@ -91,6 +86,16 @@ export default class App {
                 <Router history={history}>
                     {this.routes}
                 </Router>
+            </Provider>
+        )
+    }
+
+    public render(element: React.ReactElement<any>) {
+        const store = this.createStore()
+
+        return (
+            <Provider store={store}>
+                {element}
             </Provider>
         )
     }

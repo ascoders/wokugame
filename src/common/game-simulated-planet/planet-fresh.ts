@@ -1,5 +1,5 @@
-import {buildings, BuildingHelper} from '../../common/game-simulated-planet'
-import {division} from '../../../components/math'
+import { buildings, BuildingHelper } from '../../common/game-simulated-planet'
+import { division } from '../../../components/math'
 
 /**
  * 刷新星球状态
@@ -72,14 +72,12 @@ export default (planet: Entitys.GameSimulatedPlanetPlanet, startTime: number, se
         populationIncrement = 0
     }
 
+    planet.population += populationIncrement
+    planet.crystal += crystalIncrement
+    planet.gas += gasIncrement
+
     return {
         builtSize,
-        populationLimit,
-        planet: {
-            ...planet,
-            population: planet.population + populationIncrement,
-            crystal: planet.crystal + crystalIncrement,
-            gas: planet.gas + gasIncrement
-        }
+        populationLimit
     }
 }

@@ -46,7 +46,7 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
     @Validator.IsNumber({message: '必须为数字'})
     @Validator.Min(0, {message: '最小为 0'})
     @Validator.Max(999999999, {message: '最大为 999999999'})
-    crystal: number = 25
+    crystal: number = 0
 
     /**
      * 瓦斯获取难度是晶体矿的 4 倍

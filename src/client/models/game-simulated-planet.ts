@@ -129,6 +129,33 @@ export const GameSimulatedModel = model<GameSimulatedStore>({
 
             // // 刷新用户进度
             // upgradeUserProgress(this.store.authenticatedUser, this.store.buildingHelper)
+        },
+
+        /**
+         * 收获
+         */
+        gain: (state, action: Iaction<{
+            planetId: number
+            crystal?: number
+            gas?: number
+        }>) => {
+            // action.payload.crystal
+            return {
+                ...state,
+                gameUser: Object.assign({}, state.gameUser, {
+                    planets: state.gameUser.planets.map(planet => {
+                        if (planet.id === action.payload.planetId) {
+                            if (action.payload.crystal) {
+                                planet.crystal += action.payload.crystal
+                            }
+                            if (action.payload.gas) {
+                                planet.gas += action.payload.gas
+                            }
+                        }
+                        return planet
+                    })
+                })
+            }
         }
     }
 })
@@ -149,10 +176,24 @@ export class GameSimulatedActions {
     }
 
     /**
+     * 采集
+     */
+    collection = async(planetId: number) => {
+        const {crystal} = await GameSimulatedPlanetService.collection(planetId)
+        return {
+            type: 'gameSimulated/gain',
+            payload: {
+                planetId,
+                crystal
+            }
+        }
+    }
+
+    /**
      * 建造建筑
      */
-    building = async(gameUserId: number, buildingName: string) => {
-        const building = await GameSimulatedPlanetService.building(gameUserId, buildingName)
+    building = async(planetId: number, buildingName: string) => {
+        const building = await GameSimulatedPlanetService.building(planetId, buildingName)
         return {
             type: 'gameSimulated/addBuilding',
             payload: building
@@ -162,8 +203,8 @@ export class GameSimulatedActions {
     /**
      * 拆除建筑
      */
-    destroyBuilding = async(gameUserId: number, buildingId: number) => {
-        await GameSimulatedPlanetService.destroyBuilding(gameUserId, buildingId)
+    destroyBuilding = async(planetId: number, buildingId: number) => {
+        await GameSimulatedPlanetService.destroyBuilding(planetId, buildingId)
         return {
             type: 'gameSimulated/removeBuilding',
             payload: buildingId
@@ -173,8 +214,8 @@ export class GameSimulatedActions {
     /**
      * 升级建筑
      */
-    upgradeBuilding = async(gameUserId: number, buildingId: number) => {
-        const building = await GameSimulatedPlanetService.upgradeBuilding(gameUserId, buildingId)
+    upgradeBuilding = async(planetId: number, buildingId: number) => {
+        const building = await GameSimulatedPlanetService.upgradeBuilding(planetId, buildingId)
         return {
             type: 'gameSimulated/updateBuilding',
             payload: {

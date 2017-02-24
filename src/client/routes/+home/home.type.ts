@@ -1,9 +1,10 @@
 import * as React from 'react'
 import ReduxComponent from '../../../../components/redux-component'
+import { Actions } from '../../stores'
 
 export class Props extends ReduxComponent {
     /**
-     * [injected]
-     */
-    User?: Entitys.User
+    * [injected]
+    */
+    actions?: Actions
 }

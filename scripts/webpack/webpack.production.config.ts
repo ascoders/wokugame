@@ -3,11 +3,8 @@ import * as path from 'path'
 
 import * as config from '../../config'
 import BundleProductionChangeHtmlHash from './plugins/bundle-production-change-html-hash'
-import * as autoprefixer from 'autoprefixer'
 
 export default {
-    debug: false,
-
     entry: [
         './built/src/client/index.js'
     ],
@@ -20,6 +17,11 @@ export default {
 
     module: {
         rules: [
+            {
+                test: /\.(jsx|js)?$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
             {
                 test: /\.(png|jpg|gif)$/,
                 use: {
@@ -46,10 +48,6 @@ export default {
                 use: ['text-loader']
             }
         ]
-    },
-
-    postcss: function () {
-        return [autoprefixer]
     },
 
     plugins: [

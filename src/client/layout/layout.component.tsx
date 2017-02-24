@@ -1,31 +1,27 @@
 import * as React from 'react'
 import * as typings from './layout.type'
-import {Link} from 'react-router'
-import {connect} from '../../../components/reax'
-import {State, Actions} from '../models'
+import { Link } from 'react-router'
+import { Connect } from '../../../components/dynamic-react'
+import { Stores } from '../stores'
 
-import {Menu, MenuItem, MenuTree, MenuText} from '../../../components/menu'
+import { Menu, MenuItem, MenuTree, MenuText } from '../../../components/menu'
 
-import {Container} from './layout.style'
+import { Container } from './layout.style'
 
-@connect<State, typings.Props>(state => {
+@Connect<Stores>(state => {
     return {
-        user: state.user.authenticatedUser
-    }
-}, dispatch => {
-    return {
-        actions: new Actions(dispatch)
+        user: state.UserStore.authenticatedUser
     }
 })
-export default class LayoutScene extends React.Component<typings.Props,any> {
+export default class LayoutScene extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
 
     componentWillMount() {
-        this.props.actions.user.loginAuthenticatedUser()
+        this.props.actions.UserAction.loginAuthenticatedUser()
     }
 
     handleLogout = () => {
-        this.props.actions.user.loginOut()
+        this.props.actions.UserAction.loginOut()
     }
 
     render() {
@@ -55,7 +51,7 @@ export default class LayoutScene extends React.Component<typings.Props,any> {
                                 <Link to="/register">注册</Link>
                             </MenuItem>
                         ]
-                        :<MenuItem>
+                        : <MenuItem>
                             <MenuTree title={this.props.user.nickname}>
                                 <MenuItem onClick={this.handleLogout}>
                                     <MenuText>退出</MenuText>

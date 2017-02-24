@@ -1,12 +1,16 @@
 import * as React from 'react'
 import * as typings from './menu-tree.type'
-import {connect} from 'react-redux'
-import {IState} from '../reducers'
-import {Container, TreeItem} from './menu-tree.style'
 
-export default connect<IState,typings.Props>(state => {
+import { Connect } from '../../dynamic-react'
+import { Store } from '../store'
+
+import { Container, TreeItem } from './menu-tree.style'
+
+export default Connect<{
+    store: Store
+}>(state => {
     return {
-        height: state.height
+        height: state.store.height
     }
 })((props = new typings.Props()) => {
     return (

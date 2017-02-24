@@ -8,8 +8,8 @@ interface ICreate {
     password: string
 }
 
-export const create = async(options: ICreate) => {
-    return await iFetch('/api/users', {
+export const create = async (options: ICreate) => {
+    return await iFetch<Entitys.User>('/api/users', {
         method: 'post',
         body: JSON.stringify({
             nickname: options.nickname,
@@ -26,8 +26,8 @@ interface ILogin {
     password: string
 }
 
-export const login = async(options: ILogin) => {
-    return await iFetch('/api/users/login', {
+export const login = async (options: ILogin) => {
+    return await iFetch<Entitys.User>('/api/users/login', {
         method: 'post',
         body: JSON.stringify({
             nickname: options.nickname,
@@ -39,8 +39,8 @@ export const login = async(options: ILogin) => {
 /**
  * 获取当前登录的用户
  */
-export const getAuthenticatedUser = async() => {
-    return await iFetch('/api/user', {
+export const getAuthenticatedUser = async () => {
+    return await iFetch<Entitys.User>('/api/user', {
         method: 'get'
     })
 }
@@ -48,7 +48,7 @@ export const getAuthenticatedUser = async() => {
 /**
  * 注销当前登录的用户
  */
-export const logOut = async() => {
+export const logOut = async () => {
     return await iFetch('/api/user', {
         method: 'delete'
     })

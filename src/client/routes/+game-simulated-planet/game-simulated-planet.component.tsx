@@ -1,48 +1,38 @@
 import * as React from 'react'
 import * as typings from './game-simulated-planet.type'
-import {connect} from '../../../../components/reax'
-import {State, Actions} from '../../models'
 
-import {Tabs, TabPane} from '../../../../components/tabs'
-import {Interval} from '../../../../components/timer'
+import { Connect } from '../../../../components/dynamic-react'
+import { Stores } from '../../stores'
 
-import {tips} from '../../../common/game-simulated-planet'
+import { Tabs, TabPane } from '../../../../components/tabs'
+import { Interval } from '../../../../components/timer'
+
+import { tips } from '../../../common/game-simulated-planet'
 
 import {
     GridContainer,
     Header,
     Main,
-    SidebarTop,
-    SidebarBottom,
+    Sidebar,
     Footer,
-    NotifyContainer,
-    SidebarMenuItem,
-    ScrollXContainer
+    SidebarMenuItem
 } from './game-simulated-planet.style'
 
 import TabsHome from './tabs/home/home.component'
 
-@connect<State,typings.Props>(state => {
-    if (!state.gameSimulated.gameUser) {
-        return {}
-    }
-
+@Connect<Stores>(state => {
     return {
-        gameUserProcess: state.gameSimulated.gameUser.progress
-    }
-}, dispatch => {
-    return {
-        actions: new Actions(dispatch)
+        gameUserProcess: state.GameSimulatedPlanetStore.gameUser && state.GameSimulatedPlanetStore.gameUser.progress
     }
 })
-export default class GameSimulatedPlanetScene extends React.Component<typings.Props,any> {
+export default class GameSimulatedPlanetScene extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
     private interval: Interval
 
-    componentWillMount = async() => {
-        await this.props.actions.gameSimulated.loginAuthenticatedUser()
+    componentWillMount = async () => {
+        await this.props.actions.GameSimulatedPlanetAction.loginAuthenticatedUser()
         this.interval = new Interval(() => {
-            this.props.actions.gameSimulated.freshCurrentPlanet()
+            this.props.actions.GameSimulatedPlanetAction.freshCurrentPlanet()
         }, 1000)
     }
 
@@ -51,7 +41,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
     }
 
     render() {
-        if (!this.props.gameUserProcess) {
+        if (this.props.gameUserProcess === undefined) {
             return null
         }
 
@@ -62,28 +52,17 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
                 </Header>
 
                 {this.props.gameUserProcess >= 1 &&
-                <SidebarTop>
-                    <SidebarMenuItem theme={{active:true}}>家园</SidebarMenuItem>
-                </SidebarTop>
+                    <Sidebar>
+                        <SidebarMenuItem theme={{ active: true }}>家园</SidebarMenuItem>
+                    </Sidebar>
                 }
 
-                <SidebarBottom>
-                    <Tabs>
-                        <TabPane title="提醒">
-                            <NotifyContainer
-                                dangerouslySetInnerHTML={{__html:tips.get(this.props.gameUserProcess)}}/>
-                        </TabPane>
-                    </Tabs>
-                </SidebarBottom>
-
                 <Main>
-                    <ScrollXContainer>
-                        <TabsHome/>
-                    </ScrollXContainer>
+                    <TabsHome />
                 </Main>
 
                 <Footer>
-
+                    {tips.get(this.props.gameUserProcess)}
                 </Footer>
             </GridContainer>
         )

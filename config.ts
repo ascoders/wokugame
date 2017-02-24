@@ -38,14 +38,7 @@ export const webpackDlls = [
     /** 基础库 */
     'react',
     'react-dom',
-    'react-router',
-    'redux',
-    'react-redux',
-    'react-router-redux',
-
-    /** 工具库 */
-    'lodash',
-    'rxjs'
+    'react-router'
 ]
 
 // 发布静态资源路径前缀
