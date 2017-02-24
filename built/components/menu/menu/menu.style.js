@@ -1,8 +1,9 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const styled_components_1 = require("styled-components");
 const lightColor = '#333';
 const lightColorActive = '#666';
-exports.Container = styled_components_1.default.div `
+exports.ContainerComponent = styled_components_1.default.div `
     display: flex;
     flex-direction: row;
     background-color: ${lightColor};

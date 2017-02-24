@@ -1,8 +1,8 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./article-box.type");
 const article_box_style_1 = require("./article-box.style");
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (props = new typings.Props()) => {
     return (React.createElement(article_box_style_1.Container, null,
         React.createElement(article_box_style_1.LeftContainer, null,

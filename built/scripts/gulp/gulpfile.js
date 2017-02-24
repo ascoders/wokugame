@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const gulp = require("gulp");
 const filePath = {
     clientNotTs: `src/client/**/!(*.ts|*.tsx)`,

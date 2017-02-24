@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const game_object_1 = require("../../../../../../game-control/game-object");
 const RX = require("rxjs");
 const bomb_aircraft_1 = require("./bomb-aircraft");
@@ -51,6 +52,5 @@ class Aircraft extends game_object_1.default {
         }
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Aircraft;
 //# sourceMappingURL=base-enemy-aircraft.js.map

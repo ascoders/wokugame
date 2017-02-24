@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./input.type");
 const input_style_1 = require("./input.style");
@@ -27,6 +28,5 @@ class InputComponent extends React.Component {
     }
 }
 InputComponent.defaultProps = new typings.Props();
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = InputComponent;
 //# sourceMappingURL=input.component.js.map

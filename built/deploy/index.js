@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const http = require("http");
 const createHandler = require("github-webhook-handler");
 const httpProxy = require("http-proxy");

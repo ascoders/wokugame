@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const game_object_1 = require("../../../../../../game-control/game-object");
 const translate = require("../../../../../../game-control/utils/translate");
@@ -70,6 +71,5 @@ class Bullet extends game_object_1.default {
         });
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Bullet;
 //# sourceMappingURL=bullet.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class GameObject {
     constructor() {
     }
@@ -8,6 +9,5 @@ class GameObject {
         this.gameControl = gameControl;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GameObject;
 //# sourceMappingURL=game-object.js.map

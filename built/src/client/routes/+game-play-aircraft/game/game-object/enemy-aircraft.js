@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const base_enemy_aircraft_1 = require("./base-enemy-aircraft");
 class Aircraft extends base_enemy_aircraft_1.default {
@@ -18,6 +19,5 @@ class Aircraft extends base_enemy_aircraft_1.default {
         this.object.y += 1;
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Aircraft;
 //# sourceMappingURL=enemy-aircraft.js.map

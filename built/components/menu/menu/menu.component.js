@@ -1,22 +1,27 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./menu.type");
-const mobx_react_1 = require("mobx-react");
-const index_1 = require("../stores/index");
+const dynamic_react_1 = require("../../dynamic-react");
+const dependency_inject_1 = require("../../dependency-inject");
+const store_1 = require("../store");
 const menu_style_1 = require("./menu.style");
 class MenuComponent extends React.Component {
     componentWillMount() {
-        this.Menu = new index_1.default();
+        const container = new dependency_inject_1.Container();
+        container.set(store_1.Store, new store_1.Store());
+        container.set(store_1.Action, new store_1.Action());
+        this.store = container.get(store_1.Store);
+        this.action = container.get(store_1.Action);
         if (this.props.height) {
-            this.Menu.setHeight(this.props.height);
+            this.action.setHeight(this.props.height);
         }
     }
     render() {
-        return (React.createElement(mobx_react_1.Provider, { Menu: this.Menu },
-            React.createElement(menu_style_1.Container, { theme: { height: this.Menu.store.height } }, this.props.children)));
+        return (React.createElement(dynamic_react_1.Provider, { stores: { store: this.store }, actions: { action: this.action } },
+            React.createElement(menu_style_1.ContainerComponent, { theme: { height: this.store.height } }, this.props.children)));
     }
 }
 MenuComponent.defaultProps = new typings.Props();
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = MenuComponent;
 //# sourceMappingURL=menu.component.js.map

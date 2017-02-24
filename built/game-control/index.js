@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 class GameControl {
     constructor(rootElement, initResources, handleResourcesLoaded, handleGameLoop) {
@@ -79,6 +80,5 @@ class GameControl {
         this.pause();
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GameControl;
 //# sourceMappingURL=index.js.map

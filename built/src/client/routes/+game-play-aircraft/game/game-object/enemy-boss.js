@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const RX = require("rxjs");
 const bullet_1 = require("./bullet");
@@ -88,6 +89,5 @@ class Boss extends base_enemy_aircraft_1.default {
         this.gameControl.addGameObjectToScene(bullet4);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Boss;
 //# sourceMappingURL=enemy-boss.js.map

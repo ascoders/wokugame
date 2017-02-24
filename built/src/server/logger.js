@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const winston = require("winston");
 const path = require("path");
 const config = require("../../config");
@@ -29,6 +30,5 @@ const logger = process.env.NODE_ENV !== 'production'
     ],
     exitOnError: false
 });
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = logger;
 //# sourceMappingURL=logger.js.map

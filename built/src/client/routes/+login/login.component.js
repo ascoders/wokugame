@@ -4,35 +4,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./login.type");
-const mobx_react_1 = require("mobx-react");
 const react_router_1 = require("react-router");
+const dynamic_react_1 = require("../../../../components/dynamic-react");
 const button_1 = require("../../../../components/button");
 const input_1 = require("../../../../components/input");
 const register_style_1 = require("../+register/register.style");
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = mobx_react_1.inject('User', 'LoginPage')(mobx_react_1.observer((props = new typings.Props()) => {
+exports.default = dynamic_react_1.Connect(state => {
+    return {
+        nickname: state.LoginPageStore.nickname,
+        password: state.LoginPageStore.password
+    };
+})((props = new typings.Props()) => {
     const handleSubmit = () => __awaiter(this, void 0, void 0, function* () {
-        const result = yield props.User.loginWithNicknamePassword(props.LoginPage.store.nickname, props.LoginPage.store.password);
+        const result = yield props.actions.UserAction.loginWithNicknamePassword(props.nickname, props.password);
         if (result) {
             react_router_1.browserHistory.goBack();
         }
     });
     const handleNicknameChange = (event) => {
-        props.LoginPage.setNickname(event.currentTarget.value);
+        props.actions.LoginPageAction.setNickname(event.currentTarget.value);
     };
     const handlePasswordChange = (event) => {
-        props.LoginPage.setPassword(event.currentTarget.value);
+        props.actions.LoginPageAction.setPassword(event.currentTarget.value);
     };
     return (React.createElement(register_style_1.Container, null,
         React.createElement(register_style_1.CenterContainer, null,
-            React.createElement(input_1.default, { label: "昵称", value: props.LoginPage.store.nickname, onChange: handleNicknameChange }),
+            React.createElement(input_1.default, { label: "昵称", value: props.nickname, onChange: handleNicknameChange }),
             React.createElement(register_style_1.PasswordContainer, null,
-                React.createElement(input_1.default, { label: "密码", value: props.LoginPage.store.password, onChange: handlePasswordChange })),
+                React.createElement(input_1.default, { label: "密码", value: props.password, onChange: handlePasswordChange })),
             React.createElement(button_1.default, { onclick: handleSubmit }, "\u5B8C\u6210"))));
-}));
+});
 //# sourceMappingURL=login.component.js.map

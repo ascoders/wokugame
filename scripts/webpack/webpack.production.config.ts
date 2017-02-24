@@ -2,25 +2,9 @@ import * as webpack from 'webpack'
 import * as path from 'path'
 
 import * as config from '../../config'
-import * as happyPack from 'happypack'
 import BundleProductionChangeHtmlHash from './plugins/bundle-production-change-html-hash'
-import * as autoprefixer from 'autoprefixer'
-
-const happyThreadPool = happyPack.ThreadPool({size: 5})
-
-export function createHappyPlugin(id: string, loaders: string[]) {
-    return new happyPack({
-        id: id,
-        loaders: loaders,
-        threadPool: happyThreadPool,
-        cache: process.env.HAPPY_CACHE === '1',
-        verbose: process.env.HAPPY_VERBOSE === '1'
-    })
-}
 
 export default {
-    debug: false,
-
     entry: [
         './built/src/client/index.js'
     ],
@@ -32,29 +16,38 @@ export default {
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.(jsx|js)?$/,
-                exclude: [/node_modules/],
-                loader: 'happypack/loader?id=js'
-            }, {
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'happypack/loader?id=image'
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
                 test: /\.(woff|woff2|ttf|eot|svg)/,
-                loader: 'happypack/loader?id=font'
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
                 test: /\.json$/,
-                loader: 'happypack/loader?id=json'
+                use: ['json-loader']
             }, {
                 test: /\.md$/,
-                loader: 'happypack/loader?id=text'
+                use: ['text-loader']
             }
         ]
-    },
-
-    postcss: function () {
-        return [autoprefixer]
     },
 
     plugins: [
@@ -70,11 +63,6 @@ export default {
             context: '.',
             manifest: require(path.join(process.cwd(), 'built-production/static/dll/library-mainfest.json'))
         }),
-        createHappyPlugin('js', ['babel']),
-        createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
-        createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
-        createHappyPlugin('json', ['json']),
-        createHappyPlugin('text', ['text']),
         new BundleProductionChangeHtmlHash()
     ]
 }

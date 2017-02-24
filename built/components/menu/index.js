@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var menu_component_1 = require("./menu/menu.component");
 exports.default = menu_component_1.default;
 var menu_component_2 = require("./menu/menu.component");

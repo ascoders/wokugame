@@ -8,12 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const Validator = require("class-validator");
+const game_simulated_planet_user_1 = require("./game-simulated-planet-user");
 let User = class User {
+    constructor() {
+        this.passwordRetry = 0;
+    }
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
+    typeorm_1.PrimaryGeneratedColumn({
+        comment: '主键'
+    }),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
@@ -74,10 +81,14 @@ __decorate([
     Validator.IsDate({ message: '格式必须为日期' }),
     __metadata("design:type", Date)
 ], User.prototype, "updated", void 0);
+__decorate([
+    typeorm_1.OneToOne(type => game_simulated_planet_user_1.default, gameSimulatedPlanetUser => gameSimulatedPlanetUser.user, {
+        cascadeAll: true
+    }),
+    __metadata("design:type", game_simulated_planet_user_1.default)
+], User.prototype, "gameSimulatedPlanetUser", void 0);
 User = __decorate([
-    typeorm_1.Entity(),
-    __metadata("design:paramtypes", [])
+    typeorm_1.Entity()
 ], User);
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = User;
 //# sourceMappingURL=user.js.map

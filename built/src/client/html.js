@@ -1,11 +1,12 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const config = require("../../config");
 let scripts;
 let links;
 if (process.env.NODE_ENV === 'production') {
     scripts = `
-        <script src='/${config.publicPath}/dll/library.1f4b0.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.2a97b.js'></script>
+        <script src='/${config.publicPath}/dll/library.739d0.dll.js'></script>
+        <script src='/${config.publicPath}/bundle.d31ca.js'></script>
     `;
     links = `
         <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.zvuad.css">
@@ -18,7 +19,6 @@ else {
     `;
     links = '';
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -28,7 +28,7 @@ exports.default = `
 <meta name="format-detection"
       content="telephone=no">
 ${links}
-<title>还没取名字</title>
+<title>我酷科技</title>
 <body>
 <div id='react-dom'></div>
 </body>

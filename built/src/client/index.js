@@ -1,32 +1,19 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const ReactDOM = require("react-dom");
-const routes_1 = require("./routes");
-const mobx_1 = require("mobx");
-const mobx_react_1 = require("mobx-react");
 const react_router_1 = require("react-router");
 require("isomorphic-fetch");
 require("../../components/css-reset");
 require("../../components/css-beautify");
-if (process.env.NODE_ENV !== 'deploy') {
+const stores_1 = require("./stores");
+const routes_1 = require("./routes");
+const dynamic_react_1 = require("../../components/dynamic-react");
+if (process.env.NODE_ENV !== 'production') {
     window.perf = require('react-addons-perf');
 }
-mobx_1.useStrict(true);
 const req = require.context('./stores', true, /\.js$/);
-let injects = {};
-req.keys().forEach((key) => {
-    const Store = req(key).default;
-    injects[Store.name] = new Store();
-});
-const IProvider = (React.createElement(mobx_react_1.Provider, __assign({}, injects),
+const IProvider = (React.createElement(dynamic_react_1.Provider, { stores: new stores_1.Stores(), actions: new stores_1.Actions() },
     React.createElement(react_router_1.Router, { history: react_router_1.browserHistory }, routes_1.default)));
 ReactDOM.render(IProvider, document.getElementById('react-dom'));
 //# sourceMappingURL=index.js.map

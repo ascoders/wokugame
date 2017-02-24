@@ -1,6 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class ReduxComponent {
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ReduxComponent;
 //# sourceMappingURL=redux-component.js.map

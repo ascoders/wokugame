@@ -1,8 +1,9 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const webpack = require("webpack");
 const config_1 = require("../../config");
-module.exports = {
+exports.default = {
     entry: {
         library: config_1.webpackDlls
     },
@@ -18,19 +19,19 @@ module.exports = {
         })
     ],
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.css/,
-                loaders: ['style', 'css']
+                use: ['style-loader', 'css-loader']
             }, {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'url?limit=1024&name=dll/img/[hash:8].[name].[ext]'
+                use: ['url-loader?limit=1024&name=dll/img/[hash:8].[name].[ext]']
             }, {
                 test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-                loader: 'url?limit=1024&name=dll/font/[hash:8].[name].[ext]'
+                use: ['url-loader?limit=1024&name=dll/font/[hash:8].[name].[ext]']
             }, {
                 test: /\.json$/,
-                loader: 'json-loader'
+                use: ['json-loader']
             }
         ]
     }

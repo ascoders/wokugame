@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const styled_components_1 = require("styled-components");
 styled_components_1.injectGlobal `
     body {

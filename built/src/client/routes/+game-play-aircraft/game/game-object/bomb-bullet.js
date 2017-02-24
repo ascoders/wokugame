@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const game_object_1 = require("../../../../../../game-control/game-object");
 const RX = require("rxjs");
@@ -26,6 +27,5 @@ class BombBullet extends game_object_1.default {
         this.bombStream.next(true);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = BombBullet;
 //# sourceMappingURL=bomb-bullet.js.map

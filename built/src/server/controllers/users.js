@@ -13,9 +13,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const typedi_1 = require("typedi");
 const user_1 = require("../entitys/user");
@@ -61,7 +62,6 @@ let Users = class Users {
             const user = new user_1.default();
             user.nickname = req.body.nickname;
             user.password = utils.md5(req.body.password);
-            user.passwordRetry = 0;
             const result = yield this.userRepository.persist(user);
             req.session['userId'] = user.id;
             delete result.password;
@@ -141,9 +141,7 @@ __decorate([
     __metadata("design:type", typeorm_1.Repository)
 ], Users.prototype, "userRepository", void 0);
 Users = __decorate([
-    typedi_1.Service(),
-    __metadata("design:paramtypes", [])
+    typedi_1.Service()
 ], Users);
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Users;
 //# sourceMappingURL=users.js.map

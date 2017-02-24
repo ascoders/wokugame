@@ -1,10 +1,10 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const typedi_1 = require("typedi");
 const config = require("../../config");
 const path = require("path");
 typeorm_1.useContainer(typedi_1.Container);
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = typeorm_1.createConnection({
     driver: {
         type: 'mysql',

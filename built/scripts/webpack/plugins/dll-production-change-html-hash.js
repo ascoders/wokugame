@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 function DllHashPlugin() {
 }
@@ -14,6 +15,5 @@ DllHashPlugin.prototype.apply = function (compiler) {
         changeFileDll('built/src/client/html.js', hash);
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = DllHashPlugin;
 //# sourceMappingURL=dll-production-change-html-hash.js.map

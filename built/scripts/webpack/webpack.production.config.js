@@ -1,24 +1,10 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const webpack = require("webpack");
 const path = require("path");
 const config = require("../../config");
-const happyPack = require("happypack");
 const bundle_production_change_html_hash_1 = require("./plugins/bundle-production-change-html-hash");
-const autoprefixer = require("autoprefixer");
-const happyThreadPool = happyPack.ThreadPool({ size: 5 });
-function createHappyPlugin(id, loaders) {
-    return new happyPack({
-        id: id,
-        loaders: loaders,
-        threadPool: happyThreadPool,
-        cache: process.env.HAPPY_CACHE === '1',
-        verbose: process.env.HAPPY_VERBOSE === '1'
-    });
-}
-exports.createHappyPlugin = createHappyPlugin;
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    debug: false,
     entry: [
         './built/src/client/index.js'
     ],
@@ -28,28 +14,38 @@ exports.default = {
         filename: 'bundle.[hash:5].js?',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.(jsx|js)?$/,
-                exclude: [/node_modules/],
-                loader: 'happypack/loader?id=js'
-            }, {
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'happypack/loader?id=image'
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
                 test: /\.(woff|woff2|ttf|eot|svg)/,
-                loader: 'happypack/loader?id=font'
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
                 test: /\.json$/,
-                loader: 'happypack/loader?id=json'
+                use: ['json-loader']
             }, {
                 test: /\.md$/,
-                loader: 'happypack/loader?id=text'
+                use: ['text-loader']
             }
         ]
-    },
-    postcss: function () {
-        return [autoprefixer];
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -64,11 +60,6 @@ exports.default = {
             context: '.',
             manifest: require(path.join(process.cwd(), 'built-production/static/dll/library-mainfest.json'))
         }),
-        createHappyPlugin('js', ['babel']),
-        createHappyPlugin('image', ['url?limit=3000&name=img/[hash:8].[name].[ext]']),
-        createHappyPlugin('font', ['url?limit=3000&name=font/[hash:8].[name].[ext]']),
-        createHappyPlugin('json', ['json']),
-        createHappyPlugin('text', ['text']),
         new bundle_production_change_html_hash_1.default()
     ]
 };

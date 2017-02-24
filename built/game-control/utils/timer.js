@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Timer {
     constructor() {
         this.currentTime = 0;
@@ -28,6 +29,5 @@ class Timer {
         }
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Timer;
 //# sourceMappingURL=timer.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const game_object_1 = require("../../../../../../game-control/game-object");
 const translate = require("../../../../../../game-control/utils/translate");
@@ -121,6 +122,5 @@ class Aircraft extends game_object_1.default {
         this.die();
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Aircraft;
 //# sourceMappingURL=aircraft.js.map

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../../../../game-control/index");
 const aircraft_1 = require("./game-object/aircraft");
 const enemy_aircraft_1 = require("./game-object/enemy-aircraft");
@@ -182,6 +183,5 @@ class Game {
         this.gameControl.destroy();
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Game;
 //# sourceMappingURL=index.js.map

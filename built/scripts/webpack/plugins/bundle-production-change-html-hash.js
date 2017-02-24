@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 function BundleHashPlugin() {
 }
@@ -14,6 +15,5 @@ BundleHashPlugin.prototype.apply = function (compiler) {
         changeFileBundle('built/src/client/html.js', hash);
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = BundleHashPlugin;
 //# sourceMappingURL=bundle-production-change-html-hash.js.map

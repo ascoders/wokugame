@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_router_1 = require("react-router");
 const layout_component_1 = require("./layout/layout.component");
@@ -32,7 +33,6 @@ const getRegister = (nextState, callback) => {
         callback(null, require('./routes/+register/register.component').default);
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (React.createElement(react_router_1.Route, { path: "/", component: layout_component_1.default },
     React.createElement(react_router_1.IndexRoute, { getComponent: getHome }),
     React.createElement(react_router_1.Route, { path: "login", getComponent: getLogin }),

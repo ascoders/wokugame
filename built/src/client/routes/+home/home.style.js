@@ -1,8 +1,8 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const styled_components_1 = require("styled-components");
 exports.BannerImage = styled_components_1.default.div `
     height: 500px;
-    background: url(http://www.005.tv/uploads/allimg/161124/15415032M-7.jpg) center;
 `;
 exports.ArticleContainer = styled_components_1.default.div `
     display: flex;

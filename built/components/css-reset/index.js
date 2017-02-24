@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const styled_components_1 = require("styled-components");
 styled_components_1.injectGlobal `
     /*!
@@ -275,10 +276,6 @@ styled_components_1.injectGlobal `
     /* Add the correct vertical alignment in Chrome, Firefox, and Opera */
     progress {
         vertical-align: baseline;
-    }
-    
-    svg:not(:root) {
-        overflow: hidden; /* Internet Explorer 11- */
     }
     
     audio,

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const PIXI = require("pixi.js");
 const RX = require("rxjs");
 const bullet_1 = require("./bullet");
@@ -61,6 +62,5 @@ class Bomber extends base_enemy_aircraft_1.default {
         this.gameControl.addGameObjectToScene(bullet2);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Bomber;
 //# sourceMappingURL=enemy-bomber.js.map

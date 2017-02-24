@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const webpack = require("webpack");
 const config = require("../../config");
@@ -29,19 +30,34 @@ module.exports = {
         new dll_production_change_html_hash_1.default()
     ],
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.css/,
-                loaders: ['style', 'css']
+                use: ['style-loader', 'css-loader']
             }, {
                 test: /\.(png|jpg|gif)$/,
-                loader: `url?limit=1024&name=img/[name].[hash:5].[ext]`
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
-                test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-                loader: `url?limit=1024&name=font/[name].[hash:5].[ext]`
+                test: /\.(woff|woff2|ttf|eot|svg)/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 3000,
+                        name: 'img/[hash:8].[name].[ext]'
+                    }
+                }
             }, {
                 test: /\.json$/,
-                loader: 'json-loader'
+                use: ['json-loader']
+            }, {
+                test: /\.md$/,
+                use: ['text-loader']
             }
         ]
     }
