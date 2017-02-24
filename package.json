@@ -77,7 +77,7 @@
     "@types/express-session": "^0.0.32",
     "@types/gulp": "^3.8.32",
     "@types/invariant": "^2.2.28",
-    "@types/isomorphic-fetch": "^0.0.32",
+    "@types/isomorphic-fetch": "^0.0.33",
     "@types/morgan": "^1.7.32",
     "@types/node": "^0.0.2",
     "@types/pixi.js": "^4.1.0",
