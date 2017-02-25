@@ -1,6 +1,6 @@
-import ReduxComponent from '../../redux-component'
+import { StoreProps } from '../store'
 
-export class Props extends ReduxComponent {
+export class Props extends StoreProps {
     /**
      * 导航条高度
      */

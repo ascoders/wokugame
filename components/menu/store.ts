@@ -1,14 +1,31 @@
-import { inject } from '../dependency-inject'
+import {inject} from '../dependency-inject'
+import {Container} from '../dependency-inject'
+import ReactProps from '../react-props'
 
-export class Store {
+export class menuStore {
     height = 40
 }
 
-export class Action {
-    @inject(Store)
-    private store: Store
+export class menuAction {
+    @inject(menuStore)
+    private store: menuStore
 
     setHeight(height: number) {
         this.store.height = height
+    }
+}
+
+export class StoreProps extends ReactProps {
+    public menuAction?: menuAction
+    public menuStore?: menuStore
+
+    constructor() {
+        super()
+        const container = new Container()
+        container.set(menuStore, new menuStore())
+        container.set(menuAction, new menuAction())
+
+        this.menuAction = container.get(menuAction)
+        this.menuStore = container.get(menuStore)
     }
 }

@@ -6,7 +6,7 @@ import 'isomorphic-fetch'
 import '../../components/css-reset'
 import '../../components/css-beautify'
 
-import { Stores, Actions } from './stores'
+import StoreProps from './stores'
 
 import routes from './routes'
 import { Provider, Connect } from '../../components/dynamic-react'
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV !== 'production') {
 const req = require.context('./stores', true, /\.js$/)
 
 const IProvider = (
-    <Provider stores={new Stores()} actions={new Actions()}>
+    <Provider {...new StoreProps() }>
         <Router history={browserHistory}>{routes}</Router>
     </Provider>
 )

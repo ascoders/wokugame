@@ -17,7 +17,6 @@ declare namespace Entitys {
         hasReadProgress: boolean
         planets: GameSimulatedPlanetPlanet[]
         lastHarvest: Date
-        lastCollection: Date
     }
 
     export interface GameSimulatedPlanetPlanet {
@@ -29,6 +28,7 @@ declare namespace Entitys {
         progress: number
         size: number
         buildings: GameSimulatedPlanetBuilding[]
+        lastCollection: Date
     }
 
     export interface GameSimulatedPlanetBuilding {
@@ -37,5 +37,6 @@ declare namespace Entitys {
         type: string
         level: number
         buildStart: Date
+        created: Date
     }
 }

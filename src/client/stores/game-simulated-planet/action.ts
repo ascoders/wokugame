@@ -7,7 +7,7 @@ import { extendObservable } from '../../../../components/dynamic-object'
 
 export default class GameSimulatedPlanetAction {
     @inject(GameSimulatedPlanetStore)
-    public store: GameSimulatedPlanetStore
+    private store: GameSimulatedPlanetStore
 
     /**
      * 游戏用户自动登录/注册
@@ -25,10 +25,11 @@ export default class GameSimulatedPlanetAction {
      * 采集
      */
     async collection(planetId: number) {
-        const { crystal } = await GameSimulatedPlanetService.collection(planetId)
+        const { crystal, gas } = await GameSimulatedPlanetService.collection(planetId)
         this.store.gameUser.planets.find(planet => planet.id === planetId).crystal += crystal
+        this.store.gameUser.planets.find(planet => planet.id === planetId).gas += gas
 
-        this.store.gameUser.lastCollection = new Date()
+        this.store.currentPlanet.lastCollection = new Date()
     }
 
     /**
@@ -41,7 +42,8 @@ export default class GameSimulatedPlanetAction {
         // 扣除花费
         const buildingInfo = this.store.buildingHelper.getInfoByName(buildingName)
         const cost = this.store.buildingHelper.getCostByInfo(buildingInfo, 1)
-        this.store.currentPlanet.crystal -= cost
+        this.store.currentPlanet.crystal -= cost.crystal
+        this.store.currentPlanet.gas -= cost.gas
     }
 
     /**
@@ -62,6 +64,12 @@ export default class GameSimulatedPlanetAction {
         let targetBuilding = this.store.gameUser.planets.find(planet => planet.id === planetId).buildings
             .find(building => building.id === buildingId)
         extendObservable(targetBuilding, building)
+
+        // 扣除花费
+        const buildingInfo = this.store.buildingHelper.getInfo(targetBuilding)
+        const cost = this.store.buildingHelper.getCostByInfo(buildingInfo, targetBuilding.level)
+        this.store.currentPlanet.crystal -= cost.crystal
+        this.store.currentPlanet.gas -= cost.gas
     }
 
     /**

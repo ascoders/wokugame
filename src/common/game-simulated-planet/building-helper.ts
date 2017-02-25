@@ -72,7 +72,10 @@ export default class BuildingHelper {
         if (!this.hasLevelByInfo(buildingInfo, level)) {
             throw Error('级别不存在')
         }
-        return buildingInfo.data[level - 1][0][0]
+        return {
+            crystal: buildingInfo.data[level - 1][0][0],
+            gas: buildingInfo.data[level - 1][0][1]
+        }
     }
 
     /**
@@ -114,7 +117,7 @@ export default class BuildingHelper {
     }
 
     /**
-     * 获取第 index 个技能的能力值
+     * 获取第 index 个技能的能力值, 下标从 0 开始
      */
     getEffectValue = (building: Entitys.GameSimulatedPlanetBuilding, index: number) => {
         const buildingInfo = this.getInfo(building)

@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as typings from './build.type'
 
 import { Connect } from '../../../../../../../components/dynamic-react'
-import { Stores } from '../../../../../stores'
 
 import { friendlyMillisecond } from '../../../../../../../components/timer'
 
@@ -29,17 +28,7 @@ import GasSvg from '../../../svgs/gas.component'
 import HouseSvg from '../../../svgs/house.component'
 import TimeSvg from '../../../svgs/time.component'
 
-@Connect<Stores>(state => {
-    const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex]
-
-    return {
-        planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
-        gameUserProcess: state.GameSimulatedPlanetStore.gameUser.progress,
-        currentPlanet,
-        currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize,
-        buildings: currentPlanet.buildings
-    }
-})
+@Connect
 export default class Build extends React.Component<typings.Props, typings.State> {
     static defaultProps = new typings.Props()
     state = new typings.State()
@@ -67,7 +56,7 @@ export default class Build extends React.Component<typings.Props, typings.State>
      * 建造这个建筑
      */
     handleBuild = (buildingName: string) => {
-        this.props.actions.GameSimulatedPlanetAction.building(this.props.planetId, buildingName)
+        this.props.GameSimulatedPlanetAction.building(this.props.GameSimulatedPlanetStore.currentPlanet.id, buildingName)
     }
 
     render() {
@@ -75,13 +64,13 @@ export default class Build extends React.Component<typings.Props, typings.State>
             const buildingInfo = buildings.get(buildingName)
 
             // 如果没达到指定用户进度，就不显示
-            if (this.props.gameUserProcess < buildingInfo.progressNeed) {
+            if (this.props.GameSimulatedPlanetStore.gameUser.progress < buildingInfo.progressNeed) {
                 return null
             }
 
             // 获取这个建筑已建造数量
             let buildCount = 0
-            this.props.buildings.forEach(building => {
+            this.props.GameSimulatedPlanetStore.currentPlanet.buildings.forEach(building => {
                 if (building.type === buildingName) {
                     buildCount++
                 }
@@ -92,26 +81,23 @@ export default class Build extends React.Component<typings.Props, typings.State>
                     <BuildingTop>
                         <BuildingTitle>{buildingInfo.name}</BuildingTitle>
                         <BuildingCostContainer>
-                            <BuildingCostItemContainer>
-                                <BuildingCostTitle>晶体矿</BuildingCostTitle>
-                                <BuildingCostValue>
-                                    {this.colorfulText(buildingInfo.data[0][0].toString(), this.props.currentPlanet.crystal >= buildingInfo.data[0][0][0])}
-                                </BuildingCostValue>
-                            </BuildingCostItemContainer>
+                            {buildingInfo.data[0][0][0] > 0 &&
+                                <BuildingCostItemContainer>
+                                    <BuildingCostTitle>晶体矿</BuildingCostTitle>
+                                    <BuildingCostValue>
+                                        {this.colorfulText(buildingInfo.data[0][0][0].toString(), this.props.GameSimulatedPlanetStore.currentPlanet.crystal >= buildingInfo.data[0][0][0])}
+                                    </BuildingCostValue>
+                                </BuildingCostItemContainer>
+                            }
 
-                            <BuildingCostItemContainer>
-                                <BuildingCostTitle>瓦斯</BuildingCostTitle>
-                                <BuildingCostValue>
-                                    ??
-                                </BuildingCostValue>
-                            </BuildingCostItemContainer>
-
-                            <BuildingCostItemContainer>
-                                <BuildingCostTitle>人口</BuildingCostTitle>
-                                <BuildingCostValue>
-                                    ??
-                                </BuildingCostValue>
-                            </BuildingCostItemContainer>
+                            {buildingInfo.data[0][0][1] > 0 &&
+                                <BuildingCostItemContainer>
+                                    <BuildingCostTitle>瓦斯</BuildingCostTitle>
+                                    <BuildingCostValue>
+                                        {this.colorfulText(buildingInfo.data[0][0][1].toString(), this.props.GameSimulatedPlanetStore.currentPlanet.gas >= buildingInfo.data[0][0][1])}
+                                    </BuildingCostValue>
+                                </BuildingCostItemContainer>
+                            }
 
                             <BuildingCostItemContainer>
                                 <BuildingCostTitle>耗时</BuildingCostTitle>
@@ -121,9 +107,9 @@ export default class Build extends React.Component<typings.Props, typings.State>
                             </BuildingCostItemContainer>
 
                             <BuildingCostItemContainer>
-                                <BuildingCostTitle>体积</BuildingCostTitle>
+                                <BuildingCostTitle>占地</BuildingCostTitle>
                                 <BuildingCostValue>
-                                    {this.colorfulText(buildingInfo.size.toString(), this.props.currentPlanet.size - this.props.currentPlanetBuiltSize >= buildingInfo.size)}
+                                    {this.colorfulText(buildingInfo.size.toString(), this.props.GameSimulatedPlanetStore.currentPlanet.size - this.props.GameSimulatedPlanetStore.currentPlanetBuiltSize >= buildingInfo.size)}
                                 </BuildingCostValue>
                             </BuildingCostItemContainer>
                         </BuildingCostContainer>

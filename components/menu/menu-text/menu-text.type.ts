@@ -1,8 +1,5 @@
-import ReduxComponent from '../../redux-component'
+import { StoreProps } from '../store'
 
-export class Props extends ReduxComponent {
-    /**
-     * [injected]
-     */
-    height?: number
+export class Props extends StoreProps {
+   
 }

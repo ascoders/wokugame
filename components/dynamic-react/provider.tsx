@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { observable } from '../dynamic-object'
+import {observable} from '../dynamic-object'
+
+const specialReactKeys = new Set(['children', 'key', 'ref'])
 
 interface Props {
-    stores: any
-    actions: any
+    [store: string]: object
 }
 
-export default class Provider extends React.Component<Props, any> {
+export default class Provider extends React.Component<Props , any> {
 
     static contextTypes = {
         dyStores: React.PropTypes.object
@@ -18,22 +19,19 @@ export default class Provider extends React.Component<Props, any> {
 
     getChildContext() {
         // 继承 store
-        const stores = Object.assign({}, this.context.dyStores)
+        const stores = Object.assign({}, this.context.mobxStores)
 
-        // 添加用户传入的 stores，而且特意允许覆盖继承的 store，保证多层数据流，内层数据流不被干扰
-        for (let key in this.props.stores) {
-            stores[key] = observable(this.props.stores[key])
-        }
+        // 添加用户传入的 store
+        for (let key in this.props) {
+            if (!specialReactKeys.has(key)) {
+                const store: any = this.props[key]
 
-        // 添加用户传入的 actions
-        for (let key in this.props.actions) {
-            const action: any = this.props.actions[key]
-            stores[key] = observable(action)
-
-            // 将原对象所有 function 的 this 指向 proxy
-            for (let actionKey in action) {
-                if (typeof action[actionKey] === 'function') {
-                    action[actionKey] = action[actionKey].bind(stores[key])
+                stores[key] = observable(store)
+                // 将所有 function 的 this 指向 proxy
+                for (let storeKey in store) {
+                    if (typeof store[storeKey] === 'function') {
+                        store[storeKey] = store[storeKey].bind(stores[key])
+                    }
                 }
             }
         }

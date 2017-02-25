@@ -18,6 +18,7 @@ export const getAuthenticatedUser = async () => {
 export const collection = async (planetId: number) => {
     return await iFetch<{
         crystal: number
+        gas: number
     }>('/api/game-simulated-planet/collection', {
         method: 'post',
         body: JSON.stringify({

@@ -1,32 +1,27 @@
 import * as React from 'react'
 import * as typings from './layout.type'
-import { Link } from 'react-router'
-import { Connect } from '../../../components/dynamic-react'
-import { Stores } from '../stores'
+import {Link} from 'react-router'
+import {Connect} from '../../../components/dynamic-react'
 
-import { Menu, MenuItem, MenuTree, MenuText } from '../../../components/menu'
+import {Menu, MenuItem, MenuTree, MenuText} from '../../../components/menu'
 
-import { Container } from './layout.style'
+import {Container} from './layout.style'
 
-@Connect<Stores>(state => {
-    return {
-        user: state.UserStore.authenticatedUser
-    }
-})
+@Connect
 export default class LayoutScene extends React.Component<typings.Props, any> {
     static defaultProps = new typings.Props()
 
     componentWillMount() {
-        this.props.actions.UserAction.loginAuthenticatedUser()
+        this.props.UserAction.loginAuthenticatedUser()
     }
 
     handleLogout = () => {
-        this.props.actions.UserAction.loginOut()
+        this.props.UserAction.loginOut()
     }
 
     render() {
         return (
-            <Container>
+            <Container theme={{ noScroll: this.props.ApplicationStore.noScroll }}>
                 <Menu>
                     <MenuItem>
                         <Link to="/">我酷</Link>
@@ -42,7 +37,7 @@ export default class LayoutScene extends React.Component<typings.Props, any> {
                         </MenuTree>
                     </MenuItem>
 
-                    {!this.props.user
+                    {!this.props.UserStore.authenticatedUser
                         ? [
                             <MenuItem key="0">
                                 <Link to="/login">登录</Link>
@@ -52,7 +47,7 @@ export default class LayoutScene extends React.Component<typings.Props, any> {
                             </MenuItem>
                         ]
                         : <MenuItem>
-                            <MenuTree title={this.props.user.nickname}>
+                            <MenuTree title={this.props.UserStore.authenticatedUser.nickname}>
                                 <MenuItem onClick={this.handleLogout}>
                                     <MenuText>退出</MenuText>
                                 </MenuItem>

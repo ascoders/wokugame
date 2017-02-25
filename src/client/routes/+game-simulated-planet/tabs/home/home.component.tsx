@@ -2,13 +2,12 @@ import * as React from 'react'
 import * as typings from './home.type'
 
 import { Connect } from '../../../../../../components/dynamic-react'
-import { Stores } from '../../../../stores'
 
 import { buildingList } from '../../../../../common/game-simulated-planet'
 
 import {
     Container, Title, ListContainer, HeaderContainer, MainContainer,
-    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem, ButtonContainer
+    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem, ButtonContainer, ScrollContainer
 } from './home.style'
 
 import { Tabs, TabPane } from '../../../../../../components/tabs'
@@ -17,28 +16,16 @@ import BuildingCard from '../../components/building-card/building-card.component
 import Build from './build/build.component'
 import Collection from './collection/collection.component'
 
-export default Connect<Stores>(state => {
-    const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex]
-
-    return {
-        progress: state.GameSimulatedPlanetStore.gameUser.progress,
-        currentPlanet,
-        currentPlanetPopulationLimit: state.GameSimulatedPlanetStore.currentPlanetPopulationLimit,
-        currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize
-    }
-})((props: typings.Props = new typings.Props()) => {
+export default Connect((props: typings.Props = new typings.Props()) => {
     // 如果没有当前星球信息，不渲染页面
-    if (!props.currentPlanet) {
+    if (!props.GameSimulatedPlanetStore.currentPlanet) {
         return null
     }
 
-    const BuildingCards = props.currentPlanet.buildings.sort((left, right) => {
+    const BuildingCards = props.GameSimulatedPlanetStore.currentPlanet.buildings.sort((left, right) => {
         if (left.type === right.type) {
-            if (right.level == left.level) {
-                // 等级相同，则按照建造时间排序
-                return new Date(right.buildStart).getTime() - new Date(left.buildStart).getTime()
-            }
-            return right.level - left.level
+            // 类型相同，按照建造时间排序
+            return new Date(right.created).getTime() - new Date(left.created).getTime()
         }
         return buildingList.findIndex(name => name === right.type) - buildingList.findIndex(name => name === left.type)
     }).map((building, index) => {
@@ -53,18 +40,18 @@ export default Connect<Stores>(state => {
             <HeaderContainer>
                 <HeaderInformationContainer>
                     <HeaderInformationItem>
-                        晶体矿储量 {Math.floor(props.currentPlanet.crystal)}
+                        晶体矿储量 {Math.floor(props.GameSimulatedPlanetStore.currentPlanet.crystal)}
                     </HeaderInformationItem>
                     <HeaderInformationItem>
-                        瓦斯储量 {Math.floor(props.currentPlanet.gas)}
+                        瓦斯储量 {Math.floor(props.GameSimulatedPlanetStore.currentPlanet.gas)}
                     </HeaderInformationItem>
                     <HeaderInformationItem>
-                        总人口 {Math.floor(props.currentPlanet.population)}
-                        &nbsp;/ {props.currentPlanetPopulationLimit}
+                        总人口 {Math.floor(props.GameSimulatedPlanetStore.currentPlanet.population)}
+                        &nbsp;/ {props.GameSimulatedPlanetStore.currentPlanetPopulationLimit}
                     </HeaderInformationItem>
                     <HeaderInformationItem>
-                        建筑空间 {props.currentPlanetBuiltSize}
-                        &nbsp;/ {props.currentPlanet.size}
+                        建筑空间 {props.GameSimulatedPlanetStore.currentPlanetBuiltSize}
+                        &nbsp;/ {props.GameSimulatedPlanetStore.currentPlanet.size}
                     </HeaderInformationItem>
                 </HeaderInformationContainer>
 
@@ -76,38 +63,28 @@ export default Connect<Stores>(state => {
             <MainContainer>
                 <Tabs>
                     <TabPane title="建筑">
-                        <ButtonContainer>
-                            <Collection />
-                            {props.progress >= 1 &&
-                                <Build />
-                            }
-                        </ButtonContainer>
+                        <ScrollContainer>
+                            <ButtonContainer>
+                                <Collection />
+                                {props.GameSimulatedPlanetStore.gameUser.progress >= 1 &&
+                                    <Build />
+                                }
+                            </ButtonContainer>
 
-                        {props.currentPlanet.progress > 0 &&
-                            <Title>生产建筑</Title>
-                        }
-
-                        <ListContainer>
-                            {BuildingCards}
-                        </ListContainer>
-
-                        {props.currentPlanet.progress > 10 &&
-                            <Title>防御建筑</Title>
-                        }
-
-                        {props.currentPlanet.progress > 20 &&
-                            <Title>军事建筑</Title>
-                        }
+                            <ListContainer>
+                                {BuildingCards}
+                            </ListContainer>
+                        </ScrollContainer>
                     </TabPane>
 
-                    {props.currentPlanet.buildings.length > 10 &&
+                    {props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 10 &&
                         <TabPane title="科技">
 
                         </TabPane>
                     }
 
 
-                    {props.currentPlanet.buildings.length > 20 &&
+                    {props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 20 &&
                         <TabPane title="舰队">
 
                         </TabPane>

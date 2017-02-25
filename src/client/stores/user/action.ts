@@ -1,10 +1,10 @@
-import { UsersService } from '../../services'
+import {UsersService} from '../../services'
 import UserStore from './store'
-import { inject } from '../../../../components/dependency-inject'
+import {inject} from '../../../../components/dependency-inject'
 
 export default class UserAction {
     @inject(UserStore)
-    public store: UserStore
+    private store: UserStore
 
     /**
      * 自动登录用户
@@ -29,14 +29,14 @@ export default class UserAction {
      * 根据用户名密码登录
      */
     async loginWithNicknamePassword(nickname: string, password: string) {
-        this.store.authenticatedUser = await UsersService.login({ nickname, password })
+        this.store.authenticatedUser = await UsersService.login({nickname, password})
     }
 
     /**
      * 根据用户名密码注册
      */
     async registerWithNicknamePassword(nickname: string, password: string) {
-        this.store.authenticatedUser = await UsersService.create({ nickname, password })
+        this.store.authenticatedUser = await UsersService.create({nickname, password})
         return true
     }
 }

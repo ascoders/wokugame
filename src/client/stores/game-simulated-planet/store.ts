@@ -4,7 +4,7 @@ export default class GameSimulatedPlanetStore {
     /**
      * 游戏用户
      */
-    gameUser?: Entitys.GameSimulatedPlanetUser
+    gameUser?: Entitys.GameSimulatedPlanetUser = null
 
     /**
      * 当前选择星球的 index

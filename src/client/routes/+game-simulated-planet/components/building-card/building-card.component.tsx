@@ -2,12 +2,12 @@ import * as React from 'react'
 import * as typings from './building-card.type'
 
 import { Connect } from '../../../../../../components/dynamic-react'
-import { Stores } from '../../../../stores'
 
 import { buildings, effectDescription } from '../../../../../common/game-simulated-planet'
 import { Linear } from '../../../../../../components/progress'
 import { Interval, friendlyMillisecond } from '../../../../../../components/timer'
 import Tooltip from '../../../../../../components/tooltip'
+import { observe } from '../../../../../../components/dynamic-object'
 import highlightRender from '../../utils/highlight-render'
 
 import {
@@ -21,37 +21,33 @@ import {
     ProgressText
 } from './building-card.style'
 
-@Connect<Stores>((state, props: typings.Props) => {
-    return {
-        planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
-        building: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].buildings.find(building => building.id === props.buildingId),
-        buildingHelper: state.GameSimulatedPlanetStore.buildingHelper,
-        // todo 要去掉
-        serverTimeDiff: state.GameSimulatedPlanetStore.serverTimeDiff
-    }
-})
+@Connect
 export default class GameSimulatedPlanetScene extends React.Component<typings.Props, any> {
     private interval: Interval
     private built: boolean = false
 
+    private lastLevel = 0
+
     componentWillMount() {
-        this.startProgress()
+        const building = this.getBuilding()
+
+        observe(() => {
+            if (building.level > this.lastLevel) {
+                this.built = false
+                this.startProgress()
+            }
+
+            this.lastLevel = building.level
+        })
     }
 
     componentWillUnmount() {
         this.interval.stop()
     }
 
-    componentWillReceiveProps(nextProps: typings.Props) {
-        if (!nextProps.building) {
-            return
-        }
-
-        // 如果升级了，变为建造状态
-        if (nextProps.building.level > this.props.building.level) {
-            this.built = false
-            this.startProgress()
-        }
+    getBuilding = () => {
+        return this.props.GameSimulatedPlanetStore.currentPlanet.buildings
+            .find(building => building.id === this.props.buildingId)
     }
 
     /**
@@ -69,15 +65,17 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
     }
 
     render() {
-        if (!this.props.building) {
+        const building = this.getBuilding()
+
+        if (!building) {
             return null
         }
 
-        const buildingInfo = buildings.get(this.props.building.type)
+        const buildingInfo = buildings.get(building.type)
 
         // 第一个等级下标从 0 开始
         // 第一个效果的下标从 2 开始
-        const currentLevelData = buildingInfo.data[this.props.building.level - 1]
+        const currentLevelData = buildingInfo.data[building.level - 1]
 
         const Effects = buildingInfo.effects.map((effect, index) => {
             let effectDesc = effectDescription.get(effect)
@@ -98,29 +96,29 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
          * 拆除建筑
          */
         const destroyBuilding = () => {
-            this.props.actions.GameSimulatedPlanetAction.destroyBuilding(this.props.planetId, this.props.building.id)
+            this.props.GameSimulatedPlanetAction.destroyBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
         }
 
         /**
          * 升级建筑
          */
         const upgradeBuilding = () => {
-            this.props.actions.GameSimulatedPlanetAction.upgradeBuilding(this.props.planetId, this.props.building.id)
+            this.props.GameSimulatedPlanetAction.upgradeBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
         }
 
         // 如果还没建造完毕，显示进度条
-        const startTime = new Date(this.props.building.buildStart)
+        const startTime = new Date(building.buildStart)
         const currentTime = new Date()
-        const buildTime = this.props.buildingHelper.getBuildTime(this.props.building)
-        const remainingTime = currentTime.getTime() + this.props.serverTimeDiff - startTime.getTime() - buildTime
+        const buildTime = this.props.GameSimulatedPlanetStore.buildingHelper.getBuildTime(building)
+        const remainingTime = currentTime.getTime() + this.props.GameSimulatedPlanetStore.serverTimeDiff - startTime.getTime() - buildTime
         if (remainingTime <= 0) {
-            const buildingText = this.props.building.level === 1 ? '建造中..' : '扩建中..'
+            const buildingText = building.level === 1 ? '建造中..' : '扩建中..'
             const progress = 100 - Math.floor(Math.abs(remainingTime) / buildTime * 100)
 
             return (
                 <Container>
                     <TitleContainer>
-                        {buildingInfo.name} Lv {this.props.building.level}
+                        {buildingInfo.name} Lv {building.level}
                     </TitleContainer>
 
                     <DescriptionContainer>
@@ -135,14 +133,16 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
             )
         } else {
             // 建造完毕
-            this.built = true
-            this.interval.stop()
+            setImmediate(() => {
+                this.built = true
+                this.interval.stop()
+            })
         }
 
         return (
             <Container>
                 <TitleContainer>
-                    {buildingInfo.name} Lv {this.props.building.level}
+                    {buildingInfo.name} Lv {building.level}
                 </TitleContainer>
 
                 <DescriptionContainer>
@@ -150,7 +150,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
                 </DescriptionContainer>
 
                 <OperateContainer>
-                    {this.props.buildingHelper.hasLevelByInfo(buildingInfo, this.props.building.level + 1) === false
+                    {this.props.GameSimulatedPlanetStore.buildingHelper.hasLevelByInfo(buildingInfo, building.level + 1) === false
                         ? <OperateButton theme={{ max: true }}>已达顶级</OperateButton>
                         : <Tooltip position="left"><OperateButton onClick={upgradeBuilding}>升级</OperateButton></Tooltip>
                     }

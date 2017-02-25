@@ -30,7 +30,7 @@ export default class GameSimulatedPlanetBuilding implements Entitys.GameSimulate
         length: 15
     })
     @Validator.IsString()
-    @Validator.Length(1, 15, {message: '最小为 0'})
+    @Validator.Length(1, 15, { message: '最小为 0' })
     type: string
 
     @Column({
@@ -39,12 +39,17 @@ export default class GameSimulatedPlanetBuilding implements Entitys.GameSimulate
         length: 2
     })
     @Validator.IsNumber()
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(99, {message: '最大为 99'})
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(99, { message: '最大为 99' })
     level: number = 1
 
     @Column({
-        comment: '建造时间'
+        comment: '这个等级 建造/升级 开始的时间'
     })
     buildStart: Date = new Date()
+
+    @Column({
+        comment: '建筑初始建造时间'
+    })
+    created: Date = new Date()
 }

@@ -13,7 +13,8 @@ import {
     BuildingHelper,
     planetFresh,
     upgradeUserProgress,
-    collectionInterval
+    collectionInterval,
+    collectionGainWithBuildingSupport
 } from '../../common/game-simulated-planet'
 import { division } from '../../../components/math'
 
@@ -154,22 +155,25 @@ export default class GameSimulatedPlanet {
             throw Error('星球不存在')
         }
 
-        if (planet.buildings.findIndex(building => building.type === 'digger') > -1) {
+        if (planet.buildings.findIndex(building => building.type === 'autoDigger' && buildingHelper.getFinishedTime(building) > 0) > -1) {
             throw Error('已经存在自动收集机器')
         }
 
-        if (new Date().getTime() < user.gameSimulatedPlanetUser.lastCollection.getTime() + collectionInterval) {
+        if (new Date().getTime() < planet.lastCollection.getTime() + collectionInterval) {
             throw Error('还未到采集周期')
         }
 
-        planet.crystal += 10
-        user.gameSimulatedPlanetUser.lastCollection = new Date()
+        // 基础采集收益
+        const { crystal, gas } = collectionGainWithBuildingSupport(planet, 0)
+
+        planet.crystal += crystal
+        planet.gas += gas
+
+        planet.lastCollection = new Date()
 
         await this.upgradeUserProgressAndSave(user, req, res)
 
-        res.send({
-            crystal: 10
-        })
+        res.send({ crystal, gas })
     }
 
     /**
@@ -190,9 +194,12 @@ export default class GameSimulatedPlanet {
         }
 
         // 判断晶体矿是否足够建造一级建筑
-        const buildingCost = buildingInfo.data[0][0][0]
-        if (planet.crystal < buildingCost) {
+        const cost = buildingHelper.getCostByInfo(buildingInfo, 1)
+        if (planet.crystal < cost.crystal) {
             throw Error('晶体矿不足')
+        }
+        if (planet.gas < cost.gas) {
+            throw Error('瓦斯不足')
         }
 
         // 判断建筑是否超过上限
@@ -215,7 +222,8 @@ export default class GameSimulatedPlanet {
         planet.buildings.push(building)
 
         // 星球资源减少
-        planet.crystal -= buildingCost
+        planet.crystal -= cost.crystal
+        planet.gas -= cost.gas
 
         await this.upgradeUserProgressAndSave(user, req, res)
 
@@ -274,16 +282,21 @@ export default class GameSimulatedPlanet {
 
         const nextLevelCost = buildingHelper.getCostByInfo(buildingInfo, building.level + 1)
 
-        if (planet.crystal < nextLevelCost) {
+        if (planet.crystal < nextLevelCost.crystal) {
             throw Error('晶体矿不足')
+        }
+
+        if (planet.gas < nextLevelCost.gas) {
+            throw Error('瓦斯不足')
         }
 
         // 升级这个建筑
         building.level += 1
         building.buildStart = new Date()
 
-        // 消耗星球金币
-        planet.crystal -= nextLevelCost
+        // 消耗
+        planet.crystal -= nextLevelCost.crystal
+        planet.gas -= nextLevelCost.gas
 
         await this.upgradeUserProgressAndSave(user, req, res)
 

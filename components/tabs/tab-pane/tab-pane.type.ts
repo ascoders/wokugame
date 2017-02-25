@@ -1,7 +1,6 @@
-import * as React from 'react'
-import ReduxComponent from '../../redux-component'
+import ReactProps from '../../react-props'
 
-export class Props extends ReduxComponent {
+export class Props extends ReactProps {
     /**
      * 子菜单标题
      */

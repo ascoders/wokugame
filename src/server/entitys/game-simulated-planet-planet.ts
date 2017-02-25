@@ -32,9 +32,9 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         precision: 9 + 7,
         scale: 7
     })
-    @Validator.IsNumber({message: '必须为数字'})
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(200000000, {message: '最大为 200000000'})
+    @Validator.IsNumber({ message: '必须为数字' })
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(200000000, { message: '最大为 200000000' })
     population: number = 0
 
     @Column({
@@ -43,9 +43,9 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         precision: 9 + 7,
         scale: 7
     })
-    @Validator.IsNumber({message: '必须为数字'})
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(999999999, {message: '最大为 999999999'})
+    @Validator.IsNumber({ message: '必须为数字' })
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(999999999, { message: '最大为 999999999' })
     crystal: number = 0
 
     /**
@@ -57,9 +57,9 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         precision: 9 + 7,
         scale: 7
     })
-    @Validator.IsNumber({message: '必须为数字'})
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(999999999, {message: '最大为 999999999'})
+    @Validator.IsNumber({ message: '必须为数字' })
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(999999999, { message: '最大为 999999999' })
     gas: number = 0
 
     @Column({
@@ -67,8 +67,8 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         type: 'int',
         length: 2
     })
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(99, {message: '最大为 99'})
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(99, { message: '最大为 99' })
     progress: number = 0
 
     @Column({
@@ -76,8 +76,8 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         type: 'int',
         length: 2
     })
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(99, {message: '最大为 99'})
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(99, { message: '最大为 99' })
     size: number = 45
 
     /**
@@ -88,4 +88,10 @@ export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedP
         cascadeUpdate: true
     })
     buildings: GameBuilding[] = []
+
+    // 默认最后采集时间是一天钱，保证 cd 走完
+    @Column({
+        comment: '上次采集时间'
+    })
+    lastCollection: Date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24)
 }

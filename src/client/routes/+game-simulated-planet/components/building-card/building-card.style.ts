@@ -5,8 +5,13 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
+    transition: background-color .3s;
     & + & {
         border-top: 1px solid #eee;
+    }
+
+    &:hover{
+        background-color: whitesmoke;
     }
 `
 
@@ -59,7 +64,7 @@ export const OperateButton = styled.div`
     cursor: pointer;
     
     ${props => props.theme.max &&
-`
+        `
     background-color: whitesmoke;
     color: #9e9e9e;
     text-shadow: 0 1px 1px #fff;

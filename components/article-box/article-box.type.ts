@@ -1,5 +1,5 @@
-import ReduxComponent from '../redux-component'
+import ReactProps from '../react-props'
 
-export class Props extends ReduxComponent {
+export class Props extends ReactProps {
 
 }

@@ -3,7 +3,6 @@ import * as typings from './collection.type'
 import { Interval } from '../../../../../../../components/timer'
 
 import { Connect } from '../../../../../../../components/dynamic-react'
-import { Stores } from '../../../../../stores'
 
 import { collectionInterval } from '../../../../../../common/game-simulated-planet'
 
@@ -13,12 +12,7 @@ import {
     Progress
 } from './collection.style'
 
-@Connect<Stores>(state => {
-    return {
-        planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
-        lastCollectionTime: new Date(state.GameSimulatedPlanetStore.gameUser.lastCollection).getTime()
-    }
-})
+@Connect
 export default class Build extends React.Component<typings.Props, typings.State> {
     static defaultProps = new typings.Props()
     state = new typings.State()
@@ -28,23 +22,29 @@ export default class Build extends React.Component<typings.Props, typings.State>
     componentWillMount() {
         this.interval = new Interval(() => {
             const nowTime = new Date().getTime()
-            if (nowTime - this.props.lastCollectionTime > collectionInterval) {
+            const lastCollectionTime = new Date(this.props.GameSimulatedPlanetStore.currentPlanet.lastCollection).getTime()
+            if (nowTime - lastCollectionTime > collectionInterval) {
                 this.setState({
                     progress: 100
                 })
             } else {
                 this.setState({
-                    progress: (nowTime - this.props.lastCollectionTime) / collectionInterval * 100
+                    progress: (nowTime - lastCollectionTime) / collectionInterval * 100
                 })
             }
         }, 200)
+    }
+
+    componentWillUnmount() {
+        this.interval.stop()
     }
 
     handleClick = () => {
         if (this.state.progress !== 100) {
             return
         }
-        this.props.actions.GameSimulatedPlanetAction.collection(this.props.planetId)
+
+        this.props.GameSimulatedPlanetAction.collection(this.props.GameSimulatedPlanetStore.currentPlanet.id)
     }
 
     render() {

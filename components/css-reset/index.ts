@@ -1,4 +1,4 @@
-import {injectGlobal} from 'styled-components'
+import { injectGlobal } from 'styled-components'
 
 injectGlobal`
     /*!
@@ -13,7 +13,6 @@ injectGlobal`
     
     html {
         box-sizing: border-box;
-        overflow-y: scroll; /* All browsers without overlaying scrollbars */
         -webkit-text-size-adjust: 100%; /* iOS 8+ */
     }
     

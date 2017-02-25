@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const Container = styled.div`
     display: flex;
@@ -9,10 +9,12 @@ export const TitleContainer = styled.div`
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #d9d9d9;
+    min-height: 30px;
 `
 
 export const PaneContainer = styled.div`
-    
+    display: flex;
+    flex-direction: column;
 `
 
 export const TabTitle = styled.div`

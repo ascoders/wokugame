@@ -1,14 +1,5 @@
-import ReduxComponent from '../../../../components/redux-component'
-import { Actions } from '../../stores'
+import StoreProps from '../../stores'
 
-export class Props extends ReduxComponent {
-    /**
-     * [injected]
-     */
-    gameUserProcess?: number
+export class Props extends StoreProps {
 
-    /**
-     * [injected]
-     */
-    actions?: Actions
 }

@@ -3,21 +3,15 @@ import * as typings from './login.type'
 import { browserHistory } from 'react-router'
 
 import { Connect } from '../../../../components/dynamic-react'
-import { Stores } from '../../stores'
 
 import Button from '../../../../components/button'
 import Input from '../../../../components/input'
 
 import { Container, CenterContainer, PasswordContainer } from '../+register/register.style'
 
-export default Connect<Stores>(state => {
-    return {
-        nickname: state.LoginPageStore.nickname,
-        password: state.LoginPageStore.password
-    }
-})((props: typings.Props = new typings.Props()) => {
+export default Connect((props: typings.Props = new typings.Props()) => {
     const handleSubmit = async () => {
-        const result = await props.actions.UserAction.loginWithNicknamePassword(props.nickname, props.password)
+        const result = await props.UserAction.loginWithNicknamePassword(props.LoginPageStore.nickname, props.LoginPageStore.password)
         if (result) {
             // 登录成功，跳转回去
             browserHistory.goBack()
@@ -25,19 +19,19 @@ export default Connect<Stores>(state => {
     }
 
     const handleNicknameChange = (event: React.FormEvent<HTMLInputElement>) => {
-        props.actions.LoginPageAction.setNickname(event.currentTarget.value)
+        props.LoginPageAction.setNickname(event.currentTarget.value)
     }
 
     const handlePasswordChange = (event: React.FormEvent<HTMLInputElement>) => {
-        props.actions.LoginPageAction.setPassword(event.currentTarget.value)
+        props.LoginPageAction.setPassword(event.currentTarget.value)
     }
 
     return (
         <Container>
             <CenterContainer>
-                <Input label="昵称" value={props.nickname} onChange={handleNicknameChange} />
+                <Input label="昵称" value={props.LoginPageStore.nickname} onChange={handleNicknameChange} />
                 <PasswordContainer>
-                    <Input label="密码" value={props.password} onChange={handlePasswordChange} />
+                    <Input label="密码" value={props.LoginPageStore.password} onChange={handlePasswordChange} />
                 </PasswordContainer>
                 <Button onclick={handleSubmit}>完成</Button>
             </CenterContainer>

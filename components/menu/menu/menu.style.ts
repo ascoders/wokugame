@@ -7,7 +7,7 @@ export const ContainerComponent = styled.div`
     display: flex;
     flex-direction: row;
     background-color: ${lightColor};
-    height: ${props => props.theme.height}px;
+    min-height: ${props => props.theme.height}px;
 
     [name='woku-menu-item'], [name='woku-menu-item'] a {
         color: white;

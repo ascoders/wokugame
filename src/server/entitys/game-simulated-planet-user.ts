@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToOne, UpdateDateColumn, OneToMany, JoinColumn} from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, UpdateDateColumn, OneToMany, JoinColumn } from 'typeorm'
 import * as Validator from 'class-validator'
 import Planet from './game-simulated-planet-planet'
 import User from './user'
@@ -25,8 +25,8 @@ export default class GameSimulatedPlanetUser implements Entitys.GameSimulatedPla
         type: 'int',
         length: 3
     })
-    @Validator.Min(0, {message: '最小为 0'})
-    @Validator.Max(999, {message: '最大为 999'})
+    @Validator.Min(0, { message: '最小为 0' })
+    @Validator.Max(999, { message: '最大为 999' })
     progress: number = 0
 
     @Column({
@@ -48,9 +48,4 @@ export default class GameSimulatedPlanetUser implements Entitys.GameSimulatedPla
         comment: '上次计算收益时间'
     })
     lastHarvest: Date = new Date()
-
-    @Column({
-        comment: '上次采集时间'
-    })
-    lastCollection: Date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24)
 }

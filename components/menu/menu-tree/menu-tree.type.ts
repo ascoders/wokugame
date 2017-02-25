@@ -1,14 +1,8 @@
-import * as React from 'react'
-import ReduxComponent from '../../redux-component'
+import { StoreProps } from '../store'
 
-export class Props extends ReduxComponent {
+export class Props extends StoreProps {
     /**
      * 子菜单标题
      */
     title?: string | (() => React.ReactElement<any>) = ''
-
-    /**
-     * [injected]
-     */
-    height?: number
 }

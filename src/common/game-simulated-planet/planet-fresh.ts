@@ -1,5 +1,6 @@
 import { buildings, BuildingHelper } from '../../common/game-simulated-planet'
 import { division } from '../../../components/math'
+import * as base from './base'
 
 /**
  * 刷新星球状态
@@ -61,6 +62,17 @@ export default (planet: Entitys.GameSimulatedPlanetPlanet, startTime: number, se
                         break
                     case 'gas':
                         gasIncrement += division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60)
+                        break
+                    case 'autoDigger':
+                        // 间隔短于一次收集时间，就不做处理
+                        const collectionTime = endTime - new Date(planet.lastCollection).getTime()
+                        if (collectionTime >= base.collectionInterval) {
+                            const collectionCount = Math.floor(collectionTime / base.collectionInterval)
+                            const { crystal, gas } = base.collectionGainWithBuildingSupport(planet, serverTimeDiff)
+                            crystalIncrement += crystal * collectionCount
+                            gasIncrement += gas * collectionCount
+                            planet.lastCollection = new Date(endTime)
+                        }
                         break
                 }
             })

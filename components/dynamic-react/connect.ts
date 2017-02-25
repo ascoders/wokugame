@@ -1,15 +1,14 @@
 import * as React from 'react'
-import { observe, Observer } from '../dynamic-object'
+import {observe, Observer} from '../dynamic-object'
 import shallowEqual from '../shallow-equal'
 
-export default <State>(mapStateToProps?: (state?: State, props?: any) => object) => (decoratedComponent: any): any => {
+export default (decoratedComponent: any): any => {
     return class WrapComponent extends React.Component<any, any> {
         // 取 context
         static contextTypes = {
             dyStores: React.PropTypes.object
         }
 
-        private injectData: object = {}
         private signal: Observer
 
         shouldComponentUpdate(nextProps: any) {
@@ -34,15 +33,13 @@ export default <State>(mapStateToProps?: (state?: State, props?: any) => object)
         }
 
         setNextState() {
-            this.injectData = mapStateToProps(this.context.dyStores, this.props)
             this.forceUpdate()
         }
 
         render() {
             return React.createElement(decoratedComponent, {
-                ...this.injectData,
+                ...this.context.dyStores,
                 ...this.props,
-                actions: this.context.dyStores
             })
         }
     }
