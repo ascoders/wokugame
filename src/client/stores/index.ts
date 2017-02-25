@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { Container } from '../../../components/dependency-inject'
+import ReactProps from '../../../components/react-props'
 
 import UserAction from './user/action'
 import LoginPageAction from './login-page/action'
@@ -28,7 +29,7 @@ container.set(RegisterPageStore, new RegisterPageStore())
 container.set(GameSimulatedPlanetStore, new GameSimulatedPlanetStore())
 container.set(ApplicationStore, new ApplicationStore())
 
-export default class StoreProps {
+export default class StoreProps extends ReactProps {
     UserAction?: UserAction = container.get(UserAction)
     LoginPageAction?: LoginPageAction = container.get(LoginPageAction)
     RegisterPageAction?: RegisterPageAction = container.get(RegisterPageAction)
