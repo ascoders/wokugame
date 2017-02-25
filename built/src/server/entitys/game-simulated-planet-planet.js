@@ -21,6 +21,7 @@ let GameSimulatedPlanetPlanet = class GameSimulatedPlanetPlanet {
         this.progress = 0;
         this.size = 45;
         this.buildings = [];
+        this.lastCollection = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
     }
 };
 __decorate([
@@ -97,6 +98,12 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], GameSimulatedPlanetPlanet.prototype, "buildings", void 0);
+__decorate([
+    typeorm_1.Column({
+        comment: '上次采集时间'
+    }),
+    __metadata("design:type", Date)
+], GameSimulatedPlanetPlanet.prototype, "lastCollection", void 0);
 GameSimulatedPlanetPlanet = __decorate([
     typeorm_1.Entity()
 ], GameSimulatedPlanetPlanet);

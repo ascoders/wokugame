@@ -92,18 +92,18 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             if (!planet) {
                 throw Error('星球不存在');
             }
-            if (planet.buildings.findIndex(building => building.type === 'digger') > -1) {
+            if (planet.buildings.findIndex(building => building.type === 'autoDigger' && buildingHelper.getFinishedTime(building) > 0) > -1) {
                 throw Error('已经存在自动收集机器');
             }
-            if (new Date().getTime() < user.gameSimulatedPlanetUser.lastCollection.getTime() + game_simulated_planet_1.collectionInterval) {
+            if (new Date().getTime() < planet.lastCollection.getTime() + game_simulated_planet_1.collectionInterval) {
                 throw Error('还未到采集周期');
             }
-            planet.crystal += 10;
-            user.gameSimulatedPlanetUser.lastCollection = new Date();
+            const { crystal, gas } = game_simulated_planet_1.collectionGainWithBuildingSupport(planet, 0);
+            planet.crystal += crystal;
+            planet.gas += gas;
+            planet.lastCollection = new Date();
             yield this.upgradeUserProgressAndSave(user, req, res);
-            res.send({
-                crystal: 10
-            });
+            res.send({ crystal, gas });
         });
         this.building = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const user = yield this.getAndHarvestUser(req, res);
@@ -115,9 +115,12 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             if (!buildingInfo) {
                 throw Error('不存在的建筑');
             }
-            const buildingCost = buildingInfo.data[0][0][0];
-            if (planet.crystal < buildingCost) {
+            const cost = buildingHelper.getCostByInfo(buildingInfo, 1);
+            if (planet.crystal < cost.crystal) {
                 throw Error('晶体矿不足');
+            }
+            if (planet.gas < cost.gas) {
+                throw Error('瓦斯不足');
             }
             let thisBuildingAlreadyExistCount = 0;
             planet.buildings.forEach(building => {
@@ -131,7 +134,8 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             const building = new game_simulated_planet_building_1.default();
             building.type = req.body.type;
             planet.buildings.push(building);
-            planet.crystal -= buildingCost;
+            planet.crystal -= cost.crystal;
+            planet.gas -= cost.gas;
             yield this.upgradeUserProgressAndSave(user, req, res);
             res.send(building);
         });
@@ -166,12 +170,16 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
                 throw Error('建筑还未完成建造/升级');
             }
             const nextLevelCost = buildingHelper.getCostByInfo(buildingInfo, building.level + 1);
-            if (planet.crystal < nextLevelCost) {
+            if (planet.crystal < nextLevelCost.crystal) {
                 throw Error('晶体矿不足');
+            }
+            if (planet.gas < nextLevelCost.gas) {
+                throw Error('瓦斯不足');
             }
             building.level += 1;
             building.buildStart = new Date();
-            planet.crystal -= nextLevelCost;
+            planet.crystal -= nextLevelCost.crystal;
+            planet.gas -= nextLevelCost.gas;
             yield this.upgradeUserProgressAndSave(user, req, res);
             res.send(building);
         });

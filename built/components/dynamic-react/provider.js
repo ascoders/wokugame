@@ -2,18 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const dynamic_object_1 = require("../dynamic-object");
+const specialReactKeys = new Set(['children', 'key', 'ref']);
 class Provider extends React.Component {
     getChildContext() {
-        const stores = Object.assign({}, this.context.dyStores);
-        for (let key in this.props.stores) {
-            stores[key] = dynamic_object_1.observable(this.props.stores[key]);
-        }
-        for (let key in this.props.actions) {
-            const action = this.props.actions[key];
-            stores[key] = dynamic_object_1.observable(action);
-            for (let actionKey in action) {
-                if (typeof action[actionKey] === 'function') {
-                    action[actionKey] = action[actionKey].bind(stores[key]);
+        const stores = Object.assign({}, this.context.mobxStores);
+        for (let key in this.props) {
+            if (!specialReactKeys.has(key)) {
+                const store = this.props[key];
+                stores[key] = dynamic_object_1.observable(store);
+                for (let storeKey in store) {
+                    if (typeof store[storeKey] === 'function') {
+                        store[storeKey] = store[storeKey].bind(stores[key]);
+                    }
                 }
             }
         }

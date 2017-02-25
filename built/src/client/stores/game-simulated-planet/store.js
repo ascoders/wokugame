@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class GameSimulatedPlanetStore {
     constructor() {
+        this.gameUser = null;
         this.currentPlanetIndex = 0;
         this.currentPlanetPopulationLimit = 0;
         this.currentPlanetBuiltSize = 0;

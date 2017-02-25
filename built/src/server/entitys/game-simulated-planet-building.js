@@ -16,6 +16,7 @@ let GameSimulatedPlanetBuilding = class GameSimulatedPlanetBuilding {
     constructor() {
         this.level = 1;
         this.buildStart = new Date();
+        this.created = new Date();
     }
 };
 __decorate([
@@ -52,10 +53,16 @@ __decorate([
 ], GameSimulatedPlanetBuilding.prototype, "level", void 0);
 __decorate([
     typeorm_1.Column({
-        comment: '建造时间'
+        comment: '这个等级 建造/升级 开始的时间'
     }),
     __metadata("design:type", Date)
 ], GameSimulatedPlanetBuilding.prototype, "buildStart", void 0);
+__decorate([
+    typeorm_1.Column({
+        comment: '建筑初始建造时间'
+    }),
+    __metadata("design:type", Date)
+], GameSimulatedPlanetBuilding.prototype, "created", void 0);
 GameSimulatedPlanetBuilding = __decorate([
     typeorm_1.Entity()
 ], GameSimulatedPlanetBuilding);

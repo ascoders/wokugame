@@ -9,9 +9,11 @@ exports.TitleContainer = styled_components_1.default.div `
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #d9d9d9;
+    min-height: 30px;
 `;
 exports.PaneContainer = styled_components_1.default.div `
-    
+    display: flex;
+    flex-direction: column;
 `;
 exports.TabTitle = styled_components_1.default.div `
     display: flex;

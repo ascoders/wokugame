@@ -16,14 +16,14 @@ let LayoutScene = class LayoutScene extends React.Component {
     constructor() {
         super(...arguments);
         this.handleLogout = () => {
-            this.props.actions.UserAction.loginOut();
+            this.props.UserAction.loginOut();
         };
     }
     componentWillMount() {
-        this.props.actions.UserAction.loginAuthenticatedUser();
+        this.props.UserAction.loginAuthenticatedUser();
     }
     render() {
-        return (React.createElement(layout_style_1.Container, null,
+        return (React.createElement(layout_style_1.Container, { theme: { noScroll: this.props.ApplicationStore.noScroll } },
             React.createElement(menu_1.Menu, null,
                 React.createElement(menu_1.MenuItem, null,
                     React.createElement(react_router_1.Link, { to: "/" }, "\u6211\u9177")),
@@ -33,7 +33,7 @@ let LayoutScene = class LayoutScene extends React.Component {
                             React.createElement(react_router_1.Link, { to: "/game/play-aircraft" }, "\u98DE\u673A\u5927\u6218")),
                         React.createElement(menu_1.MenuItem, null,
                             React.createElement(react_router_1.Link, { to: "/game/simulated-planet" }, "\u6A21\u62DF\u661F\u7403")))),
-                !this.props.user
+                !this.props.UserStore.authenticatedUser
                     ? [
                         React.createElement(menu_1.MenuItem, { key: "0" },
                             React.createElement(react_router_1.Link, { to: "/login" }, "\u767B\u5F55")),
@@ -41,7 +41,7 @@ let LayoutScene = class LayoutScene extends React.Component {
                             React.createElement(react_router_1.Link, { to: "/register" }, "\u6CE8\u518C"))
                     ]
                     : React.createElement(menu_1.MenuItem, null,
-                        React.createElement(menu_1.MenuTree, { title: this.props.user.nickname },
+                        React.createElement(menu_1.MenuTree, { title: this.props.UserStore.authenticatedUser.nickname },
                             React.createElement(menu_1.MenuItem, { onClick: this.handleLogout },
                                 React.createElement(menu_1.MenuText, null, "\u9000\u51FA"))))),
             this.props.children));
@@ -49,11 +49,7 @@ let LayoutScene = class LayoutScene extends React.Component {
 };
 LayoutScene.defaultProps = new typings.Props();
 LayoutScene = __decorate([
-    dynamic_react_1.Connect(state => {
-        return {
-            user: state.UserStore.authenticatedUser
-        };
-    })
+    dynamic_react_1.Connect
 ], LayoutScene);
 exports.default = LayoutScene;
 //# sourceMappingURL=layout.component.js.map

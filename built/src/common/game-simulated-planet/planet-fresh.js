@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const game_simulated_planet_1 = require("../../common/game-simulated-planet");
 const math_1 = require("../../../components/math");
+const base = require("./base");
 exports.default = (planet, startTime, serverTimeDiff) => {
     const buildingHelper = new game_simulated_planet_1.BuildingHelper(serverTimeDiff);
     const endTime = new Date().getTime() + serverTimeDiff;
@@ -34,6 +35,16 @@ exports.default = (planet, startTime, serverTimeDiff) => {
                         break;
                     case 'gas':
                         gasIncrement += math_1.division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60);
+                        break;
+                    case 'autoDigger':
+                        const collectionTime = endTime - new Date(planet.lastCollection).getTime();
+                        if (collectionTime >= base.collectionInterval) {
+                            const collectionCount = Math.floor(collectionTime / base.collectionInterval);
+                            const { crystal, gas } = base.collectionGainWithBuildingSupport(planet, serverTimeDiff);
+                            crystalIncrement += crystal * collectionCount;
+                            gasIncrement += gas * collectionCount;
+                            planet.lastCollection = new Date(endTime);
+                        }
                         break;
                 }
             });

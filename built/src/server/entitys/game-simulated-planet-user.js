@@ -19,7 +19,6 @@ let GameSimulatedPlanetUser = class GameSimulatedPlanetUser {
         this.hasReadProgress = false;
         this.planets = [];
         this.lastHarvest = new Date();
-        this.lastCollection = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
     }
 };
 __decorate([
@@ -63,12 +62,6 @@ __decorate([
     }),
     __metadata("design:type", Date)
 ], GameSimulatedPlanetUser.prototype, "lastHarvest", void 0);
-__decorate([
-    typeorm_1.Column({
-        comment: '上次采集时间'
-    }),
-    __metadata("design:type", Date)
-], GameSimulatedPlanetUser.prototype, "lastCollection", void 0);
 GameSimulatedPlanetUser = __decorate([
     typeorm_1.Entity()
 ], GameSimulatedPlanetUser);

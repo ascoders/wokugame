@@ -3,12 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const dynamic_object_1 = require("../dynamic-object");
 const shallow_equal_1 = require("../shallow-equal");
-exports.default = (mapStateToProps) => (decoratedComponent) => {
+exports.default = (decoratedComponent) => {
     return _a = class WrapComponent extends React.Component {
-            constructor() {
-                super(...arguments);
-                this.injectData = {};
-            }
             shouldComponentUpdate(nextProps) {
                 if (!shallow_equal_1.default(this.props, nextProps)) {
                     return true;
@@ -25,11 +21,10 @@ exports.default = (mapStateToProps) => (decoratedComponent) => {
                 this.signal.unobserve();
             }
             setNextState() {
-                this.injectData = mapStateToProps(this.context.dyStores, this.props);
                 this.forceUpdate();
             }
             render() {
-                return React.createElement(decoratedComponent, Object.assign({}, this.injectData, this.props, { actions: this.context.dyStores }));
+                return React.createElement(decoratedComponent, Object.assign({}, this.context.dyStores, this.props));
             }
         },
         _a.contextTypes = {

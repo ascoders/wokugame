@@ -30,17 +30,17 @@ let Build = class Build extends React.Component {
             return (React.createElement("span", { style: { color: 'red' } }, text));
         };
         this.handleBuild = (buildingName) => {
-            this.props.actions.GameSimulatedPlanetAction.building(this.props.planetId, buildingName);
+            this.props.GameSimulatedPlanetAction.building(this.props.GameSimulatedPlanetStore.currentPlanet.id, buildingName);
         };
     }
     render() {
         const BuildingList = game_simulated_planet_1.buildingList.map((buildingName, index) => {
             const buildingInfo = game_simulated_planet_1.buildings.get(buildingName);
-            if (this.props.gameUserProcess < buildingInfo.progressNeed) {
+            if (this.props.GameSimulatedPlanetStore.gameUser.progress < buildingInfo.progressNeed) {
                 return null;
             }
             let buildCount = 0;
-            this.props.buildings.forEach(building => {
+            this.props.GameSimulatedPlanetStore.currentPlanet.buildings.forEach(building => {
                 if (building.type === buildingName) {
                     buildCount++;
                 }
@@ -49,15 +49,14 @@ let Build = class Build extends React.Component {
                 React.createElement(build_style_1.BuildingTop, null,
                     React.createElement(build_style_1.BuildingTitle, null, buildingInfo.name),
                     React.createElement(build_style_1.BuildingCostContainer, null,
-                        React.createElement(build_style_1.BuildingCostItemContainer, null,
-                            React.createElement(build_style_1.BuildingCostTitle, null, "\u6676\u4F53\u77FF"),
-                            React.createElement(build_style_1.BuildingCostValue, null, this.colorfulText(buildingInfo.data[0][0].toString(), this.props.currentPlanet.crystal >= buildingInfo.data[0][0][0]))),
-                        React.createElement(build_style_1.BuildingCostItemContainer, null,
-                            React.createElement(build_style_1.BuildingCostTitle, null, "\u74E6\u65AF"),
-                            React.createElement(build_style_1.BuildingCostValue, null, "??")),
-                        React.createElement(build_style_1.BuildingCostItemContainer, null,
-                            React.createElement(build_style_1.BuildingCostTitle, null, "\u4EBA\u53E3"),
-                            React.createElement(build_style_1.BuildingCostValue, null, "??")),
+                        buildingInfo.data[0][0][0] > 0 &&
+                            React.createElement(build_style_1.BuildingCostItemContainer, null,
+                                React.createElement(build_style_1.BuildingCostTitle, null, "\u6676\u4F53\u77FF"),
+                                React.createElement(build_style_1.BuildingCostValue, null, this.colorfulText(buildingInfo.data[0][0][0].toString(), this.props.GameSimulatedPlanetStore.currentPlanet.crystal >= buildingInfo.data[0][0][0]))),
+                        buildingInfo.data[0][0][1] > 0 &&
+                            React.createElement(build_style_1.BuildingCostItemContainer, null,
+                                React.createElement(build_style_1.BuildingCostTitle, null, "\u74E6\u65AF"),
+                                React.createElement(build_style_1.BuildingCostValue, null, this.colorfulText(buildingInfo.data[0][0][1].toString(), this.props.GameSimulatedPlanetStore.currentPlanet.gas >= buildingInfo.data[0][0][1]))),
                         React.createElement(build_style_1.BuildingCostItemContainer, null,
                             React.createElement(build_style_1.BuildingCostTitle, null, "\u8017\u65F6"),
                             React.createElement(build_style_1.BuildingCostValue, null,
@@ -65,8 +64,8 @@ let Build = class Build extends React.Component {
                                     " ",
                                     timer_1.friendlyMillisecond(buildingInfo.data[0][1][0])))),
                         React.createElement(build_style_1.BuildingCostItemContainer, null,
-                            React.createElement(build_style_1.BuildingCostTitle, null, "\u4F53\u79EF"),
-                            React.createElement(build_style_1.BuildingCostValue, null, this.colorfulText(buildingInfo.size.toString(), this.props.currentPlanet.size - this.props.currentPlanetBuiltSize >= buildingInfo.size))))),
+                            React.createElement(build_style_1.BuildingCostTitle, null, "\u5360\u5730"),
+                            React.createElement(build_style_1.BuildingCostValue, null, this.colorfulText(buildingInfo.size.toString(), this.props.GameSimulatedPlanetStore.currentPlanet.size - this.props.GameSimulatedPlanetStore.currentPlanetBuiltSize >= buildingInfo.size))))),
                 React.createElement(build_style_1.BuildingBottom, null,
                     React.createElement(build_style_1.BuildingDescription, null, buildingInfo.description),
                     React.createElement(build_style_1.BuildingButton, { onClick: this.handleBuild.bind(this, buildingName) },
@@ -82,16 +81,7 @@ let Build = class Build extends React.Component {
 };
 Build.defaultProps = new typings.Props();
 Build = __decorate([
-    dynamic_react_1.Connect(state => {
-        const currentPlanet = state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex];
-        return {
-            planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
-            gameUserProcess: state.GameSimulatedPlanetStore.gameUser.progress,
-            currentPlanet,
-            currentPlanetBuiltSize: state.GameSimulatedPlanetStore.currentPlanetBuiltSize,
-            buildings: currentPlanet.buildings
-        };
-    })
+    dynamic_react_1.Connect
 ], Build);
 exports.default = Build;
 //# sourceMappingURL=build.component.js.map

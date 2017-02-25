@@ -25,36 +25,34 @@ let GameSimulatedPlanetScene = class GameSimulatedPlanetScene extends React.Comp
     constructor() {
         super(...arguments);
         this.componentWillMount = () => __awaiter(this, void 0, void 0, function* () {
-            yield this.props.actions.GameSimulatedPlanetAction.loginAuthenticatedUser();
+            this.props.ApplicationAction.showScroll(false);
+            yield this.props.GameSimulatedPlanetAction.loginAuthenticatedUser();
             this.interval = new timer_1.Interval(() => {
-                this.props.actions.GameSimulatedPlanetAction.freshCurrentPlanet();
+                this.props.GameSimulatedPlanetAction.freshCurrentPlanet();
             }, 1000);
         });
     }
     componentWillUnmount() {
+        this.props.ApplicationAction.showScroll(true);
         this.interval.stop();
     }
     render() {
-        if (this.props.gameUserProcess === undefined) {
+        if (!this.props.GameSimulatedPlanetStore.gameUser) {
             return null;
         }
-        return (React.createElement(game_simulated_planet_style_1.GridContainer, null,
-            React.createElement(game_simulated_planet_style_1.Header, null),
-            this.props.gameUserProcess >= 1 &&
-                React.createElement(game_simulated_planet_style_1.Sidebar, null,
-                    React.createElement(game_simulated_planet_style_1.SidebarMenuItem, { theme: { active: true } }, "\u5BB6\u56ED")),
-            React.createElement(game_simulated_planet_style_1.Main, null,
-                React.createElement(home_component_1.default, null)),
-            React.createElement(game_simulated_planet_style_1.Footer, null, game_simulated_planet_1.tips.get(this.props.gameUserProcess))));
+        return (React.createElement(game_simulated_planet_style_1.Container, null,
+            React.createElement(game_simulated_planet_style_1.HeaderContainer, null),
+            React.createElement(game_simulated_planet_style_1.TipContainer, null, game_simulated_planet_1.tips.get(this.props.GameSimulatedPlanetStore.gameUser.progress)),
+            React.createElement(game_simulated_planet_style_1.ContentContainer, null,
+                React.createElement(game_simulated_planet_style_1.SidebarContainer, null,
+                    React.createElement(game_simulated_planet_style_1.SidebarItem, { theme: { active: true } }, "\u5BB6\u56ED")),
+                React.createElement(game_simulated_planet_style_1.MainContainer, null,
+                    React.createElement(home_component_1.default, null)))));
     }
 };
 GameSimulatedPlanetScene.defaultProps = new typings.Props();
 GameSimulatedPlanetScene = __decorate([
-    dynamic_react_1.Connect(state => {
-        return {
-            gameUserProcess: state.GameSimulatedPlanetStore.gameUser && state.GameSimulatedPlanetStore.gameUser.progress
-        };
-    })
+    dynamic_react_1.Connect
 ], GameSimulatedPlanetScene);
 exports.default = GameSimulatedPlanetScene;
 //# sourceMappingURL=game-simulated-planet.component.js.map

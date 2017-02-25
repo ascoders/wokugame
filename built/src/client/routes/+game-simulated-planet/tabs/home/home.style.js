@@ -4,6 +4,7 @@ const styled_components_1 = require("styled-components");
 exports.Container = styled_components_1.default.div `
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 `;
 exports.Title = styled_components_1.default.div `
     background-color: whitesmoke;
@@ -15,21 +16,23 @@ exports.Title = styled_components_1.default.div `
 exports.ListContainer = styled_components_1.default.div `
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 `;
 exports.HeaderContainer = styled_components_1.default.div `
     display: flex;
     flex-direction: column;
-    height: 100px;
+    min-height: 100px;
 `;
 exports.MainContainer = styled_components_1.default.div `
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
 `;
 exports.HeaderInformationContainer = styled_components_1.default.div `
     display: flex;
     align-items: center;
     padding: 0 20px;
-    height: 40px;
+    min-height: 40px;
     margin-top: 10px;
 `;
 exports.HeaderInformationItem = styled_components_1.default.div `
@@ -44,10 +47,14 @@ exports.HeaderOperationContainer = styled_components_1.default.div `
     display: flex;
     align-items: center;
     padding: 0 20px;
-    height: 60px;
+    min-height: 60px;
 `;
 exports.ButtonContainer = styled_components_1.default.div `
     display: flex;
     padding: 20px;
+`;
+exports.ScrollContainer = styled_components_1.default.div `
+    overflow-y: auto;
+    flex-grow: 1;
 `;
 //# sourceMappingURL=home.style.js.map

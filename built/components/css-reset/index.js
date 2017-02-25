@@ -14,7 +14,6 @@ styled_components_1.injectGlobal `
     
     html {
         box-sizing: border-box;
-        overflow-y: scroll; /* All browsers without overlaying scrollbars */
         -webkit-text-size-adjust: 100%; /* iOS 8+ */
     }
     

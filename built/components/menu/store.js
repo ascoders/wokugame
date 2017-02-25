@@ -10,20 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dependency_inject_1 = require("../dependency-inject");
-class Store {
+const dependency_inject_2 = require("../dependency-inject");
+const react_props_1 = require("../react-props");
+class menuStore {
     constructor() {
         this.height = 40;
     }
 }
-exports.Store = Store;
-class Action {
+exports.menuStore = menuStore;
+class menuAction {
     setHeight(height) {
         this.store.height = height;
     }
 }
 __decorate([
-    dependency_inject_1.inject(Store),
-    __metadata("design:type", Store)
-], Action.prototype, "store", void 0);
-exports.Action = Action;
+    dependency_inject_1.inject(menuStore),
+    __metadata("design:type", menuStore)
+], menuAction.prototype, "store", void 0);
+exports.menuAction = menuAction;
+class StoreProps extends react_props_1.default {
+    constructor() {
+        super();
+        const container = new dependency_inject_2.Container();
+        container.set(menuStore, new menuStore());
+        container.set(menuAction, new menuAction());
+        this.menuAction = container.get(menuAction);
+        this.menuStore = container.get(menuStore);
+    }
+}
+exports.StoreProps = StoreProps;
 //# sourceMappingURL=store.js.map

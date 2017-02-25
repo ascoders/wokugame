@@ -43,7 +43,10 @@ class BuildingHelper {
             if (!this.hasLevelByInfo(buildingInfo, level)) {
                 throw Error('级别不存在');
             }
-            return buildingInfo.data[level - 1][0][0];
+            return {
+                crystal: buildingInfo.data[level - 1][0][0],
+                gas: buildingInfo.data[level - 1][0][1]
+            };
         };
         this.getCost = (building) => {
             const buildingInfo = this.getInfo(building);

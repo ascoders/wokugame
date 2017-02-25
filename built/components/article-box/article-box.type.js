@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const redux_component_1 = require("../redux-component");
-class Props extends redux_component_1.default {
+const react_props_1 = require("../react-props");
+class Props extends react_props_1.default {
 }
 exports.Props = Props;
 //# sourceMappingURL=article-box.type.js.map

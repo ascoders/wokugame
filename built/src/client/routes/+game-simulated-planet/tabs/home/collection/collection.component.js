@@ -20,23 +20,27 @@ let Build = class Build extends React.Component {
             if (this.state.progress !== 100) {
                 return;
             }
-            this.props.actions.GameSimulatedPlanetAction.collection(this.props.planetId);
+            this.props.GameSimulatedPlanetAction.collection(this.props.GameSimulatedPlanetStore.currentPlanet.id);
         };
     }
     componentWillMount() {
         this.interval = new timer_1.Interval(() => {
             const nowTime = new Date().getTime();
-            if (nowTime - this.props.lastCollectionTime > game_simulated_planet_1.collectionInterval) {
+            const lastCollectionTime = new Date(this.props.GameSimulatedPlanetStore.currentPlanet.lastCollection).getTime();
+            if (nowTime - lastCollectionTime > game_simulated_planet_1.collectionInterval) {
                 this.setState({
                     progress: 100
                 });
             }
             else {
                 this.setState({
-                    progress: (nowTime - this.props.lastCollectionTime) / game_simulated_planet_1.collectionInterval * 100
+                    progress: (nowTime - lastCollectionTime) / game_simulated_planet_1.collectionInterval * 100
                 });
             }
         }, 200);
+    }
+    componentWillUnmount() {
+        this.interval.stop();
     }
     render() {
         return (React.createElement(collection_style_1.Container, { onClick: this.handleClick, theme: { disabled: this.state.progress !== 100 } },
@@ -47,12 +51,7 @@ let Build = class Build extends React.Component {
 };
 Build.defaultProps = new typings.Props();
 Build = __decorate([
-    dynamic_react_1.Connect(state => {
-        return {
-            planetId: state.GameSimulatedPlanetStore.gameUser.planets[state.GameSimulatedPlanetStore.currentPlanetIndex].id,
-            lastCollectionTime: new Date(state.GameSimulatedPlanetStore.gameUser.lastCollection).getTime()
-        };
-    })
+    dynamic_react_1.Connect
 ], Build);
 exports.default = Build;
 //# sourceMappingURL=collection.component.js.map

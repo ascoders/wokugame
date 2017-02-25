@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
     window.perf = require('react-addons-perf');
 }
 const req = require.context('./stores', true, /\.js$/);
-const IProvider = (React.createElement(dynamic_react_1.Provider, { stores: new stores_1.Stores(), actions: new stores_1.Actions() },
+const IProvider = (React.createElement(dynamic_react_1.Provider, Object.assign({}, new stores_1.default()),
     React.createElement(react_router_1.Router, { history: react_router_1.browserHistory }, routes_1.default)));
 ReactDOM.render(IProvider, document.getElementById('react-dom'));
 //# sourceMappingURL=index.js.map

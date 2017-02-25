@@ -11,7 +11,7 @@ exports.default = (gameUser, buildingHelper) => {
             if (gameUser.planets.filter(planet => {
                 return planet.buildings.filter(building => building.type === 'house')
                     .filter(building => buildingHelper.getFinishedTime(building) > 0)
-                    .length >= 5;
+                    .length >= 2;
             }).length >= 1) {
                 gameUser.progress = 2;
             }
@@ -20,9 +20,27 @@ exports.default = (gameUser, buildingHelper) => {
             if (gameUser.planets.filter(planet => {
                 return planet.buildings.filter(building => building.type === 'crystal')
                     .filter(building => buildingHelper.getFinishedTime(building) > 0)
-                    .length >= 5;
+                    .length >= 2;
             }).length >= 1) {
                 gameUser.progress = 3;
+            }
+            break;
+        case 3:
+            if (gameUser.planets.filter(planet => {
+                return planet.buildings.filter(building => building.type === 'gas')
+                    .filter(building => buildingHelper.getFinishedTime(building) > 0)
+                    .length >= 1;
+            }).length >= 1) {
+                gameUser.progress = 4;
+            }
+            break;
+        case 4:
+            if (gameUser.planets.filter(planet => {
+                return planet.buildings.filter(building => building.type === 'diggerCrystal')
+                    .filter(building => buildingHelper.getFinishedTime(building) > 0)
+                    .length >= 1;
+            }).length >= 1) {
+                gameUser.progress = 5;
             }
             break;
     }

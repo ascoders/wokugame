@@ -35,9 +35,10 @@ class GameSimulatedPlanetAction {
     }
     collection(planetId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { crystal } = yield services_1.GameSimulatedPlanetService.collection(planetId);
+            const { crystal, gas } = yield services_1.GameSimulatedPlanetService.collection(planetId);
             this.store.gameUser.planets.find(planet => planet.id === planetId).crystal += crystal;
-            this.store.gameUser.lastCollection = new Date();
+            this.store.gameUser.planets.find(planet => planet.id === planetId).gas += gas;
+            this.store.currentPlanet.lastCollection = new Date();
         });
     }
     building(planetId, buildingName) {
@@ -46,7 +47,8 @@ class GameSimulatedPlanetAction {
             this.store.gameUser.planets.find(planet => planet.id === planetId).buildings.push(building);
             const buildingInfo = this.store.buildingHelper.getInfoByName(buildingName);
             const cost = this.store.buildingHelper.getCostByInfo(buildingInfo, 1);
-            this.store.currentPlanet.crystal -= cost;
+            this.store.currentPlanet.crystal -= cost.crystal;
+            this.store.currentPlanet.gas -= cost.gas;
         });
     }
     destroyBuilding(planetId, buildingId) {
@@ -63,6 +65,10 @@ class GameSimulatedPlanetAction {
             let targetBuilding = this.store.gameUser.planets.find(planet => planet.id === planetId).buildings
                 .find(building => building.id === buildingId);
             dynamic_object_1.extendObservable(targetBuilding, building);
+            const buildingInfo = this.store.buildingHelper.getInfo(targetBuilding);
+            const cost = this.store.buildingHelper.getCostByInfo(buildingInfo, targetBuilding.level);
+            this.store.currentPlanet.crystal -= cost.crystal;
+            this.store.currentPlanet.gas -= cost.gas;
         });
     }
     freshCurrentPlanet() {

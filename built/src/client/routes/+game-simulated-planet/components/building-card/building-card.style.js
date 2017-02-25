@@ -6,8 +6,13 @@ exports.Container = styled_components_1.default.div `
     display: flex;
     align-items: center;
     flex-direction: row;
+    transition: background-color .3s;
     & + & {
         border-top: 1px solid #eee;
+    }
+
+    &:hover{
+        background-color: whitesmoke;
     }
 `;
 exports.TitleContainer = styled_components_1.default.div `
