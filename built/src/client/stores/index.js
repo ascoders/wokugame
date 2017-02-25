@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const dependency_inject_1 = require("../../../components/dependency-inject");
+const react_props_1 = require("../../../components/react-props");
 const action_1 = require("./user/action");
 const action_2 = require("./login-page/action");
 const action_3 = require("./register-page/action");
@@ -22,8 +23,9 @@ container.set(store_2.default, new store_2.default());
 container.set(store_3.default, new store_3.default());
 container.set(store_4.default, new store_4.default());
 container.set(store_5.default, new store_5.default());
-class StoreProps {
+class StoreProps extends react_props_1.default {
     constructor() {
+        super(...arguments);
         this.UserAction = container.get(action_1.default);
         this.LoginPageAction = container.get(action_2.default);
         this.RegisterPageAction = container.get(action_3.default);
