@@ -14,12 +14,6 @@ export const Title = styled.div`
     font-weight: bold;
 `
 
-export const ListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px 20px 20px;
-`
-
 export const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -54,14 +48,4 @@ export const HeaderOperationContainer = styled.div`
     align-items: center;
     padding: 0 20px;
     min-height: 60px;
-`
-
-export const ButtonContainer = styled.div`
-    display: flex;
-    padding: 20px;
-`
-
-export const ScrollContainer = styled.div`
-    overflow-y: auto;
-    flex-grow: 1;
 `

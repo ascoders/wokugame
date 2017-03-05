@@ -6,33 +6,20 @@ import { Connect } from '../../../../../../components/dynamic-react'
 import { buildingList } from '../../../../../common/game-simulated-planet'
 
 import {
-    Container, Title, ListContainer, HeaderContainer, MainContainer,
-    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem, ButtonContainer, ScrollContainer
+    Container, Title, HeaderContainer, MainContainer,
+    HeaderInformationContainer, HeaderOperationContainer, HeaderInformationItem
 } from './home.style'
 
 import { Tabs, TabPane } from '../../../../../../components/tabs'
 
-import BuildingCard from '../../components/building-card/building-card.component'
-import Build from './build/build.component'
-import Collection from './collection/collection.component'
+import Building from './building/building.component'
+import Warship from './warship/warship.component'
 
 export default Connect((props: typings.Props = new typings.Props()) => {
     // 如果没有当前星球信息，不渲染页面
     if (!props.GameSimulatedPlanetStore.currentPlanet) {
         return null
     }
-
-    const BuildingCards = props.GameSimulatedPlanetStore.currentPlanet.buildings.sort((left, right) => {
-        if (left.type === right.type) {
-            // 类型相同，按照建造时间排序
-            return new Date(right.created).getTime() - new Date(left.created).getTime()
-        }
-        return buildingList.findIndex(name => name === right.type) - buildingList.findIndex(name => name === left.type)
-    }).map((building, index) => {
-        return (
-            <BuildingCard key={building.id} buildingId={building.id} />
-        )
-    })
 
     return (
         <Container>
@@ -63,29 +50,17 @@ export default Connect((props: typings.Props = new typings.Props()) => {
             <MainContainer>
                 <Tabs>
                     <TabPane title="建筑">
-                        <ScrollContainer>
-                            <ButtonContainer>
-                                <Collection />
-                                {props.GameSimulatedPlanetStore.gameUser.progress >= 1 &&
-                                    <Build />
-                                }
-                            </ButtonContainer>
-
-                            <ListContainer>
-                                {BuildingCards}
-                            </ListContainer>
-                        </ScrollContainer>
+                        <Building />
                     </TabPane>
 
-                    {props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 10 &&
-                        <TabPane title="科技">
-
+                    {props.GameSimulatedPlanetStore.gameUser.progress > 4 &&
+                        <TabPane title="舰队">
+                            <Warship />
                         </TabPane>
                     }
 
-
-                    {props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 20 &&
-                        <TabPane title="舰队">
+                    {props.GameSimulatedPlanetStore.gameUser.progress > 10 &&
+                        <TabPane title="科技">
 
                         </TabPane>
                     }

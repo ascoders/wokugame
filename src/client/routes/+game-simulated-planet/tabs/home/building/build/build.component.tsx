@@ -1,11 +1,11 @@
 import * as React from 'react'
 import * as typings from './build.type'
 
-import { Connect } from '../../../../../../../components/dynamic-react'
+import { Connect } from '../../../../../../../../components/dynamic-react'
 
-import { friendlyMillisecond } from '../../../../../../../components/timer'
+import { friendlyMillisecond } from '../../../../../../../../components/timer'
 
-import { buildingList, buildings } from '../../../../../../common/game-simulated-planet'
+import { buildingList, buildings } from '../../../../../../../common/game-simulated-planet'
 
 import {
     Container,
@@ -21,12 +21,12 @@ import {
     BuildingCostValue
 } from './build.style'
 
-import Modal from '../../../../../../../components/modal'
+import Modal from '../../../../../../../../components/modal'
 
-import CrystalSvg from '../../../svgs/crystal.component'
-import GasSvg from '../../../svgs/gas.component'
-import HouseSvg from '../../../svgs/house.component'
-import TimeSvg from '../../../svgs/time.component'
+import CrystalSvg from '../../../../svgs/crystal.component'
+import GasSvg from '../../../../svgs/gas.component'
+import HouseSvg from '../../../../svgs/house.component'
+import TimeSvg from '../../../../svgs/time.component'
 
 @Connect
 export default class Build extends React.Component<typings.Props, typings.State> {

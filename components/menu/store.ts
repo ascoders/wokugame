@@ -1,5 +1,5 @@
-import {inject} from '../dependency-inject'
-import {Container} from '../dependency-inject'
+import { inject } from '../dependency-inject'
+import { Container } from '../dependency-inject'
 import ReactProps from '../react-props'
 
 export class menuStore {

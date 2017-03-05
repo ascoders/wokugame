@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as typings from './collection.type'
-import { Interval } from '../../../../../../../components/timer'
+import { Interval } from '../../../../../../../../components/timer'
 
-import { Connect } from '../../../../../../../components/dynamic-react'
+import { Connect } from '../../../../../../../../components/dynamic-react'
 
-import { collectionInterval } from '../../../../../../common/game-simulated-planet'
+import { collectionInterval } from '../../../../../../../common/game-simulated-planet'
 
 import {
     Container,

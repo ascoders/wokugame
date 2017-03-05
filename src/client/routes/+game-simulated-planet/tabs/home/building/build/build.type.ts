@@ -1,4 +1,4 @@
-import StoreProps from '../../../../../stores'
+import StoreProps from '../../../../../../stores'
 
 export class Props extends StoreProps {
 
