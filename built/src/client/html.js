@@ -6,7 +6,7 @@ let links;
 if (process.env.NODE_ENV === 'production') {
     scripts = `
         <script src='/${config.publicPath}/dll/library.739d0.dll.js'></script>
-        <script src='/${config.publicPath}/bundle.8e8e3.js'></script>
+        <script src='/${config.publicPath}/bundle.21816.js'></script>
     `;
     links = `
         <link rel="stylesheet" type="text/css" href="/${config.publicPath}/styles/main.zvuad.css">

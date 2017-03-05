@@ -5,7 +5,7 @@ const dynamic_object_1 = require("../dynamic-object");
 const specialReactKeys = new Set(['children', 'key', 'ref']);
 class Provider extends React.Component {
     getChildContext() {
-        const stores = Object.assign({}, this.context.mobxStores);
+        const stores = Object.assign({}, this.context.dyStores);
         for (let key in this.props) {
             if (!specialReactKeys.has(key)) {
                 const store = this.props[key];

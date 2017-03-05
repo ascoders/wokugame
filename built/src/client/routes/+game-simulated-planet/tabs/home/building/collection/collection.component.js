@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./collection.type");
-const timer_1 = require("../../../../../../../components/timer");
-const dynamic_react_1 = require("../../../../../../../components/dynamic-react");
-const game_simulated_planet_1 = require("../../../../../../common/game-simulated-planet");
+const timer_1 = require("../../../../../../../../components/timer");
+const dynamic_react_1 = require("../../../../../../../../components/dynamic-react");
+const game_simulated_planet_1 = require("../../../../../../../common/game-simulated-planet");
 const collection_style_1 = require("./collection.style");
 let Build = class Build extends React.Component {
     constructor() {

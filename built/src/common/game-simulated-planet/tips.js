@@ -7,6 +7,6 @@ tips.set(1, `建造两座 ${buildings_1.default.get('house').name} 发展你的�
 tips.set(2, `晶体矿是星球上重要的基础资源，所有建筑都需要晶体矿提供能源建造。现在可以建造两座 ${buildings_1.default.get('crystal').name} 生产晶体矿`);
 tips.set(3, `瓦斯矿是极为稀有的资源，建造一座 ${buildings_1.default.get('gas').name} 生产瓦斯`);
 tips.set(4, `建造一台 ${buildings_1.default.get('diggerCrystal').name}`);
-tips.set(5, `666`);
+tips.set(5, `建造 20 架侦察机`);
 exports.default = tips;
 //# sourceMappingURL=tips.js.map

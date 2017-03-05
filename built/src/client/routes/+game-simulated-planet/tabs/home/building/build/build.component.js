@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./build.type");
-const dynamic_react_1 = require("../../../../../../../components/dynamic-react");
-const timer_1 = require("../../../../../../../components/timer");
-const game_simulated_planet_1 = require("../../../../../../common/game-simulated-planet");
+const dynamic_react_1 = require("../../../../../../../../components/dynamic-react");
+const timer_1 = require("../../../../../../../../components/timer");
+const game_simulated_planet_1 = require("../../../../../../../common/game-simulated-planet");
 const build_style_1 = require("./build.style");
-const modal_1 = require("../../../../../../../components/modal");
+const modal_1 = require("../../../../../../../../components/modal");
 let Build = class Build extends React.Component {
     constructor() {
         super(...arguments);

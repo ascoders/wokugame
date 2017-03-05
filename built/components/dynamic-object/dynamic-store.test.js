@@ -448,7 +448,7 @@ ava_1.default('should remove the observed function from the queue', t => {
         .then(() => t.true(numOfRuns === 1));
 });
 ava_1.default('should unobserve the observed function', t => {
-    let data;
+    let data = '';
     const dynamicObj = index_1.observable({ prop: '' });
     let numOfRuns = 0;
     function test() {

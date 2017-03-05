@@ -3,24 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const typings = require("./home.type");
 const dynamic_react_1 = require("../../../../../../components/dynamic-react");
-const game_simulated_planet_1 = require("../../../../../common/game-simulated-planet");
 const home_style_1 = require("./home.style");
 const tabs_1 = require("../../../../../../components/tabs");
-const building_card_component_1 = require("../../components/building-card/building-card.component");
-const build_component_1 = require("./build/build.component");
-const collection_component_1 = require("./collection/collection.component");
+const building_component_1 = require("./building/building.component");
+const warship_component_1 = require("./warship/warship.component");
 exports.default = dynamic_react_1.Connect((props = new typings.Props()) => {
     if (!props.GameSimulatedPlanetStore.currentPlanet) {
         return null;
     }
-    const BuildingCards = props.GameSimulatedPlanetStore.currentPlanet.buildings.sort((left, right) => {
-        if (left.type === right.type) {
-            return new Date(right.created).getTime() - new Date(left.created).getTime();
-        }
-        return game_simulated_planet_1.buildingList.findIndex(name => name === right.type) - game_simulated_planet_1.buildingList.findIndex(name => name === left.type);
-    }).map((building, index) => {
-        return (React.createElement(building_card_component_1.default, { key: building.id, buildingId: building.id }));
-    });
     return (React.createElement(home_style_1.Container, null,
         React.createElement(home_style_1.HeaderContainer, null,
             React.createElement(home_style_1.HeaderInformationContainer, null,
@@ -44,15 +34,11 @@ exports.default = dynamic_react_1.Connect((props = new typings.Props()) => {
         React.createElement(home_style_1.MainContainer, null,
             React.createElement(tabs_1.Tabs, null,
                 React.createElement(tabs_1.TabPane, { title: "建筑" },
-                    React.createElement(home_style_1.ScrollContainer, null,
-                        React.createElement(home_style_1.ButtonContainer, null,
-                            React.createElement(collection_component_1.default, null),
-                            props.GameSimulatedPlanetStore.gameUser.progress >= 1 &&
-                                React.createElement(build_component_1.default, null)),
-                        React.createElement(home_style_1.ListContainer, null, BuildingCards))),
-                props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 10 &&
-                    React.createElement(tabs_1.TabPane, { title: "科技" }),
-                props.GameSimulatedPlanetStore.currentPlanet.buildings.length > 20 &&
-                    React.createElement(tabs_1.TabPane, { title: "舰队" })))));
+                    React.createElement(building_component_1.default, null)),
+                props.GameSimulatedPlanetStore.gameUser.progress > 4 &&
+                    React.createElement(tabs_1.TabPane, { title: "舰队" },
+                        React.createElement(warship_component_1.default, null)),
+                props.GameSimulatedPlanetStore.gameUser.progress > 10 &&
+                    React.createElement(tabs_1.TabPane, { title: "科技" })))));
 });
 //# sourceMappingURL=home.component.js.map

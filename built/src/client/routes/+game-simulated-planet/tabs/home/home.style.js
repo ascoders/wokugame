@@ -13,11 +13,6 @@ exports.Title = styled_components_1.default.div `
     color: #666;
     font-weight: bold;
 `;
-exports.ListContainer = styled_components_1.default.div `
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px 20px 20px;
-`;
 exports.HeaderContainer = styled_components_1.default.div `
     display: flex;
     flex-direction: column;
@@ -48,13 +43,5 @@ exports.HeaderOperationContainer = styled_components_1.default.div `
     align-items: center;
     padding: 0 20px;
     min-height: 60px;
-`;
-exports.ButtonContainer = styled_components_1.default.div `
-    display: flex;
-    padding: 20px;
-`;
-exports.ScrollContainer = styled_components_1.default.div `
-    overflow-y: auto;
-    flex-grow: 1;
 `;
 //# sourceMappingURL=home.style.js.map
