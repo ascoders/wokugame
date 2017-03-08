@@ -11,6 +11,9 @@ export default (decoratedComponent: any): any => {
 
         private signal: Observer
 
+        // 第二次不执行
+        private runCount = 0
+
         shouldComponentUpdate(nextProps: any) {
             if (!shallowEqual(this.props, nextProps)) {
                 return true
@@ -33,7 +36,10 @@ export default (decoratedComponent: any): any => {
         }
 
         setNextState() {
+            this.runCount++
+            // if (this.runCount !== 2) {
             this.forceUpdate()
+            //  }
         }
 
         render() {
