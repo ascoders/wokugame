@@ -53,6 +53,9 @@ export const AirshipContent = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    &+& {
+        padding-top: 0;
+    }
 `
 
 export const AirshipContentLeft = styled.div`
@@ -61,16 +64,4 @@ export const AirshipContentLeft = styled.div`
 
 export const AirshipContentRight = styled.div`
 
-`
-
-export const DesignButton = styled.div`
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-top: none;
-    border-bottom: none;
-    border-radius: 5px;
-    margin-left: 5px;
-    font-size: 14px;
-    color: #555;
-    cursor: pointer;
 `

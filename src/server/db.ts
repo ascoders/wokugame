@@ -1,5 +1,5 @@
-import {createConnection, useContainer} from 'typeorm'
-import {Container} from 'typedi'
+import { createConnection, useContainer } from 'typeorm'
+import { Container } from 'typedi'
 import * as config from '../../config'
 import * as path from 'path'
 
@@ -19,6 +19,6 @@ export default createConnection({
     ],
     subscribers: [
         path.join(__dirname, "subscribers/*.js")
-    ],
-    autoSchemaSync: true
+    ]
+    // autoSchemaSync: true
 })

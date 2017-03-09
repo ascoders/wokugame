@@ -1,13 +1,15 @@
 import * as React from 'react'
 import * as typings from './warship.type'
-import {airships} from '../../../../../../common/game-simulated-planet'
+import { airships } from '../../../../../../common/game-simulated-planet'
 
-import {Connect} from '../../../../../../../components/dynamic-react'
+import { Connect } from '../../../../../../../components/dynamic-react'
 import Tooltip from '../../../../../../../components/tooltip'
+
+import Design from './design/design.component'
 
 import {
     Container, Title, LeftContainer, RightContainer, AirshipCategory, NoDrawingContainer, AirshipContainer,
-    AirshipContent, AirshipContentLeft, AirshipContentRight, DesignButton
+    AirshipContent, AirshipContentLeft, AirshipContentRight
 } from './warship.style'
 
 export default Connect((props: typings.Props = new typings.Props()) => {
@@ -20,7 +22,7 @@ export default Connect((props: typings.Props = new typings.Props()) => {
                         {airship.name} 护盾：{airship.shield} 耐久：{airship.hp} 空间：{airship.size}
                     </AirshipContentLeft>
                     <AirshipContentRight>
-                        <DesignButton>设计</DesignButton>
+                        <Design airship={airship} />
                     </AirshipContentRight>
                 </AirshipContent>
             )
@@ -34,7 +36,7 @@ export default Connect((props: typings.Props = new typings.Props()) => {
                     </AirshipCategory>
                 </Tooltip>
                 {Drawings.length === 0 ?
-                    <NoDrawingContainer>还未拥有图纸</NoDrawingContainer>:
+                    <NoDrawingContainer>还未拥有图纸</NoDrawingContainer> :
                     Drawings
                 }
             </AirshipContainer>
