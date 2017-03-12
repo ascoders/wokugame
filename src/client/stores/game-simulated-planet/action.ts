@@ -73,6 +73,21 @@ export default class GameSimulatedPlanetAction {
     }
 
     /**
+     * 设计战舰
+     */
+    async designWarship(planetId: number, warship: Entitys.GameSimulatedPlanetWarship) {
+        await GameSimulatedPlanetService.designWarship(planetId, warship)
+    }
+
+    /**
+     * 查询所有设计的战舰
+     */
+    async getDesignWarship(planetId: number) {
+        const designedWarships = await GameSimulatedPlanetService.getDesignWarship(planetId)
+        this.store.designedWarships.set(this.store.currentPlanet.id, designedWarships)
+    }
+
+    /**
     * 刷新当前星球状态信息
     */
     async freshCurrentPlanet() {
@@ -89,5 +104,19 @@ export default class GameSimulatedPlanetAction {
 
         // 刷新用户进度
         upgradeUserProgress(this.store.gameUser, this.store.buildingHelper)
+    }
+
+    /**
+     * 删除设计图
+     */
+    async deleteWarship(planetId: number, warshipId: number) {
+        await GameSimulatedPlanetService.deleteWarship(warshipId)
+
+        let designedWarships = this.store.designedWarships.get(planetId)
+        const deleteIndex = designedWarships.findIndex(designedWarship => designedWarship.id === warshipId)
+        designedWarships.splice(deleteIndex, 1)
+        // 创建一个全新对象，才能被监听到修改
+        designedWarships = designedWarships.slice()
+        this.store.designedWarships.set(planetId, designedWarships)
     }
 }

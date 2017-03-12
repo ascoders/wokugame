@@ -1,11 +1,26 @@
-const effectDescription = new Map<string, string>()
+import { equipmentEffects, buildingEffects } from './names'
 
-effectDescription.set('populationLimit', '人口上限提高 %d')
-effectDescription.set('population', '每小时提供 %d 人口')
-effectDescription.set('crystal', '每小时提供 %d 晶体矿')
-effectDescription.set('gas', '每小时提供 %d 瓦斯')
-effectDescription.set('diggerCrystal', '每次采集晶体矿增加 %d')
-effectDescription.set('diggerGas', '每次采集瓦斯增加 %d')
-effectDescription.set('autoDigger', '自动采集')
+/**
+ * 建筑效果
+ */
+const buildingEffectDescription = new Map<number, string>([
+    [buildingEffects.populationLimit, '人口上限提高 %d'],
+    [buildingEffects.population, '每小时提供 %d 人口'],
+    [buildingEffects.crystal, '每小时提供 %d 晶体矿'],
+    [buildingEffects.gas, '每小时提供 %d 瓦斯'],
+    [buildingEffects.diggerCrystal, '每次采集晶体矿增加 %d'],
+    [buildingEffects.diggerGas, '每次采集瓦斯增加 %d'],
+    [buildingEffects.autoDigger, '自动采集']
+])
 
-export default effectDescription
+/**
+ * 装备效果
+ */
+const equipmentEffectDescription = new Map<number, string>([
+    [equipmentEffects.horizontalSputtering, '攻击力 %d, 横排 %d% 溅射'],
+    [equipmentEffects.verticalSputtering, '攻击力 %d, 纵排 %d% 溅射'],
+    [equipmentEffects.allSputtering, '攻击力 %d, 全体 %d% 溅射'],
+    [equipmentEffects.fuel, '增加 %d 燃料仓空间']
+])
+
+export { buildingEffectDescription, equipmentEffectDescription }

@@ -11,6 +11,7 @@ import {
 import * as Validator from 'class-validator'
 import GameUser from './game-simulated-planet-user'
 import GameBuilding from './game-simulated-planet-building'
+import GameWarship from './game-simulated-planet-warship'
 
 @Entity()
 export default class GameSimulatedPlanetPlanet implements Entitys.GameSimulatedPlanetPlanet {

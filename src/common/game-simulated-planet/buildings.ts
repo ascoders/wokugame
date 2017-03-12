@@ -1,3 +1,5 @@
+import { buildingEffects } from './names'
+
 export interface BuildingInfo {
     // 名称
     name: string
@@ -10,7 +12,7 @@ export interface BuildingInfo {
     // 最多建造多少个
     limit: number
     // 效果
-    effects: string[]
+    effects: number[]
     // 每一级，各项指标，分别是：
     // index = 0 | 升级消耗, [x, y] 分别是 晶体矿 瓦斯
     // index = 1 | 升级耗时/建造耗时(毫秒)，数组长度固定为 1
@@ -26,7 +28,7 @@ buildings.set('house', {
     size: 1,
     progressNeed: 1,
     limit: 5,
-    effects: ['populationLimit', 'population'],
+    effects: [buildingEffects.populationLimit, buildingEffects.population],
     data: [
         [[30, 0], [3 * 1000], [280], [190]], // 下一个开始系数是 1.2 1.1
         [[35, 0], [5 * 1000], [360], [218]],
@@ -47,7 +49,7 @@ buildings.set('crystal', {
     size: 1,
     progressNeed: 2,
     limit: 5,
-    effects: ['crystal'],
+    effects: [buildingEffects.crystal],
     data: [
         [[30, 0], [3 * 1000], [280], [220]], // 下一个开始系数是 1.1
         [[35, 0], [5 * 1000], [360], [242]],
@@ -68,7 +70,7 @@ buildings.set('gas', {
     size: 1,
     progressNeed: 3,
     limit: 3,
-    effects: ['gas'],
+    effects: [buildingEffects.gas],
     data: [
         [[40, 0], [5 * 1000], [36]],
         [[67, 0], [10 * 1000], [39]],
@@ -84,7 +86,7 @@ buildings.set('diggerCrystal', {
     size: 2,
     progressNeed: 4,
     limit: 2,
-    effects: ['diggerCrystal'],
+    effects: [buildingEffects.diggerCrystal],
     data: [
         [[50, 0], [10 * 1000], [1]],
         [[200, 0], [20 * 1000], [3]]
@@ -97,7 +99,7 @@ buildings.set('diggerGas', {
     size: 2,
     progressNeed: 4,
     limit: 2,
-    effects: ['diggerGas'],
+    effects: [buildingEffects.diggerGas],
     data: [
         [[0, 1], [10 * 1000], [1]],
         [[0, 60], [20 * 1000], [2]]
@@ -110,7 +112,7 @@ buildings.set('autoDigger', {
     size: 3,
     progressNeed: 5,
     limit: 1,
-    effects: ['autoDigger'],
+    effects: [buildingEffects.autoDigger],
     data: [
         [[12000, 1000], [60 * 1000 * 60 * 6]]
     ]

@@ -4,6 +4,7 @@ import { Service } from 'typedi'
 import GameUser from '../entitys/game-simulated-planet-user'
 import GamePlanet from '../entitys/game-simulated-planet-planet'
 import GameBuilding from '../entitys/game-simulated-planet-building'
+import GameWarship from '../entitys/game-simulated-planet-warship'
 import User from '../entitys/user'
 import { OrmRepository } from 'typeorm-typedi-extensions'
 import * as utils from '../../../components/node-utils'
@@ -45,6 +46,9 @@ export default class GameSimulatedPlanet {
 
     @OrmRepository(GameBuilding)
     private gameBuildingRepository: Repository<GameBuilding>
+
+    @OrmRepository(GameWarship)
+    private gameWarshipRepository: Repository<GameWarship>
 
     /**
      * 获取包含游戏用户信息的用户
@@ -108,6 +112,15 @@ export default class GameSimulatedPlanet {
         // 保存用户信息
         await this.gameUserRepository.persist(user.gameSimulatedPlanetUser)
         return user
+    }
+
+    /**
+     * 设置用户可以达到新的进度，如果已经超过这个进度就不会处理
+     */
+    private setUserProgress = (gameUser: GameUser, progress: number) => {
+        if (progress > gameUser.progress) {
+            gameUser.progress = progress
+        }
     }
 
     /**
@@ -301,5 +314,81 @@ export default class GameSimulatedPlanet {
         await this.upgradeUserProgressAndSave(user, req, res)
 
         res.send(building)
+    }
+
+    /**
+     * 设计战舰
+     */
+    designWarship = async (req: express.Request, res: express.Response) => {
+        const user = await this.getAndHarvestUser(req, res)
+        const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.body.planetId))
+        if (!planet) {
+            throw Error('星球不存在')
+        }
+
+        // 找出一共创建了多少战舰设计图
+        const warshipCount = await this.gameWarshipRepository.createQueryBuilder('warship')
+            .where('warship.planetId=:planetId', { planetId: Number(req.body.planetId) })
+            .getCount()
+
+        if (warshipCount >= 30) {
+            throw Error('该星球最多拥有30个设计图纸')
+        }
+
+        // 新建一个战舰设计图
+        const warship = new GameWarship()
+        warship.name = req.body.warship.name
+        warship.key = req.body.warship.key
+        warship.equipments = req.body.warship.equipments
+        warship.planetId = planet.id
+
+        await this.gameWarshipRepository.persist(warship)
+
+        this.setUserProgress(user.gameSimulatedPlanetUser, 6)
+        await this.upgradeUserProgressAndSave(user, req, res)
+
+        res.send(true)
+    }
+
+    /**
+     * 获得设计的战舰列表
+     */
+    getWarships = async (req: express.Request, res: express.Response) => {
+        const user = await this.getAndHarvestUser(req, res)
+        const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.params.planetId))
+        if (!planet) {
+            throw Error('星球不存在')
+        }
+
+        const warships = await this.gameWarshipRepository.createQueryBuilder('warship')
+            .where('warship.planetId=:planetId', { planetId: Number(req.params.planetId) })
+            .getMany()
+
+        res.send(warships)
+    }
+
+    /**
+     * 删除设计图纸
+     */
+    deleteWarship = async (req: express.Request, res: express.Response) => {
+        const user = await this.getAndHarvestUser(req, res)
+        // 要删除的战舰设计图 id
+        const warshipId = Number(req.body.warshipId)
+
+        // 查找其信息
+        const warship = await this.gameWarshipRepository.findOneById(warshipId)
+
+        if (!warship) {
+            throw Error('不存在的设计图')
+        }
+
+        // 必须属于用户的星球    
+        if (!user.gameSimulatedPlanetUser.planets.some(planet => warship.planetId === planet.id)) {
+            throw Error('这个设计图不属于你')
+        }
+
+        await this.gameWarshipRepository.remove(warship)
+
+        res.send(true)
     }
 }

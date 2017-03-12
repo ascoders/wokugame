@@ -3,7 +3,7 @@ import * as typings from './building-card.type'
 
 import { Connect } from '../../../../../../components/dynamic-react'
 
-import { buildings, effectDescription } from '../../../../../common/game-simulated-planet'
+import { buildings, buildingEffectDescription } from '../../../../../common/game-simulated-planet'
 import { Linear } from '../../../../../../components/progress'
 import { Interval, friendlyMillisecond } from '../../../../../../components/timer'
 import Tooltip from '../../../../../../components/tooltip'
@@ -78,7 +78,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
         const currentLevelData = buildingInfo.data[building.level - 1]
 
         const Effects = buildingInfo.effects.map((effect, index) => {
-            let effectDesc = effectDescription.get(effect)
+            let effectDesc = buildingEffectDescription.get(effect)
 
             const descriptionColorful = highlightRender(effectDesc, replaceIndex => {
                 return (

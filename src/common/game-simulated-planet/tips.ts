@@ -13,6 +13,8 @@ tips.set(3, `瓦斯矿是极为稀有的资源，建造一座 ${Buildings.get('g
 
 tips.set(4, `建造一台 ${Buildings.get('diggerCrystal').name}`)
 
-tips.set(5, `建造 20 架翼龙号侦察机I型`)
+tips.set(5, `设计一架战舰`)
+
+tips.set(6, `建造一个造舰场`)
 
 export default tips

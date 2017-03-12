@@ -63,3 +63,36 @@ export const upgradeBuilding = async (planetId: number, buildingId: number) => {
         })
     })
 }
+
+/**
+ * 设计战舰
+ */
+export const designWarship = async (planetId: number, warship: Entitys.GameSimulatedPlanetWarship) => {
+    return await iFetch('/api/game-simulated-planet/designWarship', {
+        method: 'post',
+        body: JSON.stringify({
+            planetId, warship
+        })
+    })
+}
+
+/**
+ * 查看战舰设计图列表
+ */
+export const getDesignWarship = async (planetId: number) => {
+    return await iFetch<Array<Entitys.GameSimulatedPlanetWarship>>(`/api/game-simulated-planet/planet/${planetId}/warships`, {
+        method: 'get'
+    })
+}
+
+/**
+ * 删除设计图
+ */
+export const deleteWarship = async (warshipId: number) => {
+    return await iFetch('/api/game-simulated-planet/warship/delete', {
+        method: 'post',
+        body: JSON.stringify({
+            warshipId
+        })
+    })
+}

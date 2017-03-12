@@ -1,4 +1,7 @@
 declare namespace Entitys {
+    /**
+     * 网站用户
+     */
     export interface User {
         id: number
         nickname: string
@@ -10,6 +13,9 @@ declare namespace Entitys {
         gameSimulatedPlanetUser: GameSimulatedPlanetUser
     }
 
+    /**
+     * 游戏用户
+     */
     export interface GameSimulatedPlanetUser {
         id: number
         user: User
@@ -19,6 +25,9 @@ declare namespace Entitys {
         lastHarvest: Date
     }
 
+    /**
+     * 游戏星球
+     */
     export interface GameSimulatedPlanetPlanet {
         id: number
         gameUser: GameSimulatedPlanetUser
@@ -31,6 +40,9 @@ declare namespace Entitys {
         lastCollection: Date
     }
 
+    /**
+     * 游戏建筑
+     */
     export interface GameSimulatedPlanetBuilding {
         id: number
         planet: GameSimulatedPlanetPlanet
@@ -38,5 +50,19 @@ declare namespace Entitys {
         level: number
         buildStart: Date
         created: Date
+    }
+
+    /**
+     * 游戏战舰
+     */
+    export interface GameSimulatedPlanetWarship {
+        id?: number
+        name: string
+        key: string
+        equipments: Array<{
+            key: string
+            count: number
+        }>
+        count?: number
     }
 }

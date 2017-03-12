@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {Container} from 'typedi'
+import { Container } from 'typedi'
 
 import Users from './controllers/users'
 import GameSimulatedPlanet from './controllers/game-simulated-planet'
@@ -23,6 +23,9 @@ export default () => {
     router.post('/game-simulated-planet/building', wrap(gameSimulatedPlanet.building))
     router.delete('/game-simulated-planet/building/:buildingId', wrap(gameSimulatedPlanet.destroyBuilding))
     router.post('/game-simulated-planet/building/:buildingId/upgrade', wrap(gameSimulatedPlanet.upgradeBuilding))
+    router.post('/game-simulated-planet/designWarship', wrap(gameSimulatedPlanet.designWarship))
+    router.get('/game-simulated-planet/planet/:planetId/warships', wrap(gameSimulatedPlanet.getWarships))
+    router.post('/game-simulated-planet/warship/delete', wrap(gameSimulatedPlanet.deleteWarship))
 
     return router
 }

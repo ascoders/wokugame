@@ -54,5 +54,7 @@ export default (gameUser: Entitys.GameSimulatedPlanetUser, buildingHelper: Build
                 gameUser.progress = 5
             }
             break
+        case 5:
+            break
     }
 }

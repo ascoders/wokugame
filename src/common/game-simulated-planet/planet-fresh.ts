@@ -1,5 +1,6 @@
 import { buildings, BuildingHelper } from '../../common/game-simulated-planet'
 import { division } from '../../../components/math'
+import { buildingEffects } from './names'
 import * as base from './base'
 
 /**
@@ -51,19 +52,19 @@ export default (planet: Entitys.GameSimulatedPlanetPlanet, startTime: number, se
             buildingInfo.effects.forEach((effect, index) => {
                 const effectValue = buildingHelper.getEffectValue(building, index)
                 switch (effect) {
-                    case 'population':
+                    case buildingEffects.population:
                         populationIncrement += division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60)
                         break
-                    case 'populationLimit':
+                    case buildingEffects.populationLimit:
                         populationLimit += effectValue[0]
                         break
-                    case 'crystal':
+                    case buildingEffects.crystal:
                         crystalIncrement += division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60)
                         break
-                    case 'gas':
+                    case buildingEffects.gas:
                         gasIncrement += division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60)
                         break
-                    case 'autoDigger':
+                    case buildingEffects.autoDigger:
                         // 间隔短于一次收集时间，就不做处理
                         const collectionTime = endTime - new Date(planet.lastCollection).getTime()
                         if (collectionTime >= base.collectionInterval) {

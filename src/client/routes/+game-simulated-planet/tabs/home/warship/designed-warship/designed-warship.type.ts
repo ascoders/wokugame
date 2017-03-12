@@ -2,13 +2,13 @@ import StoreProps from '../../../../../../stores'
 import { Warship } from '../../../../../../../common/game-simulated-planet'
 
 export class Props extends StoreProps {
-    warship?: Warship
+    designedWarship?: Entitys.GameSimulatedPlanetWarship
 }
 
 
 export class State {
     /**
-     * 是否显示模态框
+     * 准备建造的数量
      */
-    show?: boolean = false
+    productCount = 0
 }

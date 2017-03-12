@@ -42,4 +42,9 @@ export default class GameSimulatedPlanetStore {
      * 获取 buildingHelper 方法类
      */
     buildingHelper: BuildingHelper
+
+    /**
+     * 设计的飞船列表
+     */
+    designedWarships = new Map<number, Array<Entitys.GameSimulatedPlanetWarship>>()
 }

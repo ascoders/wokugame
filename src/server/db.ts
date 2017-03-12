@@ -19,6 +19,6 @@ export default createConnection({
     ],
     subscribers: [
         path.join(__dirname, "subscribers/*.js")
-    ]
-    // autoSchemaSync: true
+    ],
+    autoSchemaSync: true
 })
