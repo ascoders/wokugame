@@ -22,6 +22,7 @@ const typedi_1 = require("typedi");
 const game_simulated_planet_user_1 = require("../entitys/game-simulated-planet-user");
 const game_simulated_planet_planet_1 = require("../entitys/game-simulated-planet-planet");
 const game_simulated_planet_building_1 = require("../entitys/game-simulated-planet-building");
+const game_simulated_planet_warship_1 = require("../entitys/game-simulated-planet-warship");
 const user_1 = require("../entitys/user");
 const typeorm_typedi_extensions_1 = require("typeorm-typedi-extensions");
 const game_simulated_planet_1 = require("../../common/game-simulated-planet");
@@ -64,6 +65,11 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             yield this.gameUserRepository.persist(user.gameSimulatedPlanetUser);
             return user;
         });
+        this.setUserProgress = (gameUser, progress) => {
+            if (progress > gameUser.progress) {
+                gameUser.progress = progress;
+            }
+        };
         this.getAuthenticatedUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const user = yield this.getUser(req, res);
             if (!user.gameSimulatedPlanetUser) {
@@ -183,6 +189,52 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             yield this.upgradeUserProgressAndSave(user, req, res);
             res.send(building);
         });
+        this.designWarship = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.getAndHarvestUser(req, res);
+            const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.body.planetId));
+            if (!planet) {
+                throw Error('星球不存在');
+            }
+            const warshipCount = yield this.gameWarshipRepository.createQueryBuilder('warship')
+                .where('warship.planetId=:planetId', { planetId: Number(req.body.planetId) })
+                .getCount();
+            if (warshipCount >= 30) {
+                throw Error('该星球最多拥有30个设计图纸');
+            }
+            const warship = new game_simulated_planet_warship_1.default();
+            warship.name = req.body.warship.name;
+            warship.key = req.body.warship.key;
+            warship.equipments = req.body.warship.equipments;
+            warship.planetId = planet.id;
+            yield this.gameWarshipRepository.persist(warship);
+            this.setUserProgress(user.gameSimulatedPlanetUser, 6);
+            yield this.upgradeUserProgressAndSave(user, req, res);
+            res.send(true);
+        });
+        this.getWarships = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.getAndHarvestUser(req, res);
+            const planet = user.gameSimulatedPlanetUser.planets.find(planet => planet.id === Number(req.params.planetId));
+            if (!planet) {
+                throw Error('星球不存在');
+            }
+            const warships = yield this.gameWarshipRepository.createQueryBuilder('warship')
+                .where('warship.planetId=:planetId', { planetId: Number(req.params.planetId) })
+                .getMany();
+            res.send(warships);
+        });
+        this.deleteWarship = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.getAndHarvestUser(req, res);
+            const warshipId = Number(req.body.warshipId);
+            const warship = yield this.gameWarshipRepository.findOneById(warshipId);
+            if (!warship) {
+                throw Error('不存在的设计图');
+            }
+            if (!user.gameSimulatedPlanetUser.planets.some(planet => warship.planetId === planet.id)) {
+                throw Error('这个设计图不属于你');
+            }
+            yield this.gameWarshipRepository.remove(warship);
+            res.send(true);
+        });
     }
 };
 __decorate([
@@ -201,6 +253,10 @@ __decorate([
     typeorm_typedi_extensions_1.OrmRepository(game_simulated_planet_building_1.default),
     __metadata("design:type", typeorm_1.Repository)
 ], GameSimulatedPlanet.prototype, "gameBuildingRepository", void 0);
+__decorate([
+    typeorm_typedi_extensions_1.OrmRepository(game_simulated_planet_warship_1.default),
+    __metadata("design:type", typeorm_1.Repository)
+], GameSimulatedPlanet.prototype, "gameWarshipRepository", void 0);
 GameSimulatedPlanet = __decorate([
     typedi_1.Service()
 ], GameSimulatedPlanet);

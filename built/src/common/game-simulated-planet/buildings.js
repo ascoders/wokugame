@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const names_1 = require("./names");
 const buildings = new Map();
 buildings.set('house', {
     name: '生态球',
@@ -7,7 +8,7 @@ buildings.set('house', {
     size: 1,
     progressNeed: 1,
     limit: 5,
-    effects: ['populationLimit', 'population'],
+    effects: [names_1.buildingEffects.populationLimit, names_1.buildingEffects.population],
     data: [
         [[30, 0], [3 * 1000], [280], [190]],
         [[35, 0], [5 * 1000], [360], [218]],
@@ -27,7 +28,7 @@ buildings.set('crystal', {
     size: 1,
     progressNeed: 2,
     limit: 5,
-    effects: ['crystal'],
+    effects: [names_1.buildingEffects.crystal],
     data: [
         [[30, 0], [3 * 1000], [280], [220]],
         [[35, 0], [5 * 1000], [360], [242]],
@@ -47,7 +48,7 @@ buildings.set('gas', {
     size: 1,
     progressNeed: 3,
     limit: 3,
-    effects: ['gas'],
+    effects: [names_1.buildingEffects.gas],
     data: [
         [[40, 0], [5 * 1000], [36]],
         [[67, 0], [10 * 1000], [39]],
@@ -62,7 +63,7 @@ buildings.set('diggerCrystal', {
     size: 2,
     progressNeed: 4,
     limit: 2,
-    effects: ['diggerCrystal'],
+    effects: [names_1.buildingEffects.diggerCrystal],
     data: [
         [[50, 0], [10 * 1000], [1]],
         [[200, 0], [20 * 1000], [3]]
@@ -74,7 +75,7 @@ buildings.set('diggerGas', {
     size: 2,
     progressNeed: 4,
     limit: 2,
-    effects: ['diggerGas'],
+    effects: [names_1.buildingEffects.diggerGas],
     data: [
         [[0, 1], [10 * 1000], [1]],
         [[0, 60], [20 * 1000], [2]]
@@ -86,7 +87,7 @@ buildings.set('autoDigger', {
     size: 3,
     progressNeed: 5,
     limit: 1,
-    effects: ['autoDigger'],
+    effects: [names_1.buildingEffects.autoDigger],
     data: [
         [[12000, 1000], [60 * 1000 * 60 * 6]]
     ]

@@ -71,6 +71,17 @@ class GameSimulatedPlanetAction {
             this.store.currentPlanet.gas -= cost.gas;
         });
     }
+    designWarship(planetId, warship) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield services_1.GameSimulatedPlanetService.designWarship(planetId, warship);
+        });
+    }
+    getDesignWarship(planetId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const designedWarships = yield services_1.GameSimulatedPlanetService.getDesignWarship(planetId);
+            this.store.designedWarships.set(this.store.currentPlanet.id, designedWarships);
+        });
+    }
     freshCurrentPlanet() {
         return __awaiter(this, void 0, void 0, function* () {
             const currentTime = new Date().getTime();
@@ -79,6 +90,16 @@ class GameSimulatedPlanetAction {
             this.store.currentPlanetBuiltSize = result.builtSize;
             this.store.currentPlanetPopulationLimit = result.populationLimit;
             game_simulated_planet_1.upgradeUserProgress(this.store.gameUser, this.store.buildingHelper);
+        });
+    }
+    deleteWarship(planetId, warshipId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield services_1.GameSimulatedPlanetService.deleteWarship(warshipId);
+            let designedWarships = this.store.designedWarships.get(planetId);
+            const deleteIndex = designedWarships.findIndex(designedWarship => designedWarship.id === warshipId);
+            designedWarships.splice(deleteIndex, 1);
+            designedWarships = designedWarships.slice();
+            this.store.designedWarships.set(planetId, designedWarships);
         });
     }
 }

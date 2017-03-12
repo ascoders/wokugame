@@ -5,6 +5,10 @@ const dynamic_object_1 = require("../dynamic-object");
 const shallow_equal_1 = require("../shallow-equal");
 exports.default = (decoratedComponent) => {
     return _a = class WrapComponent extends React.Component {
+            constructor() {
+                super(...arguments);
+                this.runCount = 0;
+            }
             shouldComponentUpdate(nextProps) {
                 if (!shallow_equal_1.default(this.props, nextProps)) {
                     return true;
@@ -21,6 +25,7 @@ exports.default = (decoratedComponent) => {
                 this.signal.unobserve();
             }
             setNextState() {
+                this.runCount++;
                 this.forceUpdate();
             }
             render() {

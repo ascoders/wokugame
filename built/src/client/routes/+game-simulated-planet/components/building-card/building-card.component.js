@@ -56,7 +56,7 @@ let GameSimulatedPlanetScene = class GameSimulatedPlanetScene extends React.Comp
         const buildingInfo = game_simulated_planet_1.buildings.get(building.type);
         const currentLevelData = buildingInfo.data[building.level - 1];
         const Effects = buildingInfo.effects.map((effect, index) => {
-            let effectDesc = game_simulated_planet_1.effectDescription.get(effect);
+            let effectDesc = game_simulated_planet_1.buildingEffectDescription.get(effect);
             const descriptionColorful = highlight_render_1.default(effectDesc, replaceIndex => {
                 return (React.createElement("span", { key: replaceIndex + 'colorFul', style: { color: 'green' } }, currentLevelData[index + 2][replaceIndex].toString()));
             });

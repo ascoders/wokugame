@@ -43,6 +43,8 @@ exports.default = (gameUser, buildingHelper) => {
                 gameUser.progress = 5;
             }
             break;
+        case 5:
+            break;
     }
 };
 //# sourceMappingURL=upgrade-user-progress.js.map

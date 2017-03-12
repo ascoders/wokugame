@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const game_simulated_planet_1 = require("../../common/game-simulated-planet");
 const math_1 = require("../../../components/math");
+const names_1 = require("./names");
 const base = require("./base");
 exports.default = (planet, startTime, serverTimeDiff) => {
     const buildingHelper = new game_simulated_planet_1.BuildingHelper(serverTimeDiff);
@@ -24,19 +25,19 @@ exports.default = (planet, startTime, serverTimeDiff) => {
             buildingInfo.effects.forEach((effect, index) => {
                 const effectValue = buildingHelper.getEffectValue(building, index);
                 switch (effect) {
-                    case 'population':
+                    case names_1.buildingEffects.population:
                         populationIncrement += math_1.division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60);
                         break;
-                    case 'populationLimit':
+                    case names_1.buildingEffects.populationLimit:
                         populationLimit += effectValue[0];
                         break;
-                    case 'crystal':
+                    case names_1.buildingEffects.crystal:
                         crystalIncrement += math_1.division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60);
                         break;
-                    case 'gas':
+                    case names_1.buildingEffects.gas:
                         gasIncrement += math_1.division(effectValue[0] * buildingHarvestTime, 1000 * 60 * 60);
                         break;
-                    case 'autoDigger':
+                    case names_1.buildingEffects.autoDigger:
                         const collectionTime = endTime - new Date(planet.lastCollection).getTime();
                         if (collectionTime >= base.collectionInterval) {
                             const collectionCount = Math.floor(collectionTime / base.collectionInterval);

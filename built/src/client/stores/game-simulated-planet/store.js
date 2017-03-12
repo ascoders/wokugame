@@ -8,6 +8,7 @@ class GameSimulatedPlanetStore {
         this.currentPlanetBuiltSize = 0;
         this.serverTimeDiff = 0;
         this.lastHarvest = 0;
+        this.designedWarships = new Map();
     }
     get currentPlanet() {
         return this.gameUser.planets[this.currentPlanetIndex];

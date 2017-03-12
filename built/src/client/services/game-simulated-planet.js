@@ -47,4 +47,25 @@ exports.upgradeBuilding = (planetId, buildingId) => __awaiter(this, void 0, void
         })
     });
 });
+exports.designWarship = (planetId, warship) => __awaiter(this, void 0, void 0, function* () {
+    return yield fetch_1.default('/api/game-simulated-planet/designWarship', {
+        method: 'post',
+        body: JSON.stringify({
+            planetId, warship
+        })
+    });
+});
+exports.getDesignWarship = (planetId) => __awaiter(this, void 0, void 0, function* () {
+    return yield fetch_1.default(`/api/game-simulated-planet/planet/${planetId}/warships`, {
+        method: 'get'
+    });
+});
+exports.deleteWarship = (warshipId) => __awaiter(this, void 0, void 0, function* () {
+    return yield fetch_1.default('/api/game-simulated-planet/warship/delete', {
+        method: 'post',
+        body: JSON.stringify({
+            warshipId
+        })
+    });
+});
 //# sourceMappingURL=game-simulated-planet.js.map
