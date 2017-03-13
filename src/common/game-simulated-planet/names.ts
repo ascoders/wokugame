@@ -1,4 +1,38 @@
 /**
+ * 建筑名
+ */
+export const buildingNames = {
+    /**
+     * 生态球
+     */
+    house: 'house',
+    /**
+     * 晶体矿采掘场
+     */
+    crystal: 'crystal',
+    /**
+     * 瓦斯精炼厂
+     */
+    gas: 'gas',
+    /**
+     * 晶体矿采掘机
+     */
+    diggerCrystal: 'diggerC',
+    /**
+     * 瓦斯采掘机
+     */
+    diggerGas: 'diggerG',
+    /**
+     * 造舰厂
+     */
+    productionWarship: 'productWar',
+    /**
+     * 自动采集机
+     */
+    autoDigger: 'autoDigger'
+}
+
+/**
  * 建筑效果名
  * 数据库只会存储建筑名，不会存储建筑效果名，放心用 enum
  */
@@ -30,7 +64,11 @@ export enum buildingEffects {
     /**
      * 自动采集
      */
-    autoDigger
+    autoDigger,
+    /**
+     * 造舰 生产数量/提升生产效率
+     */
+    productWarship
 }
 
 /**

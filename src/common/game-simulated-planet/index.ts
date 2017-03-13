@@ -8,5 +8,6 @@ export { default as upgradeUserProgress } from './upgrade-user-progress'
 export { warshipList, warships } from './warships'
 export { Warship, Warships } from './warships'
 export { arms, equipments, putOnEquipment, allEquipments } from './equipments'
+export * from './names'
 
 export * from './base'

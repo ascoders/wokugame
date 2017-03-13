@@ -10,6 +10,7 @@ const buildingEffectDescription = new Map<number, string>([
     [buildingEffects.gas, '每小时提供 %d 瓦斯'],
     [buildingEffects.diggerCrystal, '每次采集晶体矿增加 %d'],
     [buildingEffects.diggerGas, '每次采集瓦斯增加 %d'],
+    [buildingEffects.productWarship, '造舰数量提升 %d，提高造舰效率 %d'],
     [buildingEffects.autoDigger, '自动采集']
 ])
 

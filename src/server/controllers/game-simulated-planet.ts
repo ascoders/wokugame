@@ -15,7 +15,8 @@ import {
     planetFresh,
     upgradeUserProgress,
     collectionInterval,
-    collectionGainWithBuildingSupport
+    collectionGainWithBuildingSupport,
+    buildingNames
 } from '../../common/game-simulated-planet'
 import { division } from '../../../components/math'
 
@@ -168,7 +169,7 @@ export default class GameSimulatedPlanet {
             throw Error('星球不存在')
         }
 
-        if (planet.buildings.findIndex(building => building.type === 'autoDigger' && buildingHelper.getFinishedTime(building) > 0) > -1) {
+        if (planet.buildings.findIndex(building => building.type === buildingNames.autoDigger && buildingHelper.getFinishedTime(building) > 0) > -1) {
             throw Error('已经存在自动收集机器')
         }
 
