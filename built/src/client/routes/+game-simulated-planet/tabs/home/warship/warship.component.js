@@ -41,7 +41,6 @@ let Warship = class Warship extends React.Component {
         });
         const designedWarships = this.props.GameSimulatedPlanetStore.designedWarships
             .get(this.props.GameSimulatedPlanetStore.currentPlanet.id);
-        console.log('aa?');
         const DesignedWarshipsElement = designedWarships && designedWarships.reverse().map((designedWarship, index) => {
             return (React.createElement(designed_warship_component_1.default, { key: index, designedWarship: designedWarship }));
         });
