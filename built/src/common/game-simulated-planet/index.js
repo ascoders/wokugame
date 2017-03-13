@@ -26,5 +26,6 @@ exports.arms = equipments_1.arms;
 exports.equipments = equipments_1.equipments;
 exports.putOnEquipment = equipments_1.putOnEquipment;
 exports.allEquipments = equipments_1.allEquipments;
+__export(require("./names"));
 __export(require("./base"));
 //# sourceMappingURL=index.js.map

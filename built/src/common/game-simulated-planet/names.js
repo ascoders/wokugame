@@ -1,5 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildingNames = {
+    house: 'house',
+    crystal: 'crystal',
+    gas: 'gas',
+    diggerCrystal: 'diggerC',
+    diggerGas: 'diggerG',
+    productionWarship: 'productWar',
+    autoDigger: 'autoDigger'
+};
 var buildingEffects;
 (function (buildingEffects) {
     buildingEffects[buildingEffects["populationLimit"] = 0] = "populationLimit";
@@ -9,6 +18,7 @@ var buildingEffects;
     buildingEffects[buildingEffects["diggerCrystal"] = 4] = "diggerCrystal";
     buildingEffects[buildingEffects["diggerGas"] = 5] = "diggerGas";
     buildingEffects[buildingEffects["autoDigger"] = 6] = "autoDigger";
+    buildingEffects[buildingEffects["productWarship"] = 7] = "productWarship";
 })(buildingEffects = exports.buildingEffects || (exports.buildingEffects = {}));
 var equipmentEffects;
 (function (equipmentEffects) {

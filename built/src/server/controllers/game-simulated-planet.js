@@ -98,7 +98,7 @@ let GameSimulatedPlanet = class GameSimulatedPlanet {
             if (!planet) {
                 throw Error('星球不存在');
             }
-            if (planet.buildings.findIndex(building => building.type === 'autoDigger' && buildingHelper.getFinishedTime(building) > 0) > -1) {
+            if (planet.buildings.findIndex(building => building.type === game_simulated_planet_1.buildingNames.autoDigger && buildingHelper.getFinishedTime(building) > 0) > -1) {
                 throw Error('已经存在自动收集机器');
             }
             if (new Date().getTime() < planet.lastCollection.getTime() + game_simulated_planet_1.collectionInterval) {
