@@ -9,6 +9,7 @@ export const Container = styled.div`
     z-index: 100;
     outline: 0;
     background-color: rgba(0,0,0,.35);
+    overflow-y: auto;
     ${props => !props.theme.show && 'display:none;'}
 `
 

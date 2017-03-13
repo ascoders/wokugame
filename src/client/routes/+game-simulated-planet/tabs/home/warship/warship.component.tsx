@@ -55,7 +55,6 @@ export default class Warship extends React.Component<typings.Props, typings.Stat
         // 所有设计好的飞船
         const designedWarships = this.props.GameSimulatedPlanetStore.designedWarships
             .get(this.props.GameSimulatedPlanetStore.currentPlanet.id)
-        console.log('aa?')
         const DesignedWarshipsElement = designedWarships && designedWarships.reverse().map((designedWarship, index) => {
             return (
                 <DesignedWarship key={index} designedWarship={designedWarship} />
