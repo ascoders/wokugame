@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as typings from './warship.type'
 import { warshipList, putOnEquipment } from '../../../../../../common/game-simulated-planet'
 
-import { Connect } from '../../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 import Tooltip from '../../../../../../../components/tooltip'
 
 import Design from './design/design.component'

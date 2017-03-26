@@ -41,7 +41,9 @@ export default class GameSimulatedPlanetStore {
     /**
      * 获取 buildingHelper 方法类
      */
-    buildingHelper: BuildingHelper
+    get buildingHelper() {
+        return new BuildingHelper(this.serverTimeDiff)
+    }
 
     /**
      * 设计的飞船列表

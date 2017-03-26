@@ -1,9 +1,9 @@
 import { UsersService } from '../../services'
 import GameSimulatedPlanetStore from './store'
-import { inject } from '../../../../components/dependency-inject'
+import { inject } from 'dependency-inject'
 import { GameSimulatedPlanetService } from '../../services'
 import { planetFresh, BuildingHelper, upgradeUserProgress } from '../../../common/game-simulated-planet'
-import { extendObservable } from '../../../../components/dynamic-object'
+import { extendObservable } from 'dynamic-object'
 
 export default class GameSimulatedPlanetAction {
     @inject(GameSimulatedPlanetStore)
@@ -18,7 +18,6 @@ export default class GameSimulatedPlanetAction {
         this.store.gameUser = result.user
         this.store.serverTimeDiff = result.currentTime - currentTime
         this.store.lastHarvest = currentTime
-        this.store.buildingHelper = new BuildingHelper(this.store.serverTimeDiff)
     }
 
     /**

@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as typings from './login.type'
 import { browserHistory } from 'react-router'
 
-import { Connect } from '../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import Button from '../../../../components/button'
 import Input from '../../../../components/input'

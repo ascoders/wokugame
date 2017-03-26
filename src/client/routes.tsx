@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {IndexRoute, Route} from 'react-router'
+import { IndexRoute, Route } from 'react-router'
 import LayoutComponent from './layout/layout.component'
 
 declare var require: any
@@ -7,7 +7,7 @@ declare var require: any
 /**
  * nodejs mock require.ensure
  */
-if (typeof(require.ensure) !== 'function') {
+if (typeof (require.ensure) !== 'function') {
     require.ensure = (modules: Array<string>, callback: Function) => {
         callback(require)
     }
@@ -45,12 +45,12 @@ const getRegister = (nextState: any, callback: any) => {
 
 export default (
     <Route path="/" component={LayoutComponent}>
-        <IndexRoute getComponent={getHome}/>
-        <Route path="login" getComponent={getLogin}/>
-        <Route path="register" getComponent={getRegister}/>
+        <IndexRoute getComponent={getHome} />
+        <Route path="login" getComponent={getLogin} />
+        <Route path="register" getComponent={getRegister} />
         <Route path="/game">
-            <Route path="play-aircraft" getComponent={getGame}/>
-            <Route path="simulated-planet" getComponent={getGameSimulatedPlanet}/>
+            <Route path="play-aircraft" getComponent={getGame} />
+            <Route path="simulated-planet" getComponent={getGameSimulatedPlanet} />
         </Route>
     </Route>
 )

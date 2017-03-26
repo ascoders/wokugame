@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as typings from './building-card.type'
 
-import { Connect } from '../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import { buildings, buildingEffectDescription } from '../../../../../common/game-simulated-planet'
 import { Linear } from '../../../../../../components/progress'
 import { Interval, friendlyMillisecond } from '../../../../../../components/timer'
 import Tooltip from '../../../../../../components/tooltip'
-import { observe } from '../../../../../../components/dynamic-object'
+import { observe } from 'dynamic-object'
 import highlightRender from '../../utils/highlight-render'
 
 import {
@@ -64,6 +64,22 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
         }, 200)
     }
 
+    /**
+        * 拆除建筑
+        */
+    destroyBuilding = () => {
+        const building = this.getBuilding()
+        this.props.GameSimulatedPlanetAction.destroyBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
+    }
+
+    /**
+     * 升级建筑
+     */
+    upgradeBuilding = () => {
+        const building = this.getBuilding()
+        this.props.GameSimulatedPlanetAction.upgradeBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
+    }
+
     render() {
         const building = this.getBuilding()
 
@@ -91,20 +107,6 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
                 <EffectDescriptionSpan key={index}>{descriptionColorful}</EffectDescriptionSpan>
             )
         })
-
-        /**
-         * 拆除建筑
-         */
-        const destroyBuilding = () => {
-            this.props.GameSimulatedPlanetAction.destroyBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
-        }
-
-        /**
-         * 升级建筑
-         */
-        const upgradeBuilding = () => {
-            this.props.GameSimulatedPlanetAction.upgradeBuilding(this.props.GameSimulatedPlanetStore.currentPlanet.id, building.id)
-        }
 
         // 如果还没建造完毕，显示进度条
         const startTime = new Date(building.buildStart)
@@ -152,9 +154,9 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
                 <OperateContainer>
                     {this.props.GameSimulatedPlanetStore.buildingHelper.hasLevelByInfo(buildingInfo, building.level + 1) === false
                         ? <OperateButton theme={{ max: true }}>已达顶级</OperateButton>
-                        : <Tooltip position="left"><OperateButton onClick={upgradeBuilding}>升级</OperateButton></Tooltip>
+                        : <Tooltip position="left"><OperateButton onClick={this.upgradeBuilding}>升级</OperateButton></Tooltip>
                     }
-                    <OperateButton onClick={destroyBuilding}>拆除</OperateButton>
+                    <OperateButton onClick={this.destroyBuilding}>拆除</OperateButton>
                 </OperateContainer>
             </Container>
         )

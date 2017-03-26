@@ -9,7 +9,7 @@ import '../../components/css-beautify'
 import StoreProps from './stores'
 
 import routes from './routes'
-import { Provider, Connect } from '../../components/dynamic-react'
+import { Provider } from 'dynamic-react'
 
 declare let window: any
 declare let require: any

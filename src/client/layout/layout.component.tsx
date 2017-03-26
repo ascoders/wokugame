@@ -1,11 +1,11 @@
 import * as React from 'react'
 import * as typings from './layout.type'
-import {Link} from 'react-router'
-import {Connect} from '../../../components/dynamic-react'
+import { Link } from 'react-router'
+import { Connect } from 'dynamic-react'
 
-import {Menu, MenuItem, MenuTree, MenuText} from '../../../components/menu'
+import { Menu, MenuItem, MenuTree, MenuText } from '../../../components/menu'
 
-import {Container} from './layout.style'
+import { Container } from './layout.style'
 
 @Connect
 export default class LayoutScene extends React.Component<typings.Props, any> {

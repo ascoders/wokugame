@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "commonjs",
     "noImplicitAny": true,
     "target": "es6",
@@ -10,7 +11,12 @@
     "outDir": "built",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "dynamic-react": [
+        "components/dynamic-react"
+      ]
+    }
   },
   "awesomeTypescriptLoaderOptions": {
     "useWebpackText": true,

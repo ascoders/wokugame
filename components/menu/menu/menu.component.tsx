@@ -1,9 +1,8 @@
 import * as React from 'react'
+import { Provider } from 'dynamic-react'
+
 import * as typings from './menu.type'
-
-import { Provider } from '../../dynamic-react'
 import { StoreProps } from '../store'
-
 import { ContainerComponent } from './menu.style'
 
 export default class MenuComponent extends React.Component<typings.Props, any> {

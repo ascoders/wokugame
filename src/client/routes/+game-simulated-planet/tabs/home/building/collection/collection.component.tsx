@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as typings from './collection.type'
 import { Interval } from '../../../../../../../../components/timer'
 
-import { Connect } from '../../../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import { collectionInterval } from '../../../../../../../common/game-simulated-planet'
 

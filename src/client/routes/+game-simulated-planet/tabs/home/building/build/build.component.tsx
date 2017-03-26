@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as typings from './build.type'
 
-import { Connect } from '../../../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import { friendlyMillisecond } from '../../../../../../../../components/timer'
 
@@ -22,11 +22,6 @@ import {
 } from './build.style'
 
 import Modal from '../../../../../../../../components/modal'
-
-import CrystalSvg from '../../../../svgs/crystal.component'
-import GasSvg from '../../../../svgs/gas.component'
-import HouseSvg from '../../../../svgs/house.component'
-import TimeSvg from '../../../../svgs/time.component'
 
 @Connect
 export default class Build extends React.Component<typings.Props, typings.State> {

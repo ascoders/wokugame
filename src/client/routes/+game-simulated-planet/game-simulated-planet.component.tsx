@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as typings from './game-simulated-planet.type'
 
-import { Connect } from '../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import { Tabs, TabPane } from '../../../../components/tabs'
 import { Interval } from '../../../../components/timer'
@@ -25,13 +25,14 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
     static defaultProps = new typings.Props()
     private interval: Interval
 
-    componentWillMount = async () => {
+    componentWillMount() {
         this.props.ApplicationAction.showScroll(false)
 
-        await this.props.GameSimulatedPlanetAction.loginAuthenticatedUser()
-        this.interval = new Interval(() => {
-            this.props.GameSimulatedPlanetAction.freshCurrentPlanet()
-        }, 1000)
+        this.props.GameSimulatedPlanetAction.loginAuthenticatedUser().then(() => {
+            this.interval = new Interval(() => {
+                this.props.GameSimulatedPlanetAction.freshCurrentPlanet()
+            }, 1000)
+        })
     }
 
     componentWillUnmount() {
@@ -40,7 +41,7 @@ export default class GameSimulatedPlanetScene extends React.Component<typings.Pr
     }
 
     render() {
-        if (!this.props.GameSimulatedPlanetStore.gameUser) { 
+        if (!this.props.GameSimulatedPlanetStore.gameUser) {
             return null
         }
 

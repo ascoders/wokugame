@@ -1,6 +1,6 @@
-import {UsersService} from '../../services'
+import { UsersService } from '../../services'
 import RegisterPageStore from './store'
-import {inject} from '../../../../components/dependency-inject'
+import { inject } from 'dependency-inject'
 
 export default class RegisterPageAction {
     @inject(RegisterPageStore)

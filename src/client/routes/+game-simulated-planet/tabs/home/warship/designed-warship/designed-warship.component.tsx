@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as typings from './designed-warship.type'
-import { Connect } from '../../../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 import { warships, putOnEquipment } from '../../../../../../../common/game-simulated-planet'
 
 import {

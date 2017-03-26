@@ -1,6 +1,6 @@
-import {UsersService} from '../../services'
+import { UsersService } from '../../services'
 import ApplicationStore from './store'
-import {inject} from '../../../../components/dependency-inject'
+import { inject } from 'dependency-inject'
 
 export default class ApplicationAction {
     @inject(ApplicationStore)

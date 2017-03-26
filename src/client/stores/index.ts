@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Container } from '../../../components/dependency-inject'
+import { Container } from 'dependency-inject'
 import ReactProps from '../../../components/react-props'
 
 import UserAction from './user/action'

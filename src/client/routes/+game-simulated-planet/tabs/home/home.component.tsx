@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as typings from './home.type'
 
-import { Connect } from '../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import { buildingList } from '../../../../../common/game-simulated-planet'
 

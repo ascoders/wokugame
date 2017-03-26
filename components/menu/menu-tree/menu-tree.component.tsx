@@ -1,8 +1,7 @@
 import * as React from 'react'
+import { Connect } from 'dynamic-react'
+
 import * as typings from './menu-tree.type'
-
-import { Connect } from '../../dynamic-react'
-
 import { Container, TreeItem } from './menu-tree.style'
 
 export default Connect((props: typings.Props = new typings.Props()) => {

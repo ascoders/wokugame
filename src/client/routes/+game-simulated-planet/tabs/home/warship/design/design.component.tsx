@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as typings from './design.type'
-import { Connect } from '../../../../../../../../components/dynamic-react'
+import { Connect } from 'dynamic-react'
 
 import Modal from '../../../../../../../../components/modal'
 import Detail from './detail/detail.component'
