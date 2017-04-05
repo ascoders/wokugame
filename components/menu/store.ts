@@ -1,5 +1,5 @@
 import { inject, Container } from 'dependency-inject'
-import ReactProps from '../react-props'
+import ReactProps from '@gaea/react-props'
 
 export class menuStore {
     height = 40

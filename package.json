@@ -39,7 +39,7 @@
     "connect-redis": "^3.2.0",
     "cookie-parser": "^1.4.3",
     "dependency-inject": "^1.0.3",
-    "dynamic-object": "^2.0.0",
+    "dynamic-object": "^2.0.1",
     "dynamic-react": "^2.0.3",
     "es6-promises": "^1.0.10",
     "express": "^4.14.0",

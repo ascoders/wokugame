@@ -13,8 +13,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {
-      "dynamic-react": [
-        "components/dynamic-react"
+      "@gaea/article-box": [
+        "components/article-box"
+      ],
+      "@gaea/button": [
+        "components/button"
+      ],
+      "@gaea/react-props": [
+        "components/react-props"
       ]
     }
   },

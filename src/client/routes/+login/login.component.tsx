@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 
 import { Connect } from 'dynamic-react'
 
-import Button from '../../../../components/button'
+import Button from '@gaea/button'
 import Input from '../../../../components/input'
 
 import { Container, CenterContainer, PasswordContainer } from '../+register/register.style'

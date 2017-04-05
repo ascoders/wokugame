@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Container } from 'dependency-inject'
-import ReactProps from '../../../components/react-props'
+import ReactProps from '@gaea/react-props'
 
 import UserAction from './user/action'
 import LoginPageAction from './login-page/action'

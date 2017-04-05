@@ -1,0 +1,19 @@
+{
+    "components": [
+        {
+            "path": "components/article-box",
+            "npm": "@gaea/article-box",
+            "git": ""
+        },
+        {
+            "path": "components/button",
+            "npm": "@gaea/button",
+            "git": ""
+        },
+        {
+            "path": "components/react-props",
+            "npm": "@gaea/react-props",
+            "git": ""
+        }
+    ]
+}
